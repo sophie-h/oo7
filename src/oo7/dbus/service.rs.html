@@ -36,6 +36,10 @@
 <span id="31">31</span>
 <span id="32">32</span>
 <span id="33">33</span>
+<span id="34">34</span>
+<span id="35">35</span>
+<span id="36">36</span>
+<span id="37">37</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
 
 <span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">api</span>, <span class="ident">Collection</span>, <span class="ident">DEFAULT_COLLECTION</span>};
@@ -46,18 +50,20 @@
     <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused</span>)]</span>
     <span class="ident">service_key</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="ident">session</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">api::Session</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="ident">algorithm</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Algorithm</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Service</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">algorithm</span>: <span class="ident">Algorithm</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Service</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">cnx</span> <span class="op">=</span> <span class="ident">zbus::Connection::session</span>().<span class="kw">await</span><span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">api_service</span> <span class="op">=</span> <span class="ident">Arc::new</span>(<span class="ident">api::Service::new</span>(<span class="kw-2">&amp;</span><span class="ident">cnx</span>).<span class="kw">await</span><span class="question-mark">?</span>);
-        <span class="kw">let</span> (<span class="ident">service_key</span>, <span class="ident">session</span>) <span class="op">=</span> <span class="ident">api_service</span>.<span class="ident">open_session</span>(<span class="ident">algorithm</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+        <span class="kw">let</span> (<span class="ident">service_key</span>, <span class="ident">session</span>) <span class="op">=</span> <span class="ident">api_service</span>.<span class="ident">open_session</span>(<span class="kw-2">&amp;</span><span class="ident">algorithm</span>).<span class="kw">await</span><span class="question-mark">?</span>;
 
         <span class="prelude-val">Ok</span>(<span class="self">Self</span> {
             <span class="ident">service_key</span>,
             <span class="ident">service</span>: <span class="ident">api_service</span>,
             <span class="ident">session</span>: <span class="ident">Arc::new</span>(<span class="ident">session</span>),
+            <span class="ident">algorithm</span>: <span class="ident">Arc::new</span>(<span class="ident">algorithm</span>),
         })
     }
 
@@ -66,7 +72,9 @@
             .<span class="ident">service</span>
             .<span class="ident">read_alias</span>(<span class="ident">DEFAULT_COLLECTION</span>)
             .<span class="kw">await</span><span class="question-mark">?</span>
-            .<span class="ident">map</span>(<span class="op">|</span><span class="ident">collection</span><span class="op">|</span> <span class="ident">Collection::new</span>(<span class="self">self</span>.<span class="ident">session</span>.<span class="ident">clone</span>(), <span class="ident">collection</span>)))
+            .<span class="ident">map</span>(<span class="op">|</span><span class="ident">collection</span><span class="op">|</span> {
+                <span class="ident">Collection::new</span>(<span class="self">self</span>.<span class="ident">session</span>.<span class="ident">clone</span>(), <span class="self">self</span>.<span class="ident">algorithm</span>.<span class="ident">clone</span>(), <span class="ident">collection</span>)
+            }))
     }
 }
 </code></pre></div>

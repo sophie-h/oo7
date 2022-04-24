@@ -285,9 +285,9 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;OpenSession&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">open_session</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">algorithm</span>: <span class="ident">Algorithm</span>,
+        <span class="ident">algorithm</span>: <span class="kw-2">&amp;</span><span class="ident">Algorithm</span>,
     ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span>, <span class="ident">Session</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>)<span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">client_key</span> <span class="op">=</span> <span class="ident">algorithm</span>.<span class="ident">session_input</span>();
+        <span class="kw">let</span> <span class="ident">client_key</span> <span class="op">=</span> <span class="ident">algorithm</span>.<span class="ident">client_key</span>();
         <span class="kw">let</span> (<span class="ident">service_key</span>, <span class="ident">session_path</span>) <span class="op">=</span> <span class="self">self</span>
             .<span class="ident">inner</span>()
             .<span class="ident">call_method</span>(<span class="string">&quot;OpenSession&quot;</span>, <span class="kw-2">&amp;</span>(<span class="kw-2">&amp;</span><span class="ident">algorithm</span>, <span class="ident">client_key</span>))
@@ -295,7 +295,7 @@
             .<span class="ident">body</span>::<span class="op">&lt;</span>(<span class="ident">OwnedValue</span>, <span class="ident">OwnedObjectPath</span>)<span class="op">&gt;</span>()<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">session</span> <span class="op">=</span> <span class="ident">Session::new</span>(<span class="self">self</span>.<span class="ident">inner</span>().<span class="ident">connection</span>(), <span class="ident">session_path</span>).<span class="kw">await</span><span class="question-mark">?</span>;
 
-        <span class="kw">let</span> <span class="ident">key</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">algorithm</span> <span class="op">==</span> <span class="ident">Algorithm::Plain</span> {
+        <span class="kw">let</span> <span class="ident">key</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">algorithm</span> <span class="op">==</span> <span class="kw-2">&amp;</span><span class="ident">Algorithm::Plain</span> {
             <span class="prelude-val">None</span>
         } <span class="kw">else</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">res</span> <span class="op">=</span> <span class="macro">vec!</span>[];
