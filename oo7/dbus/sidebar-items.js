@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Collection",""],["Item",""],["Prompt",""],["Secret",""],["Service",""],["Session",""]]});
+initSidebarItems({"struct":[["Collection",""],["Item",""],["Secret",""],["Service",""],["Session",""]]});
