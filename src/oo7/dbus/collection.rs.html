@@ -78,7 +78,7 @@
         <span class="kw">let</span> <span class="ident">items</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">collection</span>.<span class="ident">search_items</span>(<span class="ident">attributes</span>).<span class="kw">await</span><span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(<span class="ident">items</span>
             .<span class="ident">into_iter</span>()
-            .<span class="ident">map</span>(<span class="op">|</span><span class="ident">item</span><span class="op">|</span> <span class="ident">Item::new</span>(<span class="self">self</span>.<span class="ident">session</span>.<span class="ident">clone</span>(), <span class="self">self</span>.<span class="ident">algorithm</span>.<span class="ident">clone</span>(), <span class="ident">item</span>))
+            .<span class="ident">map</span>(<span class="op">|</span><span class="ident">item</span><span class="op">|</span> <span class="ident">Item::new</span>(<span class="ident">Arc::clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">session</span>), <span class="ident">Arc::clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">algorithm</span>), <span class="ident">item</span>))
             .<span class="ident">collect</span>::<span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span><span class="op">&gt;</span>())
     }
 
