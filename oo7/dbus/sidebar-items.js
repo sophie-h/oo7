@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Collection",""],["Item",""],["Secret",""],["Service",""],["Session",""]],"trait":[["Unlockable","A common trait implemented by objects that can be locked or unlocked. Like [`Collection`] or [`Item`]."]]});
+initSidebarItems({"mod":[["api","Barebone DBus API of the secret service specifications."]],"static":[["DEFAULT_COLLECTION","The default collection alias."]],"struct":[["Collection",""],["Item",""],["Service",""]]});

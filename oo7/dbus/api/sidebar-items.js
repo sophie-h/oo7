@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Collection",""],["Item",""],["Secret",""],["Service",""],["Session",""]],"trait":[["Unlockable","A common trait implemented by objects that can be locked or unlocked. Like [`Collection`] or [`Item`]."]]});
