@@ -9,7 +9,11 @@
 <span id="4">4</span>
 <span id="5">5</span>
 <span id="6">6</span>
-</pre><pre class="rust"><code><span class="kw">mod</span> <span class="ident">algorithm</span>;
+<span id="7">7</span>
+<span id="8">8</span>
+</pre><pre class="rust"><code><span class="attribute">#![<span class="ident">deny</span>(<span class="ident">rustdoc::broken_intra_doc_links</span>)]</span>
+<span class="attribute">#![<span class="ident">doc</span> <span class="op">=</span> <span class="macro">include_str!</span>(<span class="string">&quot;../README.md&quot;</span>)]</span>
+<span class="kw">mod</span> <span class="ident">algorithm</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">dbus</span>;
 <span class="kw">mod</span> <span class="ident">error</span>;
 
