@@ -179,19 +179,17 @@
 <span id="174">174</span>
 <span id="175">175</span>
 <span id="176">176</span>
-<span id="177">177</span>
-<span id="178">178</span>
-<span id="179">179</span>
-<span id="180">180</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">collections::HashMap</span>, <span class="ident">fmt</span>, <span class="ident">time::Duration</span>};
 
 <span class="kw">use</span> <span class="ident">futures::StreamExt</span>;
 <span class="kw">use</span> <span class="ident">serde::Serialize</span>;
-<span class="kw">use</span> <span class="ident">zbus::zvariant</span>::{<span class="ident">ObjectPath</span>, <span class="ident">OwnedObjectPath</span>};
+<span class="kw">use</span> <span class="ident">zbus::zvariant</span>::{<span class="ident">ObjectPath</span>, <span class="ident">OwnedObjectPath</span>, <span class="ident">Type</span>};
 
 <span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">Item</span>, <span class="ident">Prompt</span>, <span class="ident">Properties</span>, <span class="ident">Secret</span>, <span class="ident">Unlockable</span>, <span class="ident">DESTINATION</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Result</span>;
 
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Type</span>)]</span>
+<span class="attribute">#[<span class="ident">zvariant</span>(<span class="ident">signature</span> <span class="op">=</span> <span class="string">&quot;o&quot;</span>)]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;org.freedesktop.Secret.Collection&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Collection</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="ident">zbus::Proxy</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>);
 
@@ -345,12 +343,6 @@
         <span class="ident">S</span>: <span class="ident">serde::Serializer</span>,
     {
         <span class="ident">ObjectPath::serialize</span>(<span class="self">self</span>.<span class="ident">inner</span>().<span class="ident">path</span>(), <span class="ident">serializer</span>)
-    }
-}
-
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">zbus::zvariant::Type</span> <span class="kw">for</span> <span class="ident">Collection</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">signature</span>() -&gt; <span class="ident">zbus::zvariant::Signature</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span><span class="op">&gt;</span> {
-        <span class="ident">ObjectPath::signature</span>()
     }
 }
 

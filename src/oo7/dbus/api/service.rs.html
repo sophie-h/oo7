@@ -220,11 +220,13 @@
 <span id="215">215</span>
 <span id="216">216</span>
 <span id="217">217</span>
+<span id="218">218</span>
+<span id="219">219</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::collections::HashMap</span>;
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="kw">use</span> <span class="ident">futures::StreamExt</span>;
-<span class="kw">use</span> <span class="ident">zbus::zvariant</span>::{<span class="ident">Array</span>, <span class="ident">ObjectPath</span>, <span class="ident">OwnedObjectPath</span>, <span class="ident">OwnedValue</span>};
+<span class="kw">use</span> <span class="ident">zbus::zvariant</span>::{<span class="ident">Array</span>, <span class="ident">ObjectPath</span>, <span class="ident">OwnedObjectPath</span>, <span class="ident">OwnedValue</span>, <span class="ident">Type</span>};
 
 <span class="kw">use</span> <span class="kw">super</span>::{
     <span class="ident">secret::SecretInner</span>, <span class="ident">Collection</span>, <span class="ident">Item</span>, <span class="ident">Prompt</span>, <span class="ident">Properties</span>, <span class="ident">Secret</span>, <span class="ident">Session</span>, <span class="ident">Unlockable</span>,
@@ -232,6 +234,8 @@
 };
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">Algorithm</span>, <span class="prelude-ty">Result</span>};
 
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Type</span>)]</span>
+<span class="attribute">#[<span class="ident">zvariant</span>(<span class="ident">signature</span> <span class="op">=</span> <span class="string">&quot;o&quot;</span>)]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;org.freedesktop.secrets&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Service</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="ident">zbus::Proxy</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>);
 
