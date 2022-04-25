@@ -167,6 +167,14 @@
 <span id="162">162</span>
 <span id="163">163</span>
 <span id="164">164</span>
+<span id="165">165</span>
+<span id="166">166</span>
+<span id="167">167</span>
+<span id="168">168</span>
+<span id="169">169</span>
+<span id="170">170</span>
+<span id="171">171</span>
+<span id="172">172</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">collections::HashMap</span>, <span class="ident">sync::Arc</span>, <span class="ident">time::Duration</span>};
 
 <span class="kw">use</span> <span class="ident">futures::lock::Mutex</span>;
@@ -175,7 +183,15 @@
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">Error</span>, <span class="prelude-ty">Result</span>};
 
 <span class="doccomment">/// A secret with a label and attributes to identify it.</span>
-<span class="doccomment">/// </span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// An item might be locked or unlocked, use [`Item::lock`] or [`Item::unlock`]</span>
+<span class="doccomment">/// to lock or unlock it. Note that the secret service might not be able to lock/unlock</span>
+<span class="doccomment">/// individual items and may lock/unlock the entire collection in such case.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// The item is attributes are used to identify and find the item later using </span>
+<span class="doccomment">/// [`Collection::search_items`](crate::dbus::Collection::search_items).</span>
+<span class="doccomment">/// They are not stored or transferred in a secure manner.</span>
+<span class="doccomment">///</span>
 <span class="doccomment">/// **Note**</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// If the item is deleted using [`Item::delete`] any future usage of it API</span>

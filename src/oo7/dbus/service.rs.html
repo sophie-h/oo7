@@ -134,6 +134,9 @@
 <span id="129">129</span>
 <span id="130">130</span>
 <span id="131">131</span>
+<span id="132">132</span>
+<span id="133">133</span>
+<span id="134">134</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
 
 <span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">api</span>, <span class="ident">Algorithm</span>, <span class="ident">Collection</span>, <span class="ident">DEFAULT_COLLECTION</span>};
@@ -142,6 +145,9 @@
 <span class="doccomment">/// The entry point of communicating with a [`org.freedesktop.Secrets`](https://specifications.freedesktop.org/secret-service/latest/index.html) implementation.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// It will automatically create a session for you and allow you to retrieve collections or create new ones.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Certain actions requires on the secret service implementation requires a user prompt to complete</span>
+<span class="doccomment">/// like creating a collection, locking or unlocking a collection. The library handles that automatically for you.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// ```ignore</span>
 <span class="doccomment">/// let service = Service::new(Algorithm::Plain).await?;</span>
