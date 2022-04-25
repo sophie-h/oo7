@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["api","Barebone DBus API of the secret service specifications."]],"static":[["DEFAULT_COLLECTION","The default collection alias."]],"struct":[["Collection",""],["Item",""],["Service",""]]});
+initSidebarItems({"enum":[["Algorithm",""]],"mod":[["api","Barebone DBus API of the secret service specifications."]],"static":[["DEFAULT_COLLECTION","The default collection alias."]],"struct":[["Collection",""],["Item",""],["Service",""]]});

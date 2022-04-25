@@ -239,9 +239,9 @@
 
 <span class="kw">use</span> <span class="ident">futures::lock::Mutex</span>;
 
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">Algorithm</span>, <span class="ident">Error</span>, <span class="prelude-ty">Result</span>};
+<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">Error</span>, <span class="prelude-ty">Result</span>};
 
-<span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">api</span>, <span class="ident">Item</span>};
+<span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">api</span>, <span class="ident">Algorithm</span>, <span class="ident">Item</span>};
 
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Collection</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="ident">inner</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">api::Collection</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>,
