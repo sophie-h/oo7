@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["Error",""]],"mod":[["dbus",""],["portal","A `org.freedesktop.portal.Secret` compatible implementation."]],"type":[["Result",""]]});
+initSidebarItems({"enum":[["Error","The error type for oo7."]],"mod":[["dbus","A `org.freedesktop.Secrets` implementation."],["portal","A `org.freedesktop.portal.Secret` compatible implementation."]],"type":[["Result","Alias for [`std::result::Result`] with the error type [`Error`]."]]});
