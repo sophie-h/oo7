@@ -268,11 +268,11 @@
 
 <span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">api</span>, <span class="ident">Algorithm</span>, <span class="ident">Item</span>};
 
-<span class="doccomment">/// A collection allows the user to store/retrieve items.</span>
+<span class="doccomment">/// A collection allows to store and retrieve items.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// **Note**</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// If a collection is deleted using [`Collection::delete`] any future usage of its API</span>
+<span class="doccomment">/// If the collection is deleted using [`Collection::delete`] any future usage of it API</span>
 <span class="doccomment">/// will fail with [`Error::Deleted`].</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Collection</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="ident">inner</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">api::Collection</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>,
@@ -325,7 +325,7 @@
         }
     }
 
-    <span class="doccomment">/// Get the collection label.</span>
+    <span class="doccomment">/// The collection label.</span>
     <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">label</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
         <span class="kw">if</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">is_available</span>().<span class="kw">await</span> {
             <span class="prelude-val">Err</span>(<span class="ident">Error::Deleted</span>)
@@ -353,7 +353,7 @@
         }
     }
 
-    <span class="doccomment">/// Get the UNIX time when the collection was created.</span>
+    <span class="doccomment">/// The UNIX time when the collection was created.</span>
     <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">created</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Duration</span><span class="op">&gt;</span> {
         <span class="kw">if</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">is_available</span>().<span class="kw">await</span> {
             <span class="prelude-val">Err</span>(<span class="ident">Error::Deleted</span>)
@@ -362,7 +362,7 @@
         }
     }
 
-    <span class="doccomment">/// Get the UNIX time when the collection was modified.</span>
+    <span class="doccomment">/// The UNIX time when the collection was modified.</span>
     <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">modified</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Duration</span><span class="op">&gt;</span> {
         <span class="kw">if</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">is_available</span>().<span class="kw">await</span> {
             <span class="prelude-val">Err</span>(<span class="ident">Error::Deleted</span>)

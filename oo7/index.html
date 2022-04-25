@@ -8,7 +8,18 @@
 <p><img src="https://github.com/bilelmoussaoui/oo7/workflows/CI/badge.svg" alt="CI" /></p>
 <p>WIP!</p>
 <p>James Bond went on a new mission and this time as a <a href="https://specifications.freedesktop.org/secret-service/latest/">secret service provider</a>.</p>
-<p>The library consists of a Rust implementation of the Secret Service specifications using <a href="https://lib.rs/zbus">zbus</a>.</p>
+<p>The library consists of two modules:</p>
+<ul>
+<li>
+<p>An implementation of the Secret Service specifications using <a href="https://lib.rs/zbus">zbus</a>. Which sends the secrets to a DBus implementation of the <code>org.freedesktop.Secrets</code> interface that stores them somewhere safe.</p>
+</li>
+<li>
+<p>A file backend using the <code>org.freedesktop.portal.Secrets</code> portal to retrieve the service’s key to encrypt the file with.
+The file format is compatible with <a href="https://gitlab.gnome.org/GNOME/libsecret/">libsecret</a></p>
+</li>
+</ul>
+<p>Sandboxed applications should prefer using the file backend as it doesn’t expose the application secrets to other sandboxed applications if they can talk to the <code>org.freedesktop.Secrets</code> service.</p>
+<p>The library provides helper methods to store and retrieve secrets and uses either the DBus interface or the file backend based on whether the application is sandboxed or not.</p>
 <h3 id="goals"><a href="#goals">Goals</a></h3>
 <ul>
 <li>Async only API</li>
