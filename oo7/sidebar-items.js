@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["Algorithm",""],["Error",""]],"mod":[["dbus",""]],"type":[["Result",""]]});
+initSidebarItems({"enum":[["Algorithm",""],["Error",""]],"mod":[["dbus",""],["portal","A `org.freedesktop.portal.Secret` compatible implementation."]],"type":[["Result",""]]});
