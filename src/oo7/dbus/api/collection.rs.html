@@ -179,6 +179,7 @@
 <span id="174">174</span>
 <span id="175">175</span>
 <span id="176">176</span>
+<span id="177">177</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">collections::HashMap</span>, <span class="ident">fmt</span>, <span class="ident">time::Duration</span>};
 
 <span class="kw">use</span> <span class="ident">futures::StreamExt</span>;
@@ -202,6 +203,7 @@
         <span class="kw">let</span> <span class="ident">inner</span> <span class="op">=</span> <span class="ident">zbus::ProxyBuilder::new_bare</span>(<span class="ident">connection</span>)
             .<span class="ident">interface</span>(<span class="string">&quot;org.freedesktop.Secret.Collection&quot;</span>)<span class="question-mark">?</span>
             .<span class="ident">path</span>(<span class="ident">object_path</span>)<span class="question-mark">?</span>
+            .<span class="ident">cache_properties</span>(<span class="ident">zbus::CacheProperties::No</span>)
             .<span class="ident">destination</span>(<span class="ident">DESTINATION</span>)<span class="question-mark">?</span>
             .<span class="ident">build</span>()
             .<span class="kw">await</span><span class="question-mark">?</span>;
