@@ -217,6 +217,24 @@
 <span id="212">212</span>
 <span id="213">213</span>
 <span id="214">214</span>
+<span id="215">215</span>
+<span id="216">216</span>
+<span id="217">217</span>
+<span id="218">218</span>
+<span id="219">219</span>
+<span id="220">220</span>
+<span id="221">221</span>
+<span id="222">222</span>
+<span id="223">223</span>
+<span id="224">224</span>
+<span id="225">225</span>
+<span id="226">226</span>
+<span id="227">227</span>
+<span id="228">228</span>
+<span id="229">229</span>
+<span id="230">230</span>
+<span id="231">231</span>
+<span id="232">232</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">collections::HashMap</span>, <span class="ident">sync::Arc</span>, <span class="ident">time::Duration</span>};
 
 <span class="kw">use</span> <span class="ident">futures::lock::Mutex</span>;
@@ -412,7 +430,11 @@
 
         <span class="kw">let</span> <span class="ident">collection</span> <span class="op">=</span> <span class="ident">service</span>.<span class="ident">default_collection</span>().<span class="kw">await</span>.<span class="ident">unwrap</span>().<span class="ident">unwrap</span>();
         <span class="kw">let</span> <span class="ident">n_items</span> <span class="op">=</span> <span class="ident">collection</span>.<span class="ident">items</span>().<span class="kw">await</span>.<span class="ident">unwrap</span>().<span class="ident">len</span>();
-        <span class="kw">let</span> <span class="ident">n_search_items</span> <span class="op">=</span> <span class="ident">collection</span>.<span class="ident">search_items</span>(<span class="ident">attributes</span>.<span class="ident">clone</span>()).<span class="kw">await</span>.<span class="ident">unwrap</span>().<span class="ident">len</span>();
+        <span class="kw">let</span> <span class="ident">n_search_items</span> <span class="op">=</span> <span class="ident">collection</span>
+            .<span class="ident">search_items</span>(<span class="ident">attributes</span>.<span class="ident">clone</span>())
+            .<span class="kw">await</span>
+            .<span class="ident">unwrap</span>()
+            .<span class="ident">len</span>();
 
         <span class="kw">let</span> <span class="ident">item</span> <span class="op">=</span> <span class="ident">collection</span>
             .<span class="ident">create_item</span>(<span class="string">&quot;A secret&quot;</span>, <span class="ident">attributes</span>.<span class="ident">clone</span>(), <span class="ident">secret</span>, <span class="bool-val">true</span>, <span class="string">&quot;text/plain&quot;</span>)
@@ -423,12 +445,26 @@
         <span class="macro">assert_eq!</span>(<span class="ident">item</span>.<span class="ident">attributes</span>().<span class="kw">await</span>.<span class="ident">unwrap</span>()[<span class="string">&quot;type&quot;</span>], <span class="string">&quot;plain-type-test&quot;</span>);
 
         <span class="macro">assert_eq!</span>(<span class="ident">collection</span>.<span class="ident">items</span>().<span class="kw">await</span>.<span class="ident">unwrap</span>().<span class="ident">len</span>(), <span class="ident">n_items</span> <span class="op">+</span> <span class="number">1</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">collection</span>.<span class="ident">search_items</span>(<span class="ident">attributes</span>.<span class="ident">clone</span>()).<span class="kw">await</span>.<span class="ident">unwrap</span>().<span class="ident">len</span>(), <span class="ident">n_search_items</span> <span class="op">+</span> <span class="number">1</span>);
+        <span class="macro">assert_eq!</span>(
+            <span class="ident">collection</span>
+                .<span class="ident">search_items</span>(<span class="ident">attributes</span>.<span class="ident">clone</span>())
+                .<span class="kw">await</span>
+                .<span class="ident">unwrap</span>()
+                .<span class="ident">len</span>(),
+            <span class="ident">n_search_items</span> <span class="op">+</span> <span class="number">1</span>
+        );
 
         <span class="ident">item</span>.<span class="ident">delete</span>().<span class="kw">await</span>.<span class="ident">unwrap</span>();
 
         <span class="macro">assert_eq!</span>(<span class="ident">collection</span>.<span class="ident">items</span>().<span class="kw">await</span>.<span class="ident">unwrap</span>().<span class="ident">len</span>(), <span class="ident">n_items</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">collection</span>.<span class="ident">search_items</span>(<span class="ident">attributes</span>.<span class="ident">clone</span>()).<span class="kw">await</span>.<span class="ident">unwrap</span>().<span class="ident">len</span>(), <span class="ident">n_search_items</span>);
+        <span class="macro">assert_eq!</span>(
+            <span class="ident">collection</span>
+                .<span class="ident">search_items</span>(<span class="ident">attributes</span>.<span class="ident">clone</span>())
+                .<span class="kw">await</span>
+                .<span class="ident">unwrap</span>()
+                .<span class="ident">len</span>(),
+            <span class="ident">n_search_items</span>
+        );
     }
 }
 </code></pre></div>
