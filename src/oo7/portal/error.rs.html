@@ -49,6 +49,34 @@
 <span id="44">44</span>
 <span id="45">45</span>
 <span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
+<span id="50">50</span>
+<span id="51">51</span>
+<span id="52">52</span>
+<span id="53">53</span>
+<span id="54">54</span>
+<span id="55">55</span>
+<span id="56">56</span>
+<span id="57">57</span>
+<span id="58">58</span>
+<span id="59">59</span>
+<span id="60">60</span>
+<span id="61">61</span>
+<span id="62">62</span>
+<span id="63">63</span>
+<span id="64">64</span>
+<span id="65">65</span>
+<span id="66">66</span>
+<span id="67">67</span>
+<span id="68">68</span>
+<span id="69">69</span>
+<span id="70">70</span>
+<span id="71">71</span>
+<span id="72">72</span>
+<span id="73">73</span>
+<span id="74">74</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">zbus::zvariant</span>;
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
@@ -68,7 +96,9 @@
     <span class="doccomment">/// XDG_DATA_HOME required for reading from default location</span>
     <span class="ident">NoDataDir</span>,
     <span class="ident">TargetFileChanged</span>(<span class="ident">String</span>),
-    <span class="ident">SecretPortal</span>(<span class="ident"><span class="kw">crate</span>::Error</span>),
+    <span class="doccomment">/// Portal DBus communication error.</span>
+    <span class="ident">PortalBus</span>(<span class="ident">zbus::Error</span>),
+    <span class="ident">CancelledPortalRequest</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">zvariant::Error</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Error</span> {
@@ -89,10 +119,36 @@
     }
 }
 
-<span class="comment">// TODO: This does not really make sense</span>
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident"><span class="kw">crate</span>::Error</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Error</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">value</span>: <span class="ident"><span class="kw">crate</span>::Error</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::SecretPortal</span>(<span class="ident">value</span>)
+<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">zbus::Error</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Error</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">value</span>: <span class="ident">zbus::Error</span>) -&gt; <span class="self">Self</span> {
+        <span class="ident"><span class="self">Self</span>::PortalBus</span>(<span class="ident">value</span>)
+    }
+}
+
+<span class="kw">impl</span> <span class="ident">std::error::Error</span> <span class="kw">for</span> <span class="ident">Error</span> {}
+
+<span class="kw">impl</span> <span class="ident">std::fmt::Display</span> <span class="kw">for</span> <span class="ident">Error</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
+        <span class="kw">match</span> <span class="self">self</span> {
+            <span class="ident">Error::FileHeaderMismatch</span>(<span class="ident">e</span>) =&gt; {
+                <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;File header doesn&#39;t match FILE_HEADER {:#?}&quot;</span>, <span class="ident">e</span>)
+            }
+            <span class="ident">Error::VersionMismatch</span>(<span class="ident">e</span>) =&gt; <span class="macro">write!</span>(
+                <span class="ident">f</span>,
+                <span class="string">&quot;Version doesn&#39;t match MAJOR_VERSION OR MICRO_VERSION {:#?}&quot;</span>,
+                <span class="ident">e</span>
+            ),
+            <span class="ident">Error::NoData</span> =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;No data behind header and version bytes&quot;</span>),
+            <span class="ident">Error::NoParentDir</span>(<span class="ident">e</span>) =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;No Parent Directory {e}&quot;</span>),
+            <span class="ident">Error::GVariantDeserialization</span>(<span class="ident">e</span>) =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Failed to deserialize {e}&quot;</span>),
+            <span class="ident">Error::Io</span>(<span class="ident">e</span>) =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;IO error {e}&quot;</span>),
+            <span class="ident">Error::MacError</span> =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Mac digest is not equal to the expected value&quot;</span>),
+            <span class="ident">Error::HashedAttributeMac</span>(<span class="ident">e</span>) =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Failed to validate hashed attribute {e}&quot;</span>),
+            <span class="ident">Error::NoDataDir</span> =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Couldn&#39;t retrieve XDG_DATA_DIR&quot;</span>),
+            <span class="ident">Error::TargetFileChanged</span>(<span class="ident">e</span>) =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;The target file has changed {e}&quot;</span>),
+            <span class="ident">Error::PortalBus</span>(<span class="ident">e</span>) =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Portal communication failed {e}&quot;</span>),
+            <span class="ident">Error::CancelledPortalRequest</span> =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Portal request was cancelled&quot;</span>),
+        }
     }
 }
 </code></pre></div>

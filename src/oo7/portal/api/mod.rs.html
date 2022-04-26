@@ -399,7 +399,7 @@ Only use this if you know what you are doing.
 
 <span class="kw">impl</span> <span class="ident">Keyring</span> {
     <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::new_without_default</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() -&gt; <span class="self">Self</span> {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">new</span>() -&gt; <span class="self">Self</span> {
         <span class="kw">let</span> <span class="ident">salt</span> <span class="op">=</span> <span class="ident">rand::thread_rng</span>().<span class="ident">gen</span>::<span class="op">&lt;</span>[<span class="ident">u8</span>; <span class="ident">SALT_SIZE</span>]<span class="op">&gt;</span>().<span class="ident">to_vec</span>();
 
         <span class="self">Self</span> {
