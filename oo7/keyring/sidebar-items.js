@@ -1,1 +1,0 @@
-initSidebarItems({"fn":[["insert_replace",""],["lookup",""],["remove",""]],"mod":[["api","GNOME Keyring format low level api"]],"struct":[["Storage",""]]});
