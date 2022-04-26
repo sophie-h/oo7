@@ -1,3 +1,3 @@
 (function() {var implementors = {};
-implementors["oo7"] = [{"text":"impl&lt;'a&gt; <a class=\"trait\" href=\"https://doc.rust-lang.org/1.60.0/core/hash/trait.Hash.html\" title=\"trait core::hash::Hash\">Hash</a> for <a class=\"struct\" href=\"oo7/dbus/api/struct.Item.html\" title=\"struct oo7::dbus::api::Item\">Item</a>&lt;'a&gt;","synthetic":false,"types":["oo7::dbus::api::item::Item"]}];
+implementors["oo7"] = [{"text":"impl&lt;'a&gt; <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/hash/trait.Hash.html\" title=\"trait core::hash::Hash\">Hash</a> for <a class=\"struct\" href=\"oo7/dbus/api/struct.Item.html\" title=\"struct oo7::dbus::api::Item\">Item</a>&lt;'a&gt;","synthetic":false,"types":["oo7::dbus::api::item::Item"]}];
 if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
