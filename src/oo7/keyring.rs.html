@@ -188,7 +188,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// It will automatically use the file backend if the application is sandboxed</span>
 <span class="doccomment">/// and otherwise falls back to the DBus service.</span>
-<span class="doccomment">/// </span>
+<span class="doccomment">///</span>
 <span class="doccomment">/// The File backend requires a [`org.freedesktop.portal.Secret`](https://flatpak.github.io/xdg-desktop-portal/#gdbus-org.freedesktop.portal.Secret) implementation</span>
 <span class="doccomment">/// to retrieve the key that will be used to encrypt the backend file.</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Keyring</span> {
@@ -220,7 +220,7 @@
     }
 
     <span class="doccomment">/// Retrieve all the items.</span>
-    <span class="doccomment">/// </span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// If using the Secret Service, it will retrieve all the items in the [`DEFAULT_COLLECTION`].</span>
     <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">items</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Item</span><span class="op">&gt;</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">items</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span> {
