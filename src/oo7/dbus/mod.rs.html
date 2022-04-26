@@ -62,6 +62,8 @@
 <span id="57">57</span>
 <span id="58">58</span>
 <span id="59">59</span>
+<span id="60">60</span>
+<span id="61">61</span>
 </pre><pre class="rust"><code><span class="doccomment">//! The implementation in this module allows you to interact with a</span>
 <span class="doccomment">//! [`org.freedesktop.Secrets`](https://specifications.freedesktop.org/secret-service/latest/index.html) implementation.</span>
 <span class="doccomment">//!</span>
@@ -116,7 +118,9 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">algorithm::Algorithm</span>;
 <span class="kw">mod</span> <span class="ident">item</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">item::Item</span>;
+<span class="kw">mod</span> <span class="ident">error</span>;
 <span class="kw">mod</span> <span class="ident">service</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">error::Error</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">service::Service</span>;
 <span class="kw">mod</span> <span class="ident">collection</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">collection::Collection</span>;
