@@ -538,7 +538,7 @@
         <span class="ident">attributes</span>.<span class="ident">insert</span>(<span class="string">&quot;type&quot;</span>, <span class="ident">value</span>);
         <span class="kw">let</span> <span class="ident">secret</span> <span class="op">=</span> <span class="string">&quot;a password&quot;</span>.<span class="ident">as_bytes</span>();
 
-        <span class="kw">let</span> <span class="ident">collection</span> <span class="op">=</span> <span class="ident">service</span>.<span class="ident">default_collection</span>().<span class="kw">await</span>.<span class="ident">unwrap</span>().<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">collection</span> <span class="op">=</span> <span class="ident">service</span>.<span class="ident">default_collection</span>().<span class="kw">await</span>.<span class="ident">unwrap</span>();
         <span class="kw">let</span> <span class="ident">n_items</span> <span class="op">=</span> <span class="ident">collection</span>.<span class="ident">items</span>().<span class="kw">await</span>.<span class="ident">unwrap</span>().<span class="ident">len</span>();
         <span class="kw">let</span> <span class="ident">n_search_items</span> <span class="op">=</span> <span class="ident">collection</span>
             .<span class="ident">search_items</span>(<span class="ident">attributes</span>.<span class="ident">clone</span>())
