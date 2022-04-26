@@ -381,10 +381,10 @@ Only use this if you know what you are doing.
 
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::portal::Error</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">attribute_value::AttributeValue</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">encrypted_item::EncryptedItem</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">item::Item</span>;
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Key</span>;
+<span class="kw">use</span> <span class="ident">encrypted_item::EncryptedItem</span>;
 
 <span class="doccomment">/// Logical contents of a keyring file</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Deserialize</span>, <span class="ident">Serialize</span>, <span class="ident">Type</span>, <span class="ident">Debug</span>)]</span>
@@ -393,8 +393,8 @@ Only use this if you know what you are doing.
     <span class="ident">salt</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>,
     <span class="ident">iteration_count</span>: <span class="ident">u32</span>,
     <span class="ident">modified_time</span>: <span class="ident">u64</span>,
-    <span class="kw">pub</span> <span class="ident">usage_count</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">items</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">EncryptedItem</span><span class="op">&gt;</span>,
+    <span class="ident">usage_count</span>: <span class="ident">u32</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">items</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">EncryptedItem</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">Keyring</span> {
