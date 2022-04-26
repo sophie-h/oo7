@@ -51,16 +51,24 @@
 <span id="46">46</span>
 <span id="47">47</span>
 <span id="48">48</span>
+<span id="49">49</span>
+<span id="50">50</span>
+<span id="51">51</span>
+<span id="52">52</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="comment">// TODO: support secret service errors</span>
 <span class="comment">// https://specifications.freedesktop.org/secret-service/latest/ch15.html</span>
-<span class="doccomment">/// The error type for oo7.</span>
+<span class="doccomment">/// DBus Secret Service specific errors.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Error</span> {
+    <span class="doccomment">/// Something went wrong on the wire.</span>
     <span class="ident">Zbus</span>(<span class="ident">zbus::Error</span>),
+    <span class="doccomment">/// The item/collection was removed.</span>
     <span class="ident">Deleted</span>,
+    <span class="doccomment">/// The prompt request was dimissed.</span>
     <span class="ident">Dismissed</span>,
+    <span class="doccomment">/// Input/Output.</span>
     <span class="ident">IO</span>(<span class="ident">std::io::Error</span>),
 }
 

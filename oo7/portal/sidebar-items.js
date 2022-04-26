@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["Error",""]],"fn":[["password_clear",""],["password_lookup",""],["password_store",""]],"mod":[["api","GNOME Keyring format low level api"]],"struct":[["Item",""],["Keyring",""]]});
+initSidebarItems({"enum":[["Error","File backend specific errors."]],"fn":[["password_clear",""],["password_lookup",""],["password_store",""]],"mod":[["api","GNOME Keyring format low level api"]],"struct":[["Item","An item stored in the file backend."],["Keyring","File backed keyring."]]});
