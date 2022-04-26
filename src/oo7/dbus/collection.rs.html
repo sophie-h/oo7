@@ -266,6 +266,8 @@
 <span id="261">261</span>
 <span id="262">262</span>
 <span id="263">263</span>
+<span id="264">264</span>
+<span id="265">265</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">collections::HashMap</span>, <span class="ident">sync::Arc</span>, <span class="ident">time::Duration</span>};
 
 <span class="kw">use</span> <span class="ident">futures::lock::Mutex</span>;
@@ -478,11 +480,13 @@
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">tests</span> {
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;local_tests&quot;</span>)]</span>
     <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
-
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;local_tests&quot;</span>)]</span>
     <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::dbus::Service</span>;
 
     <span class="attribute">#[<span class="ident">tokio::test</span>]</span>
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;local_tests&quot;</span>)]</span>
     <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">create_plain_item</span>() {
         <span class="kw">let</span> <span class="ident">service</span> <span class="op">=</span> <span class="ident">Service::new</span>(<span class="ident">Algorithm::Plain</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
 
