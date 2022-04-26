@@ -124,9 +124,9 @@ keyring::remove(HashMap::from([(&quot;account&quot;, &quot;alice&quot;)])).await
 <span class="kw">use</span> <span class="ident">async_std</span>::{<span class="ident">fs</span>, <span class="ident">io</span>};
 <span class="kw">use</span> <span class="ident">std::collections::HashMap</span>;
 
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">api</span>;
 <span class="kw">mod</span> <span class="ident">error</span>;
 <span class="kw">mod</span> <span class="ident">helpers</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">keyring</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">helpers</span>::<span class="kw-2">*</span>;
 <span class="kw">mod</span> <span class="ident">secret</span>;
 
@@ -134,8 +134,8 @@ keyring::remove(HashMap::from([(&quot;account&quot;, &quot;alice&quot;)])).await
 
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">error::Error</span>;
 
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Keyring</span> {
-    <span class="ident">keyring</span>: <span class="ident">keyring::Keyring</span>,
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">Keyring</span> {
+    <span class="ident">keyring</span>: <span class="ident">api::Keyring</span>,
     <span class="ident">path</span>: <span class="ident">PathBuf</span>,
     <span class="doccomment">/// Times are stored before reading the file to detect</span>
     <span class="doccomment">/// file changes before writing</span>
@@ -147,13 +147,13 @@ keyring::remove(HashMap::from([(&quot;account&quot;, &quot;alice&quot;)])).await
     <span class="doccomment">/// Load from default keyring file</span>
     <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">load_default</span>() -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">secret</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::portal::retrieve</span>().<span class="kw">await</span><span class="question-mark">?</span>;
-        <span class="ident"><span class="self">Self</span>::load</span>(<span class="ident">keyring::Keyring::default_path</span>()<span class="question-mark">?</span>, <span class="kw-2">&amp;</span><span class="ident">secret</span>).<span class="kw">await</span>
+        <span class="ident"><span class="self">Self</span>::load</span>(<span class="ident">api::Keyring::default_path</span>()<span class="question-mark">?</span>, <span class="kw-2">&amp;</span><span class="ident">secret</span>).<span class="kw">await</span>
     }
 
     <span class="doccomment">/// Load from a keyring file</span>
     <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">load</span>(<span class="ident">path</span>: <span class="kw">impl</span> <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span>, <span class="ident">secret</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
         <span class="kw">let</span> (<span class="ident">mtime</span>, <span class="ident">keyring</span>) <span class="op">=</span> <span class="kw">match</span> <span class="ident">fs::File::open</span>(<span class="kw-2">&amp;</span><span class="ident">path</span>).<span class="kw">await</span> {
-            <span class="prelude-val">Err</span>(<span class="ident">err</span>) <span class="kw">if</span> <span class="ident">err</span>.<span class="ident">kind</span>() <span class="op">==</span> <span class="ident">io::ErrorKind::NotFound</span> =&gt; (<span class="prelude-val">None</span>, <span class="ident">keyring::Keyring::new</span>()),
+            <span class="prelude-val">Err</span>(<span class="ident">err</span>) <span class="kw">if</span> <span class="ident">err</span>.<span class="ident">kind</span>() <span class="op">==</span> <span class="ident">io::ErrorKind::NotFound</span> =&gt; (<span class="prelude-val">None</span>, <span class="ident">api::Keyring::new</span>()),
             <span class="prelude-val">Err</span>(<span class="ident">err</span>) =&gt; <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">err</span>.<span class="ident">into</span>()),
             <span class="prelude-val">Ok</span>(<span class="kw-2">mut</span> <span class="ident">file</span>) =&gt; {
                 <span class="kw">let</span> <span class="ident">mtime</span> <span class="op">=</span> <span class="ident">file</span>.<span class="ident">metadata</span>().<span class="kw">await</span><span class="question-mark">?</span>.<span class="ident">modified</span>().<span class="ident">ok</span>();
@@ -161,7 +161,7 @@ keyring::remove(HashMap::from([(&quot;account&quot;, &quot;alice&quot;)])).await
                 <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">content</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
                 <span class="ident">file</span>.<span class="ident">read_to_end</span>(<span class="kw-2">&amp;mut</span> <span class="ident">content</span>).<span class="kw">await</span><span class="question-mark">?</span>;
 
-                <span class="kw">let</span> <span class="ident">keyring</span> <span class="op">=</span> <span class="ident">keyring::Keyring::try_from</span>(<span class="ident">content</span>.<span class="ident">as_slice</span>())<span class="question-mark">?</span>;
+                <span class="kw">let</span> <span class="ident">keyring</span> <span class="op">=</span> <span class="ident">api::Keyring::try_from</span>(<span class="ident">content</span>.<span class="ident">as_slice</span>())<span class="question-mark">?</span>;
 
                 (<span class="ident">mtime</span>, <span class="ident">keyring</span>)
             }

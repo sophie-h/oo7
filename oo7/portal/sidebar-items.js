@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["Error",""]],"fn":[["insert_replace",""],["lookup",""],["remove",""]],"mod":[["keyring","GNOME Keyring format low level api"]],"struct":[["Keyring",""]]});
+initSidebarItems({"enum":[["Error",""]],"fn":[["insert_replace",""],["lookup",""],["remove",""]],"mod":[["api","GNOME Keyring format low level api"]]});
