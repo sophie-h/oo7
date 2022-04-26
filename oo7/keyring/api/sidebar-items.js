@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Error",""]],"fn":[["gvariant_encoding",""],["hash_attributes",""]],"struct":[["AttributeValue",""],["EncryptedItem",""],["Item",""],["Key","AES key"],["Keyring","Logical contents of a keyring file"]],"type":[["Result",""]]});
