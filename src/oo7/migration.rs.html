@@ -34,6 +34,10 @@
 <span id="29">29</span>
 <span id="30">30</span>
 <span id="31">31</span>
+<span id="32">32</span>
+<span id="33">33</span>
+<span id="34">34</span>
+<span id="35">35</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::collections::HashMap</span>;
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">dbus::Service</span>, <span class="ident">portal::Keyring</span>, <span class="prelude-ty">Result</span>};
@@ -62,6 +66,10 @@
     }
 
     <span class="ident">file_backend</span>.<span class="ident">create_items</span>(<span class="ident">new_items</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+
+    <span class="kw">for</span> <span class="ident">item</span> <span class="kw">in</span> <span class="ident">all_items</span>.<span class="ident">iter</span>() {
+        <span class="ident">item</span>.<span class="ident">delete</span>().<span class="kw">await</span><span class="question-mark">?</span>;
+    }
 
     <span class="prelude-val">Ok</span>(())
 }
