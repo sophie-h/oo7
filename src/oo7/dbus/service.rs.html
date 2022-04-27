@@ -177,7 +177,7 @@
 <span class="doccomment">/// It will automatically create a session for you and allow you to retrieve</span>
 <span class="doccomment">/// collections or create new ones.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// Certain actions requires on the secret service implementation requires a</span>
+<span class="doccomment">/// Certain actions requires on the Secret Service implementation requires a</span>
 <span class="doccomment">/// user prompt to complete like creating a collection, locking or unlocking a</span>
 <span class="doccomment">/// collection. The library handles that automatically for you.</span>
 <span class="doccomment">///</span>
@@ -204,13 +204,13 @@
         <span class="kw">let</span> (<span class="ident">aes_key</span>, <span class="ident">session</span>) <span class="op">=</span> <span class="kw">match</span> <span class="ident">algorithm</span> {
             <span class="ident">Algorithm::Plain</span> =&gt; {
                 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tracing&quot;</span>)]</span>
-                <span class="macro">tracing::debug!</span>(<span class="string">&quot;Starting an unecrypted secret service session&quot;</span>);
+                <span class="macro">tracing::debug!</span>(<span class="string">&quot;Starting an unecrypted Secret Service session&quot;</span>);
                 <span class="kw">let</span> (<span class="ident">_service_key</span>, <span class="ident">session</span>) <span class="op">=</span> <span class="ident">service</span>.<span class="ident">open_session</span>(<span class="prelude-val">None</span>).<span class="kw">await</span><span class="question-mark">?</span>;
                 (<span class="prelude-val">None</span>, <span class="ident">session</span>)
             }
             <span class="ident">Algorithm::Encrypted</span> =&gt; {
                 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tracing&quot;</span>)]</span>
-                <span class="macro">tracing::debug!</span>(<span class="string">&quot;Starting an encrypted secret service session&quot;</span>);
+                <span class="macro">tracing::debug!</span>(<span class="string">&quot;Starting an encrypted Secret Service session&quot;</span>);
                 <span class="kw">let</span> <span class="ident">private_key</span> <span class="op">=</span> <span class="ident">Key::generate_private_key</span>();
                 <span class="kw">let</span> <span class="ident">public_key</span> <span class="op">=</span> <span class="ident">Key::generate_public_key</span>(<span class="kw-2">&amp;</span><span class="ident">private_key</span>);
                 <span class="kw">let</span> (<span class="ident">service_key</span>, <span class="ident">session</span>) <span class="op">=</span> <span class="ident">service</span>.<span class="ident">open_session</span>(<span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="ident">public_key</span>)).<span class="kw">await</span><span class="question-mark">?</span>;
