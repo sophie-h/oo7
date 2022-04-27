@@ -213,29 +213,27 @@
 <span id="208">208</span>
 <span id="209">209</span>
 <span id="210">210</span>
-<span id="211">211</span>
-</pre><pre class="rust"><code><span class="doccomment">//! File backend implementation backed by the [Secret portal](https://flatpak.github.io/xdg-desktop-portal/#gdbus-org.freedesktop.portal.Secret)    .</span>
+</pre><pre class="rust"><code><span class="doccomment">//! File backend implementation backed by the [Secret portal](https://flatpak.github.io/xdg-desktop-portal/#gdbus-org.freedesktop.portal.Secret).</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! ```ignore</span>
-<span class="doccomment">//! # std::env::set_var(&quot;XDG_DATA_HOME&quot;, &quot;/tmp/doctest&quot;);</span>
-<span class="doccomment">//! # use oo7::keyring::{self, Error};</span>
-<span class="doccomment">//! # use std::collections::HashMap;</span>
-<span class="doccomment">//! # async_std::task::block_on(async {</span>
-<span class="doccomment">//! #</span>
-<span class="doccomment">//! keyring::insert_replace(&amp;keyring::Item::new(</span>
-<span class="doccomment">//! &quot;My Label&quot;,</span>
-<span class="doccomment">//! HashMap::from([(&quot;account&quot;, &quot;alice&quot;)]),</span>
-<span class="doccomment">//! b&quot;My Password&quot;,</span>
-<span class="doccomment">//! ))</span>
-<span class="doccomment">//! .await?;</span>
+<span class="doccomment">//! let keyring = Keyring::load_default().await?;</span>
+<span class="doccomment">//! keyring</span>
+<span class="doccomment">//!     .create_item(</span>
+<span class="doccomment">//!         &quot;My Label&quot;,</span>
+<span class="doccomment">//!         HashMap::from([(&quot;account&quot;, &quot;alice&quot;)]),</span>
+<span class="doccomment">//!         b&quot;My Password&quot;,</span>
+<span class="doccomment">//!         true,</span>
+<span class="doccomment">//!     )</span>
+<span class="doccomment">//!     .await?;</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! let items = keyring::lookup(HashMap::from([(&quot;account&quot;, &quot;alice&quot;)])).await?;</span>
+<span class="doccomment">//! let items = keyring</span>
+<span class="doccomment">//!     .search_items(HashMap::from([(&quot;account&quot;, &quot;alice&quot;)]))</span>
+<span class="doccomment">//!     .await?;</span>
 <span class="doccomment">//! assert_eq!(*items[0].password(), b&quot;My Password&quot;);</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! keyring::remove(HashMap::from([(&quot;account&quot;, &quot;alice&quot;)])).await?;</span>
-<span class="doccomment">//! #</span>
-<span class="doccomment">//! # Ok::&lt;(), Error&gt;(())</span>
-<span class="doccomment">//! # }).unwrap()</span>
+<span class="doccomment">//! keyring</span>
+<span class="doccomment">//!     .delete(HashMap::from([(&quot;account&quot;, &quot;alice&quot;)]))</span>
+<span class="doccomment">//!     .await?;</span>
 <span class="doccomment">//! ```</span>
 
 <span class="kw">use</span> <span class="ident">std</span>::{
