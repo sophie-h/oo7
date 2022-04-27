@@ -203,9 +203,15 @@
 <span id="198">198</span>
 <span id="199">199</span>
 <span id="200">200</span>
+<span id="201">201</span>
+<span id="202">202</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::collections::HashMap</span>;
 
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;async-std&quot;</span>)]</span>
 <span class="kw">use</span> <span class="ident">async_std::sync::Mutex</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;async-std&quot;</span>))]</span>
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tokio&quot;</span>)]</span>
+<span class="kw">use</span> <span class="ident">tokio::sync::Mutex</span>;
 <span class="kw">use</span> <span class="ident">zeroize::Zeroizing</span>;
 
 <span class="kw">use</span> <span class="kw">crate</span>::{
@@ -252,11 +258,9 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The method does nothing if keyring is backed with a file backend.</span>
     <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">unlock</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::DBus</span>(<span class="ident">backend</span>) =&gt; {
-                <span class="ident">backend</span>.<span class="ident">unlock</span>().<span class="kw">await</span><span class="question-mark">?</span>;
-            }
-            <span class="kw">_</span> =&gt; (), <span class="comment">// No unlocking is neeeded for the file backend</span>
+        <span class="comment">// No unlocking is neeeded for the file backend</span>
+        <span class="kw">if</span> <span class="kw">let</span> <span class="ident"><span class="self">Self</span>::DBus</span>(<span class="ident">backend</span>) <span class="op">=</span> <span class="self">self</span> {
+            <span class="ident">backend</span>.<span class="ident">unlock</span>().<span class="kw">await</span><span class="question-mark">?</span>;
         };
         <span class="prelude-val">Ok</span>(())
     }
@@ -404,5 +408,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="oo7" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (055bf4ccd 2022-04-25)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="oo7" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (082e4ca49 2022-04-26)" ></div>
 </body></html>

@@ -1,1 +1,1 @@
-window.ALL_CRATES = ["basic","oo7"];
+window.ALL_CRATES = ["oo7"];
