@@ -329,7 +329,6 @@
 <span id="324">324</span>
 <span id="325">325</span>
 <span id="326">326</span>
-<span id="327">327</span>
 </pre><pre class="rust"><code><span class="doccomment">/*!
 GNOME Keyring file format low level API.
 */</span>
@@ -366,23 +365,22 @@ TODO:
 <span class="kw">const</span> <span class="ident">MAJOR_VERSION</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">1</span>;
 <span class="kw">const</span> <span class="ident">MINOR_VERSION</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0</span>;
 
-<span class="kw">type</span> <span class="ident">MacAlg</span> <span class="op">=</span> <span class="ident">hmac::Hmac</span><span class="op">&lt;</span><span class="ident">sha2::Sha256</span><span class="op">&gt;</span>;
-<span class="kw">type</span> <span class="ident">EncAlg</span> <span class="op">=</span> <span class="ident">cbc::Encryptor</span><span class="op">&lt;</span><span class="ident">aes::Aes128</span><span class="op">&gt;</span>;
+<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">type</span> <span class="ident">MacAlg</span> <span class="op">=</span> <span class="ident">hmac::Hmac</span><span class="op">&lt;</span><span class="ident">sha2::Sha256</span><span class="op">&gt;</span>;
+<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">type</span> <span class="ident">EncAlg</span> <span class="op">=</span> <span class="ident">cbc::Encryptor</span><span class="op">&lt;</span><span class="ident">aes::Aes128</span><span class="op">&gt;</span>;
 <span class="kw">type</span> <span class="ident">DecAlg</span> <span class="op">=</span> <span class="ident">cbc::Decryptor</span><span class="op">&lt;</span><span class="ident">aes::Aes128</span><span class="op">&gt;</span>;
 
-<span class="kw">static</span> <span class="ident">GVARIANT_ENCODING</span>: <span class="ident">Lazy</span><span class="op">&lt;</span><span class="ident">zvariant::EncodingContext</span><span class="op">&lt;</span><span class="ident">byteorder::LE</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">=</span>
+<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">static</span> <span class="ident">GVARIANT_ENCODING</span>: <span class="ident">Lazy</span><span class="op">&lt;</span><span class="ident">zvariant::EncodingContext</span><span class="op">&lt;</span><span class="ident">byteorder::LE</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">=</span>
     <span class="ident">Lazy::new</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">zvariant::EncodingContext</span>::<span class="op">&lt;</span><span class="ident">byteorder::LE</span><span class="op">&gt;</span><span class="ident">::new_gvariant</span>(<span class="number">0</span>));
 
 <span class="kw">mod</span> <span class="ident">attribute_value</span>;
 <span class="kw">mod</span> <span class="ident">encrypted_item</span>;
-<span class="kw">mod</span> <span class="ident">item</span>;
 
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::Item</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::portal::Error</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">attribute_value::AttributeValue</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">item::Item</span>;
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Key</span>;
-<span class="kw">use</span> <span class="ident">encrypted_item::EncryptedItem</span>;
+<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">use</span> <span class="ident">encrypted_item::EncryptedItem</span>;
 
 <span class="doccomment">/// Logical contents of a keyring file</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Deserialize</span>, <span class="ident">Serialize</span>, <span class="ident">Type</span>, <span class="ident">Debug</span>)]</span>
