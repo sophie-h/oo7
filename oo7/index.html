@@ -45,13 +45,16 @@ The file format is compatible with <a href="https://gitlab.gnome.org/GNOME/libse
     .<span class="ident">search_items</span>(<span class="ident">HashMap::from</span>([(<span class="string">&quot;attribute&quot;</span>, <span class="string">&quot;attribute_value&quot;</span>)]))
     .<span class="kw">await</span><span class="question-mark">?</span>;
 
-<span class="doccomment">/// Delete a stored secret</span>
+<span class="comment">// Delete a stored secret</span>
 <span class="ident">keyring</span>
     .<span class="ident">delete</span>(<span class="ident">HashMap::from</span>([(<span class="string">&quot;attribute&quot;</span>, <span class="string">&quot;attribute_value&quot;</span>)]))
     .<span class="kw">await</span><span class="question-mark">?</span>;
 
-<span class="doccomment">/// Unlock the collection if the dbus service is used</span>
-<span class="ident">keyring</span>.<span class="ident">unlock</span>().<span class="kw">await</span><span class="question-mark">?</span>;</code></pre></div>
+<span class="comment">// Unlock the collection if the Secret Service is used</span>
+<span class="ident">keyring</span>.<span class="ident">unlock</span>().<span class="kw">await</span><span class="question-mark">?</span>;
+
+<span class="comment">// Lock the collection if the Secret Service is used</span>
+<span class="ident">keyring</span>.<span class="ident">lock</span>().<span class="kw">await</span><span class="question-mark">?</span>;</code></pre></div>
 <p>If your application makes heavy usage of the keyring like a password manager. You could store an instance of the <code>Keyring</code> in a <code>OnceCell</code></p>
 
 <div class='information'><div class='tooltip ignore'>ⓘ</div></div><div class="example-wrap"><pre class="rust rust-example-rendered ignore"><code><span class="kw">use</span> <span class="ident">once_cell::sync::OnceCell</span>;
