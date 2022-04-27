@@ -76,6 +76,7 @@ The file format is compatible with <a href="https://gitlab.gnome.org/GNOME/libse
             .<span class="kw">await</span><span class="question-mark">?</span>;
     });
 }</code></pre></div>
+<h4 id="migrating-your-secrets-to-the-file-backend"><a href="#migrating-your-secrets-to-the-file-backend">Migrating your secrets to the file backend</a></h4>
 <p>The library also comes with API to migrate your secrets from the host Secret Service to the sandboxed file backend. Note that the items are removed from the host keyring if they are migrated successfully.</p>
 
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="comment">// SOME_RUNTIME could be a tokio/async-std/glib runtime</span>
