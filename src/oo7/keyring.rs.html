@@ -205,6 +205,8 @@
 <span id="200">200</span>
 <span id="201">201</span>
 <span id="202">202</span>
+<span id="203">203</span>
+<span id="204">204</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::collections::HashMap</span>;
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;async-std&quot;</span>)]</span>
@@ -226,6 +228,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// The File backend requires a [`org.freedesktop.portal.Secret`](https://flatpak.github.io/xdg-desktop-portal/#gdbus-org.freedesktop.portal.Secret) implementation</span>
 <span class="doccomment">/// to retrieve the key that will be used to encrypt the backend file.</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Keyring</span> {
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
     <span class="ident">File</span>(<span class="ident">portal::Keyring</span>),
@@ -338,6 +341,7 @@
 }
 
 <span class="doccomment">/// A generic secret with a label and attributes.</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Item</span> {
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
     <span class="ident">File</span>(<span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident"><span class="kw">crate</span>::portal::Item</span><span class="op">&gt;</span>),
