@@ -27,6 +27,66 @@ The file format is compatible with <a href="https://gitlab.gnome.org/GNOME/libse
 <li>Integration with the <a href="https://flatpak.github.io/xdg-desktop-portal/#gdbus-org.freedesktop.portal.Secret">Secret portal</a> if sandboxed</li>
 <li>Provide API to migrate from host secrets to sandboxed ones</li>
 </ul>
+<h3 id="examples"><a href="#examples">Examples</a></h3><h4 id="basic-usage"><a href="#basic-usage">Basic usage</a></h4>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">std::collections::HashMap</span>;
+
+<span class="kw">let</span> <span class="ident">keyring</span> <span class="op">=</span> <span class="ident">oo7::Keyring::new</span>().<span class="kw">await</span><span class="question-mark">?</span>;
+
+<span class="comment">// Store a secret</span>
+<span class="ident">keyring</span>.<span class="ident">create_item</span>(
+    <span class="string">&quot;Item Label&quot;</span>,
+    <span class="ident">HashMap::from</span>([(<span class="string">&quot;attribute&quot;</span>, <span class="string">&quot;attribute_value&quot;</span>)]),
+    <span class="string">b&quot;secret&quot;</span>,
+    <span class="bool-val">true</span>,
+)<span class="question-mark">?</span>;
+
+<span class="comment">// Find a stored secret</span>
+<span class="kw">let</span> <span class="ident">items</span> <span class="op">=</span> <span class="ident">keyring</span>
+    .<span class="ident">search_items</span>(<span class="ident">HashMap::from</span>([(<span class="string">&quot;attribute&quot;</span>, <span class="string">&quot;attribute_value&quot;</span>)]))
+    .<span class="kw">await</span><span class="question-mark">?</span>;
+
+<span class="doccomment">/// Delete a stored secret</span>
+<span class="ident">keyring</span>
+    .<span class="ident">delete</span>(<span class="ident">HashMap::from</span>([(<span class="string">&quot;attribute&quot;</span>, <span class="string">&quot;attribute_value&quot;</span>)]))
+    .<span class="kw">await</span><span class="question-mark">?</span>;
+
+<span class="doccomment">/// Unlock the collection if the dbus service is used</span>
+<span class="ident">keyring</span>.<span class="ident">unlock</span>().<span class="kw">await</span><span class="question-mark">?</span>;</code></pre></div>
+<p>If your application makes heavy usage of the keyring like a password manager. You could store an instance of the <code>Keyring</code> in a <code>OnceCell</code></p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">once_cell::sync::OnceCell</span>;
+
+<span class="kw">static</span> <span class="ident">KEYRING</span>: <span class="ident">OnceCell</span><span class="op">&lt;</span><span class="ident">oo7::Keyring</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">OnceCell::new</span>();
+
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="comment">// SOME_RUNTIME could be a tokio/async-std/glib runtime</span>
+    <span class="ident">SOME_RUNTIME</span>.<span class="ident">block_on</span>(<span class="kw">async</span> {
+        <span class="kw">let</span> <span class="ident">keyring</span> <span class="op">=</span> <span class="ident">Keyring::new</span>()
+            .<span class="kw">await</span>
+            .<span class="ident">expect</span>(<span class="string">&quot;Failed to start secret service&quot;</span>);
+        <span class="ident">KEYRING</span>.<span class="ident">set</span>(<span class="ident">keyring</span>);
+    });
+
+    <span class="comment">// Then to use it</span>
+    <span class="ident">SOME_RUNTIME</span>.<span class="ident">spawn</span>(<span class="kw">async</span> {
+        <span class="kw">let</span> <span class="ident">items</span> <span class="op">=</span> <span class="ident">KEYRING</span>
+            .<span class="ident">get</span>()
+            .<span class="ident">unwrap</span>()
+            .<span class="ident">search_items</span>(<span class="ident">HashMap::from</span>([(<span class="string">&quot;attribute&quot;</span>, <span class="string">&quot;attribute_value&quot;</span>)]))
+            .<span class="kw">await</span><span class="question-mark">?</span>;
+    });
+}</code></pre></div>
+<p>The library also comes with API to migrate your secrets from the host Secret Service to the sandboxed file backend. Note that the items are removed from the host keyring if they are migrated successfully.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="comment">// SOME_RUNTIME could be a tokio/async-std/glib runtime</span>
+<span class="ident">SOME_RUNTIME</span>.<span class="ident">block_on</span>(<span class="kw">async</span> {
+    <span class="kw">match</span> <span class="ident">oo7::migrate</span>(<span class="macro">vec!</span>[<span class="ident">HashMap::from</span>([(<span class="string">&quot;attribute&quot;</span>, <span class="string">&quot;attribute_value&quot;</span>)])]).<span class="kw">await</span> {
+        <span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; {
+            <span class="comment">// Store somewhere the migration happened, to avoid re-doing it at every startup</span>
+        }
+        <span class="prelude-val">Err</span>(<span class="ident">err</span>) =&gt; <span class="macro">log::error!</span>(<span class="string">&quot;Failed to migrate secrets {err}&quot;</span>),
+    }
+});</code></pre></div>
 <h3 id="how-does-it-compare-to-other-libraries"><a href="#how-does-it-compare-to-other-libraries">How does it compare to other libraries?</a></h3>
 <ul>
 <li>
