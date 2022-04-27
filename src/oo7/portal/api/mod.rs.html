@@ -326,6 +326,10 @@
 <span id="321">321</span>
 <span id="322">322</span>
 <span id="323">323</span>
+<span id="324">324</span>
+<span id="325">325</span>
+<span id="326">326</span>
+<span id="327">327</span>
 </pre><pre class="rust"><code><span class="doccomment">/*!
 GNOME Keyring format low level api
 
@@ -342,6 +346,8 @@ Only use this if you know what you are doing.
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tokio&quot;</span>)]</span>
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;async-std&quot;</span>))]</span>
 <span class="kw">use</span> <span class="ident">tokio</span>::{<span class="ident">fs</span>, <span class="ident">io</span>, <span class="ident">io::AsyncWriteExt</span>};
+
+<span class="kw">use</span> <span class="ident">std::os::unix::fs::OpenOptionsExt</span>;
 
 <span class="kw">use</span> <span class="ident">cipher::BlockSizeUser</span>;
 <span class="kw">use</span> <span class="ident">once_cell::sync::Lazy</span>;
@@ -425,6 +431,8 @@ Only use this if you know what you are doing.
             <span class="ident">tmp_path</span>.<span class="ident">push</span>(<span class="macro">format!</span>(<span class="string">&quot;.tmpkeyring{}&quot;</span>, <span class="ident">rnd</span>));
 
             <span class="kw">if</span> <span class="op">!</span><span class="ident">parent</span>.<span class="ident">exists</span>() {
+                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tracing&quot;</span>)]</span>
+                <span class="macro">tracing::debug!</span>(<span class="string">&quot;Parent directory {:?} deosn&#39;t exists, creating it&quot;</span>, <span class="ident">parent</span>);
                 <span class="ident">fs::DirBuilder::new</span>().<span class="ident">recursive</span>(<span class="bool-val">true</span>).<span class="ident">create</span>(<span class="ident">parent</span>).<span class="kw">await</span><span class="question-mark">?</span>;
             }
 
@@ -432,16 +440,16 @@ Only use this if you know what you are doing.
         } <span class="kw">else</span> {
             <span class="prelude-val">Err</span>(<span class="ident">Error::NoParentDir</span>(<span class="ident">path</span>.<span class="ident">as_ref</span>().<span class="ident">display</span>().<span class="ident">to_string</span>()))
         }<span class="question-mark">?</span>;
+        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tracing&quot;</span>)]</span>
+        <span class="macro">tracing::debug!</span>(
+            <span class="string">&quot;Created a temporary file to store the keyring on {:?}&quot;</span>,
+            <span class="ident">tmp_path</span>
+        );
 
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">tmpfile_builder</span> <span class="op">=</span> <span class="ident">fs::OpenOptions::new</span>();
 
         <span class="ident">tmpfile_builder</span>.<span class="ident">write</span>(<span class="bool-val">true</span>).<span class="ident">create_new</span>(<span class="bool-val">true</span>);
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
-        {
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;async-std&quot;</span>)]</span>
-            <span class="kw">use</span> <span class="ident">std::os::unix::fs::OpenOptionsExt</span>;
-            <span class="ident">tmpfile_builder</span>.<span class="ident">mode</span>(<span class="number">0o600</span>);
-        }
+        <span class="ident">tmpfile_builder</span>.<span class="ident">mode</span>(<span class="number">0o600</span>);
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">tmpfile</span> <span class="op">=</span> <span class="ident">tmpfile_builder</span>.<span class="ident">open</span>(<span class="kw-2">&amp;</span><span class="ident">tmp_path</span>).<span class="kw">await</span><span class="question-mark">?</span>;
 
         <span class="kw">let</span> <span class="ident">blob</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">as_bytes</span>()<span class="question-mark">?</span>;
