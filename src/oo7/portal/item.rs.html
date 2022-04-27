@@ -124,6 +124,7 @@
 <span id="119">119</span>
 <span id="120">120</span>
 <span id="121">121</span>
+<span id="122">122</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::collections::HashMap</span>;
 
 <span class="kw">use</span> <span class="ident">cipher</span>::{
@@ -134,7 +135,8 @@
 <span class="kw">use</span> <span class="ident">zbus::zvariant</span>::{<span class="self">self</span>, <span class="ident">Type</span>};
 <span class="kw">use</span> <span class="ident">zeroize</span>::{<span class="ident">Zeroize</span>, <span class="ident">ZeroizeOnDrop</span>, <span class="ident">Zeroizing</span>};
 
-<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::api</span>::{<span class="ident">AttributeValue</span>, <span class="ident">EncAlg</span>, <span class="ident">EncryptedItem</span>, <span class="ident">Error</span>, <span class="ident">MacAlg</span>, <span class="ident">GVARIANT_ENCODING</span>};
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::api</span>::{<span class="ident">AttributeValue</span>, <span class="ident">EncAlg</span>, <span class="ident">EncryptedItem</span>, <span class="ident">MacAlg</span>, <span class="ident">GVARIANT_ENCODING</span>};
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::Error</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Key</span>;
 
 <span class="doccomment">/// An item stored in the file backend.</span>

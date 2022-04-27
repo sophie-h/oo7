@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["Error","File backend specific errors."]],"struct":[["AttributeValue","An encrypted attribute value."],["Keyring","Logical contents of a keyring file"]]});
+initSidebarItems({"struct":[["AttributeValue","An encrypted attribute value."],["Keyring","Logical contents of a keyring file"]]});
