@@ -59,11 +59,11 @@
 <span id="54">54</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::fmt</span>;
 
-<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::DESTINATION</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::dbus::Error</span>;
-
 <span class="kw">use</span> <span class="ident">serde::Serialize</span>;
 <span class="kw">use</span> <span class="ident">zbus::zvariant</span>::{<span class="ident">ObjectPath</span>, <span class="ident">Type</span>};
+
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::DESTINATION</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::dbus::Error</span>;
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Type</span>)]</span>
 <span class="attribute">#[<span class="ident">zvariant</span>(<span class="ident">signature</span> <span class="op">=</span> <span class="string">&quot;o&quot;</span>)]</span>

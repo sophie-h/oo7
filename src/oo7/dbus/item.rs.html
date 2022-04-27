@@ -195,6 +195,8 @@
 <span id="190">190</span>
 <span id="191">191</span>
 <span id="192">192</span>
+<span id="193">193</span>
+<span id="194">194</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">collections::HashMap</span>, <span class="ident">sync::Arc</span>, <span class="ident">time::Duration</span>};
 
 <span class="kw">use</span> <span class="ident">futures::lock::Mutex</span>;
@@ -206,8 +208,9 @@
 <span class="doccomment">/// A secret with a label and attributes to identify it.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// An item might be locked or unlocked, use [`Item::lock`] or [`Item::unlock`]</span>
-<span class="doccomment">/// to lock or unlock it. Note that the secret service might not be able to lock/unlock</span>
-<span class="doccomment">/// individual items and may lock/unlock the entire collection in such case.</span>
+<span class="doccomment">/// to lock or unlock it. Note that the secret service might not be able to</span>
+<span class="doccomment">/// lock/unlock individual items and may lock/unlock the entire collection in</span>
+<span class="doccomment">/// such case.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// The item is attributes are used to identify and find the item later using</span>
 <span class="doccomment">/// [`Collection::search_items`](crate::dbus::Collection::search_items).</span>
@@ -349,7 +352,8 @@
     <span class="doccomment">/// # Arguments</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// * `secret` - The secret to store.</span>
-    <span class="doccomment">/// * `content_type` - The content type of the secret, usually something like `text/plain`.</span>
+    <span class="doccomment">/// * `content_type` - The content type of the secret, usually something</span>
+    <span class="doccomment">///   like `text/plain`.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SetSecret&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">set_secret</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,

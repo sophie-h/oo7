@@ -349,35 +349,28 @@
 <span id="344">344</span>
 <span id="345">345</span>
 <span id="346">346</span>
-<span id="347">347</span>
-<span id="348">348</span>
-<span id="349">349</span>
-<span id="350">350</span>
-</pre><pre class="rust"><code><span class="doccomment">/*!
-GNOME Keyring file format low level API.
-*/</span>
+</pre><pre class="rust"><code><span class="doccomment">//! GNOME Keyring file format low level API.</span>
 
-<span class="comment">/*
-TODO:
-- Order user calls
-- Keep proxis around
-- Make more things async
-*/</span>
+<span class="comment">// TODO:</span>
+<span class="comment">// - Order user calls</span>
+<span class="comment">// - Keep proxis around</span>
+<span class="comment">// - Make more things async</span>
+
+<span class="kw">use</span> <span class="ident">std</span>::{
+    <span class="ident">collections::HashMap</span>,
+    <span class="ident">os::unix::fs::OpenOptionsExt</span>,
+    <span class="ident">path</span>::{<span class="ident">Path</span>, <span class="ident">PathBuf</span>},
+};
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;async-std&quot;</span>)]</span>
 <span class="kw">use</span> <span class="ident">async_std</span>::{<span class="ident">fs</span>, <span class="ident">io</span>, <span class="ident">prelude</span>::<span class="kw-2">*</span>};
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tokio&quot;</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;async-std&quot;</span>))]</span>
-<span class="kw">use</span> <span class="ident">tokio</span>::{<span class="ident">fs</span>, <span class="ident">io</span>, <span class="ident">io::AsyncWriteExt</span>};
-
-<span class="kw">use</span> <span class="ident">std::os::unix::fs::OpenOptionsExt</span>;
-
 <span class="kw">use</span> <span class="ident">cipher::BlockSizeUser</span>;
 <span class="kw">use</span> <span class="ident">once_cell::sync::Lazy</span>;
 <span class="kw">use</span> <span class="ident">rand::Rng</span>;
 <span class="kw">use</span> <span class="ident">serde</span>::{<span class="ident">Deserialize</span>, <span class="ident">Serialize</span>};
-<span class="kw">use</span> <span class="ident">std::collections::HashMap</span>;
-<span class="kw">use</span> <span class="ident">std::path</span>::{<span class="ident">Path</span>, <span class="ident">PathBuf</span>};
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tokio&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;async-std&quot;</span>))]</span>
+<span class="kw">use</span> <span class="ident">tokio</span>::{<span class="ident">fs</span>, <span class="ident">io</span>, <span class="ident">io::AsyncWriteExt</span>};
 <span class="kw">use</span> <span class="ident">zbus::zvariant</span>::{<span class="self">self</span>, <span class="ident">Type</span>};
 
 <span class="kw">const</span> <span class="ident">SALT_SIZE</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">32</span>;
@@ -399,12 +392,11 @@ TODO:
 <span class="kw">mod</span> <span class="ident">attribute_value</span>;
 <span class="kw">mod</span> <span class="ident">encrypted_item</span>;
 
-<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::Item</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::portal::Error</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">attribute_value::AttributeValue</span>;
-
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Key</span>;
 <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">use</span> <span class="ident">encrypted_item::EncryptedItem</span>;
+
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::Item</span>;
+<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">portal::Error</span>, <span class="ident">Key</span>};
 
 <span class="doccomment">/// Logical contents of a keyring file</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Deserialize</span>, <span class="ident">Serialize</span>, <span class="ident">Type</span>, <span class="ident">Debug</span>)]</span>

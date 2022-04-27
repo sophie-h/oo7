@@ -158,11 +158,11 @@
 <span id="153">153</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">collections::HashMap</span>, <span class="ident">fmt</span>, <span class="ident">hash::Hash</span>, <span class="ident">time::Duration</span>};
 
-<span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">secret::SecretInner</span>, <span class="ident">Prompt</span>, <span class="ident">Secret</span>, <span class="ident">Session</span>, <span class="ident">Unlockable</span>, <span class="ident">DESTINATION</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::dbus::Error</span>;
-
 <span class="kw">use</span> <span class="ident">serde::Serialize</span>;
 <span class="kw">use</span> <span class="ident">zbus::zvariant</span>::{<span class="ident">ObjectPath</span>, <span class="ident">Type</span>};
+
+<span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">secret::SecretInner</span>, <span class="ident">Prompt</span>, <span class="ident">Secret</span>, <span class="ident">Session</span>, <span class="ident">Unlockable</span>, <span class="ident">DESTINATION</span>};
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::dbus::Error</span>;
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Type</span>)]</span>
 <span class="attribute">#[<span class="ident">zvariant</span>(<span class="ident">signature</span> <span class="op">=</span> <span class="string">&quot;o&quot;</span>)]</span>

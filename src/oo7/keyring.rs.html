@@ -227,6 +227,8 @@
 <span id="222">222</span>
 <span id="223">223</span>
 <span id="224">224</span>
+<span id="225">225</span>
+<span id="226">226</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::collections::HashMap</span>;
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;async-std&quot;</span>)]</span>
@@ -241,7 +243,8 @@
     <span class="ident">portal</span>, <span class="prelude-ty">Result</span>,
 };
 
-<span class="doccomment">/// A [Secret Service](crate::dbus) or [file](crate::portal) backed keyring implementation.</span>
+<span class="doccomment">/// A [Secret Service](crate::dbus) or [file](crate::portal) backed keyring</span>
+<span class="doccomment">/// implementation.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// It will automatically use the file backend if the application is sandboxed</span>
 <span class="doccomment">/// and otherwise falls back to the DBus service.</span>
@@ -326,7 +329,8 @@
 
     <span class="doccomment">/// Retrieve all the items.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If using the Secret Service, it will retrieve all the items in the [`DEFAULT_COLLECTION`].</span>
+    <span class="doccomment">/// If using the Secret Service, it will retrieve all the items in the</span>
+    <span class="doccomment">/// [`DEFAULT_COLLECTION`].</span>
     <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">items</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Item</span><span class="op">&gt;</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">items</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span> {
             <span class="ident"><span class="self">Self</span>::DBus</span>(<span class="ident">backend</span>) =&gt; {

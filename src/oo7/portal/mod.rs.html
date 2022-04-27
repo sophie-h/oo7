@@ -214,46 +214,41 @@
 <span id="209">209</span>
 <span id="210">210</span>
 <span id="211">211</span>
-<span id="212">212</span>
-<span id="213">213</span>
-<span id="214">214</span>
-</pre><pre class="rust"><code><span class="doccomment">/*!
+</pre><pre class="rust"><code><span class="doccomment">//! File backend implementation backed by the [Secret portal](https://flatpak.github.io/xdg-desktop-portal/#gdbus-org.freedesktop.portal.Secret)    .</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ```ignore</span>
+<span class="doccomment">//! # std::env::set_var(&quot;XDG_DATA_HOME&quot;, &quot;/tmp/doctest&quot;);</span>
+<span class="doccomment">//! # use oo7::keyring::{self, Error};</span>
+<span class="doccomment">//! # use std::collections::HashMap;</span>
+<span class="doccomment">//! # async_std::task::block_on(async {</span>
+<span class="doccomment">//! #</span>
+<span class="doccomment">//! keyring::insert_replace(&amp;keyring::Item::new(</span>
+<span class="doccomment">//! &quot;My Label&quot;,</span>
+<span class="doccomment">//! HashMap::from([(&quot;account&quot;, &quot;alice&quot;)]),</span>
+<span class="doccomment">//! b&quot;My Password&quot;,</span>
+<span class="doccomment">//! ))</span>
+<span class="doccomment">//! .await?;</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! let items = keyring::lookup(HashMap::from([(&quot;account&quot;, &quot;alice&quot;)])).await?;</span>
+<span class="doccomment">//! assert_eq!(*items[0].password(), b&quot;My Password&quot;);</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! keyring::remove(HashMap::from([(&quot;account&quot;, &quot;alice&quot;)])).await?;</span>
+<span class="doccomment">//! #</span>
+<span class="doccomment">//! # Ok::&lt;(), Error&gt;(())</span>
+<span class="doccomment">//! # }).unwrap()</span>
+<span class="doccomment">//! ```</span>
 
-File backend implementation backed by the [Secret portal](https://flatpak.github.io/xdg-desktop-portal/#gdbus-org.freedesktop.portal.Secret)    .
-
-```ignore
-# std::env::set_var(&quot;XDG_DATA_HOME&quot;, &quot;/tmp/doctest&quot;);
-# use oo7::keyring::{self, Error};
-# use std::collections::HashMap;
-# async_std::task::block_on(async {
-#
-keyring::insert_replace(&amp;keyring::Item::new(
-    &quot;My Label&quot;,
-    HashMap::from([(&quot;account&quot;, &quot;alice&quot;)]),
-    b&quot;My Password&quot;,
-))
-.await?;
-
-let items = keyring::lookup(HashMap::from([(&quot;account&quot;, &quot;alice&quot;)])).await?;
-assert_eq!(*items[0].password(), b&quot;My Password&quot;);
-
-keyring::remove(HashMap::from([(&quot;account&quot;, &quot;alice&quot;)])).await?;
-#
-# Ok::&lt;(), Error&gt;(())
-# }).unwrap()
-```
-*/</span>
-
-<span class="kw">use</span> <span class="ident">std::cell::Cell</span>;
-<span class="kw">use</span> <span class="ident">std::collections::HashMap</span>;
+<span class="kw">use</span> <span class="ident">std</span>::{
+    <span class="ident">cell::Cell</span>,
+    <span class="ident">collections::HashMap</span>,
+    <span class="ident">path</span>::{<span class="ident">Path</span>, <span class="ident">PathBuf</span>},
+};
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;async-std&quot;</span>)]</span>
 <span class="kw">use</span> <span class="ident">async_std</span>::{<span class="ident">fs</span>, <span class="ident">io</span>, <span class="ident">prelude</span>::<span class="kw-2">*</span>, <span class="ident">sync::Mutex</span>};
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tokio&quot;</span>)]</span>
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;async-std&quot;</span>))]</span>
 <span class="kw">use</span> <span class="ident">tokio</span>::{<span class="ident">fs</span>, <span class="ident">io</span>, <span class="ident">io::AsyncReadExt</span>, <span class="ident">sync::Mutex</span>};
-
-<span class="kw">use</span> <span class="ident">std::path</span>::{<span class="ident">Path</span>, <span class="ident">PathBuf</span>};
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;unstable&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">api</span>;
@@ -265,9 +260,8 @@ keyring::remove(HashMap::from([(&quot;account&quot;, &quot;alice&quot;)])).await
 <span class="kw">mod</span> <span class="ident">secret</span>;
 
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">error::Error</span>;
-<span class="kw">use</span> <span class="ident">zeroize::Zeroizing</span>;
-
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">item::Item</span>;
+<span class="kw">use</span> <span class="ident">zeroize::Zeroizing</span>;
 
 <span class="kw">type</span> <span class="ident">ItemDefinition</span> <span class="op">=</span> (<span class="ident">String</span>, <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">String</span><span class="op">&gt;</span>, <span class="ident">Zeroizing</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span>, <span class="ident">bool</span>);
 
