@@ -14,7 +14,7 @@
 </li>
 <li>
 <p>A file backend using the <code>org.freedesktop.portal.Secrets</code> portal to retrieve the service’s key to encrypt the file with.
-The file format is compatible with <a href="https://gitlab.gnome.org/GNOME/libsecret/">libsecret</a></p>
+The file format is compatible with <a href="https://gitlab.gnome.org/GNOME/libsecret/">libsecret</a>.</p>
 </li>
 </ul>
 <p>Sandboxed applications should prefer using the file backend as it doesn’t expose the application secrets to other sandboxed applications if they can talk to the <code>org.freedesktop.Secrets</code> service.</p>
@@ -99,7 +99,7 @@ to inside the sandbox a probably impossible task. There are also issues like <a 
 that makes it not usable inside the Flatpak sandbox.</p>
 </li>
 <li>
-<p><a href="https://github.com/hwchen/secret-service-rs/">secret-service-rs</a> uses <a href="https://lib.rs/zbus">zbus</a> internally as well but does provide a sync only API, hasn’t seen an update in a while, doesn’t integrate with <a href="https://flatpak.github.io/xdg-desktop-portal/#gdbus-org.freedesktop.portal.Secret">Secret portal</a> if sandboxed</p>
+<p><a href="https://github.com/hwchen/secret-service-rs/">secret-service-rs</a> uses <a href="https://lib.rs/zbus">zbus</a> internally as well but does provide a sync only API, hasn’t seen an update in a while, doesn’t integrate with <a href="https://flatpak.github.io/xdg-desktop-portal/#gdbus-org.freedesktop.portal.Secret">Secret portal</a> if sandboxed.</p>
 </li>
 </ul>
 <h2 id="license"><a href="#license">License</a></h2>
