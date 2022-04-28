@@ -291,7 +291,7 @@
 
     <span class="doccomment">/// Unlock the used collection if using the Secret service.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The method does nothing if keyring is backed with a file backend.</span>
+    <span class="doccomment">/// The method does nothing if keyring is backed by a file backend.</span>
     <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">unlock</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="comment">// No unlocking is needed for the file backend</span>
         <span class="kw">if</span> <span class="kw">let</span> <span class="ident"><span class="self">Self</span>::DBus</span>(<span class="ident">backend</span>) <span class="op">=</span> <span class="self">self</span> {
@@ -302,7 +302,7 @@
 
     <span class="doccomment">/// Lock the used collection if using the Secret service.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The method does nothing if keyring is backed with a file backend.</span>
+    <span class="doccomment">/// The method does nothing if keyring is backed by a file backend.</span>
     <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">lock</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="comment">// No locking is needed for the file backend</span>
         <span class="kw">if</span> <span class="kw">let</span> <span class="ident"><span class="self">Self</span>::DBus</span>(<span class="ident">backend</span>) <span class="op">=</span> <span class="self">self</span> {

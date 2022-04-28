@@ -40,14 +40,12 @@
 <span id="35">35</span>
 <span id="36">36</span>
 <span id="37">37</span>
-<span id="38">38</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">digest::Mac</span>;
 <span class="kw">use</span> <span class="ident">serde</span>::{<span class="ident">Deserialize</span>, <span class="ident">Serialize</span>};
 <span class="kw">use</span> <span class="ident">zbus::zvariant::Type</span>;
 <span class="kw">use</span> <span class="ident">zeroize</span>::{<span class="ident">Zeroize</span>, <span class="ident">ZeroizeOnDrop</span>};
 
-<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::MacAlg</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Key</span>;
+<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">crypto::MacAlg</span>, <span class="ident">Key</span>};
 
 <span class="doccomment">/// An encrypted attribute value.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Deserialize</span>, <span class="ident">Serialize</span>, <span class="ident">Type</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Zeroize</span>, <span class="ident">ZeroizeOnDrop</span>)]</span>
