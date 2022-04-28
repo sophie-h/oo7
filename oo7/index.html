@@ -90,7 +90,13 @@ The file format is compatible with <a href="https://gitlab.gnome.org/GNOME/libse
         <span class="prelude-val">Err</span>(<span class="ident">err</span>) =&gt; <span class="macro">log::error!</span>(<span class="string">&quot;Failed to migrate secrets {err}&quot;</span>),
     }
 });</code></pre></div>
-<h3 id="how-does-it-compare-to-other-libraries"><a href="#how-does-it-compare-to-other-libraries">How does it compare to other libraries?</a></h3>
+<h3 id="optional-features"><a href="#optional-features">Optional features</a></h3><div><table><thead><tr><th>Feature</th><th>Description</th><th>Default</th></tr></thead><tbody>
+<tr><td><code>tracing</code></td><td>Record various debug information using the <code>tracing</code> library</td><td>No</td></tr>
+<tr><td><code>async-std</code></td><td>Use <code>async-std</code> APIs for IO/filesystem operations</td><td>Yes</td></tr>
+<tr><td><code>tokio</code></td><td>Use <code>tokio</code> APIs for IO/Filesystem operations</td><td>No</td></tr>
+<tr><td><code>unstable</code></td><td>Unlock internal APIs</td><td>No</td></tr>
+</tbody></table>
+</div><h3 id="how-does-it-compare-to-other-libraries"><a href="#how-does-it-compare-to-other-libraries">How does it compare to other libraries?</a></h3>
 <ul>
 <li>
 <p><a href="https://gitlab.gnome.org/World/Rust/libsecret-rs">libsecret-rs</a> provides Rust bindings of the C library <a href="https://gitlab.gnome.org/GNOME/libsecret/">libsecret</a>. The current main pain point with it is that
