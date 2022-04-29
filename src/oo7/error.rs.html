@@ -37,6 +37,8 @@
 <span id="32">32</span>
 <span id="33">33</span>
 <span id="34">34</span>
+<span id="35">35</span>
+<span id="36">36</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="doccomment">/// Alias for [`std::result::Result`] with the error type [`Error`].</span>
@@ -45,7 +47,9 @@
 <span class="doccomment">/// The error type for oo7.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Error</span> {
+    <span class="doccomment">/// File backend error.</span>
     <span class="ident">Portal</span>(<span class="ident"><span class="kw">crate</span>::portal::Error</span>),
+    <span class="doccomment">/// Secret Service error.</span>
     <span class="ident">DBus</span>(<span class="ident"><span class="kw">crate</span>::dbus::Error</span>),
 }
 

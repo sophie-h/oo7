@@ -79,25 +79,35 @@
 <span id="74">74</span>
 <span id="75">75</span>
 <span id="76">76</span>
+<span id="77">77</span>
+<span id="78">78</span>
+<span id="79">79</span>
+<span id="80">80</span>
+<span id="81">81</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">zbus::zvariant</span>;
 
 <span class="doccomment">/// File backend specific errors.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Error</span> {
-    <span class="doccomment">/// File header does not match `FILE_HEADER`</span>
+    <span class="doccomment">/// File header does not match `FILE_HEADER`.</span>
     <span class="ident">FileHeaderMismatch</span>(<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>),
-    <span class="doccomment">/// Version bytes do not match `MAJOR_VERSION` or `MINOR_VERSION`</span>
+    <span class="doccomment">/// Version bytes do not match `MAJOR_VERSION` or `MINOR_VERSION`.</span>
     <span class="ident">VersionMismatch</span>(<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span>),
-    <span class="doccomment">/// No data behind header and version bytes</span>
+    <span class="doccomment">/// No data behind header and version bytes.</span>
     <span class="ident">NoData</span>,
+    <span class="doccomment">/// No Parent directory.</span>
     <span class="ident">NoParentDir</span>(<span class="ident">String</span>),
-    <span class="doccomment">/// Bytes don&#39;t have the expected GVariant format</span>
+    <span class="doccomment">/// Bytes don&#39;t have the expected GVariant format.</span>
     <span class="ident">GVariantDeserialization</span>(<span class="ident">zvariant::Error</span>),
+    <span class="doccomment">/// Input/Output.</span>
     <span class="ident">Io</span>(<span class="ident">std::io::Error</span>),
+    <span class="doccomment">/// Unexpected MAC digest value.</span>
     <span class="ident">MacError</span>,
+    <span class="doccomment">/// Failure to validate the attributes.</span>
     <span class="ident">HashedAttributeMac</span>(<span class="ident">String</span>),
-    <span class="doccomment">/// XDG_DATA_HOME required for reading from default location</span>
+    <span class="doccomment">/// XDG_DATA_HOME required for reading from default location.</span>
     <span class="ident">NoDataDir</span>,
+    <span class="doccomment">/// Target file has changed.</span>
     <span class="ident">TargetFileChanged</span>(<span class="ident">String</span>),
     <span class="doccomment">/// Portal DBus communication error.</span>
     <span class="ident">PortalBus</span>(<span class="ident">zbus::Error</span>),
