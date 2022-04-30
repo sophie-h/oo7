@@ -167,6 +167,11 @@
 <span id="162">162</span>
 <span id="163">163</span>
 <span id="164">164</span>
+<span id="165">165</span>
+<span id="166">166</span>
+<span id="167">167</span>
+<span id="168">168</span>
+<span id="169">169</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
 
 <span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">api</span>, <span class="ident">Algorithm</span>, <span class="ident">Collection</span>, <span class="ident">Error</span>, <span class="ident">DEFAULT_COLLECTION</span>};
@@ -181,11 +186,16 @@
 <span class="doccomment">/// user prompt to complete like creating a collection, locking or unlocking a</span>
 <span class="doccomment">/// collection. The library handles that automatically for you.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// ```ignore</span>
+<span class="doccomment">/// ```no_run</span>
+<span class="doccomment">/// use oo7::dbus::{Algorithm, Service};</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// # async fn run() -&gt; oo7::Result&lt;()&gt; {</span>
 <span class="doccomment">/// let service = Service::new(Algorithm::Plain).await?;</span>
 <span class="doccomment">/// let collection = service.default_collection().await?;</span>
-<span class="doccomment">///</span>
 <span class="doccomment">/// // Do something with the collection</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// #   Ok(())</span>
+<span class="doccomment">/// }</span>
 <span class="doccomment">/// ```</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Service</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
@@ -332,5 +342,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="oo7" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (e85edd9a8 2022-04-28)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="oo7" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (a707f4010 2022-04-29)" ></div>
 </body></html>

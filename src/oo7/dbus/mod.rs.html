@@ -62,32 +62,44 @@
 <span id="57">57</span>
 <span id="58">58</span>
 <span id="59">59</span>
+<span id="60">60</span>
+<span id="61">61</span>
+<span id="62">62</span>
+<span id="63">63</span>
+<span id="64">64</span>
+<span id="65">65</span>
 </pre><pre class="rust"><code><span class="doccomment">//! A [Secret Service](https://specifications.freedesktop.org/secret-service/latest/index.html) implementation.</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! That is usually done with</span>
-<span class="doccomment">//! ```ignore</span>
+<span class="doccomment">//! ```no_run</span>
+<span class="doccomment">//! use oo7::dbus::{Algorithm, Service};</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! # async fn run() -&gt; oo7::Result&lt;()&gt; {</span>
 <span class="doccomment">//! let service = Service::new(Algorithm::Plain).await?;</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! let mut attributes = std::collections::HashMap::new();</span>
 <span class="doccomment">//! attributes.insert(&quot;type&quot;, &quot;password&quot;);</span>
 <span class="doccomment">//! attributes.insert(&quot;user_id&quot;, &quot;some_other_identifier&quot;);</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! if let Some(collection) = service.default_collection().await? {</span>
-<span class="doccomment">//!     // Store a secret</span>
-<span class="doccomment">//!     collection</span>
-<span class="doccomment">//!         .create_item(</span>
-<span class="doccomment">//!             &quot;My App&#39;s secret&quot;,</span>
-<span class="doccomment">//!             attributes.clone(),</span>
-<span class="doccomment">//!             b&quot;password&quot;,</span>
-<span class="doccomment">//!             true,</span>
-<span class="doccomment">//!             &quot;text/plain&quot;,</span>
-<span class="doccomment">//!         )</span>
-<span class="doccomment">//!         .await?;</span>
+<span class="doccomment">//! let collection = service.default_collection().await?;</span>
+<span class="doccomment">//! // Store a secret</span>
+<span class="doccomment">//! collection</span>
+<span class="doccomment">//!     .create_item(</span>
+<span class="doccomment">//!         &quot;My App&#39;s secret&quot;,</span>
+<span class="doccomment">//!         attributes.clone(),</span>
+<span class="doccomment">//!         b&quot;password&quot;,</span>
+<span class="doccomment">//!         true,</span>
+<span class="doccomment">//!         &quot;text/plain&quot;,</span>
+<span class="doccomment">//!     )</span>
+<span class="doccomment">//!     .await?;</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//!     // Retrieve it later thanks to it attributes</span>
-<span class="doccomment">//!     let item = collection.search_items(attributes).await?.first().unwrap();</span>
-<span class="doccomment">//!     assert_eq!(item.secret().await?, b&quot;password&quot;);</span>
-<span class="doccomment">//! }</span>
+<span class="doccomment">//! // Retrieve it later thanks to it attributes</span>
+<span class="doccomment">//! let items = collection.search_items(attributes).await?;</span>
+<span class="doccomment">//! let item = items.first().unwrap();</span>
+<span class="doccomment">//! assert_eq!(*item.secret().await?, b&quot;password&quot;);</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! #   Ok(())</span>
+<span class="doccomment">//! # }</span>
 <span class="doccomment">//! ```</span>
 
 <span class="doccomment">/// The default collection alias.</span>
@@ -122,5 +134,5 @@
 <span class="kw">mod</span> <span class="ident">collection</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">collection::Collection</span>;
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="oo7" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (e85edd9a8 2022-04-28)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="oo7" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (a707f4010 2022-04-29)" ></div>
 </body></html>
