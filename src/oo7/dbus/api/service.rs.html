@@ -230,7 +230,7 @@
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">collections::HashMap</span>, <span class="ident">fmt</span>};
 
 <span class="kw">use</span> <span class="ident">futures::StreamExt</span>;
-<span class="kw">use</span> <span class="ident">zbus::zvariant</span>::{<span class="self">self</span>, <span class="ident">ObjectPath</span>, <span class="ident">OwnedObjectPath</span>, <span class="ident">OwnedValue</span>, <span class="ident">Type</span>};
+<span class="kw">use</span> <span class="ident">zbus::zvariant</span>::{<span class="self">self</span>, <span class="ident">ObjectPath</span>, <span class="ident">OwnedObjectPath</span>, <span class="ident">OwnedValue</span>, <span class="ident">Type</span>, <span class="ident">Value</span>};
 
 <span class="kw">use</span> <span class="kw">super</span>::{
     <span class="ident">secret::SecretInner</span>, <span class="ident">Collection</span>, <span class="ident">Item</span>, <span class="ident">Prompt</span>, <span class="ident">Properties</span>, <span class="ident">Secret</span>, <span class="ident">Session</span>, <span class="ident">Unlockable</span>,
@@ -299,9 +299,9 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">client_public_key</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Key</span><span class="op">&gt;</span>,
     ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Key</span><span class="op">&gt;</span>, <span class="ident">Session</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>), <span class="ident">Error</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> (<span class="ident">algorithm</span>, <span class="ident">key</span>) <span class="op">=</span> <span class="kw">match</span> <span class="ident">client_public_key</span> {
+        <span class="kw">let</span> (<span class="ident">algorithm</span>, <span class="ident">key</span>): (<span class="kw">_</span>, <span class="ident">Value</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) <span class="op">=</span> <span class="kw">match</span> <span class="ident">client_public_key</span> {
             <span class="prelude-val">None</span> =&gt; (<span class="ident">Algorithm::Plain</span>, <span class="ident">zvariant::Str::default</span>().<span class="ident">into</span>()),
-            <span class="prelude-val">Some</span>(<span class="ident">key</span>) =&gt; (<span class="ident">Algorithm::Encrypted</span>, <span class="ident">key</span>.<span class="ident">to_value</span>()),
+            <span class="prelude-val">Some</span>(<span class="ident">key</span>) =&gt; (<span class="ident">Algorithm::Encrypted</span>, <span class="ident">key</span>.<span class="ident">into</span>()),
         };
         <span class="kw">let</span> (<span class="ident">service_key</span>, <span class="ident">session_path</span>) <span class="op">=</span> <span class="self">self</span>
             .<span class="ident">inner</span>()
@@ -312,7 +312,7 @@
 
         <span class="kw">let</span> <span class="ident">key</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">algorithm</span> {
             <span class="ident">Algorithm::Plain</span> =&gt; <span class="prelude-val">None</span>,
-            <span class="ident">Algorithm::Encrypted</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">Key::from</span>(<span class="kw-2">&amp;</span><span class="ident">service_key</span>)),
+            <span class="ident">Algorithm::Encrypted</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">Key::from</span>(<span class="ident">service_key</span>)),
         };
 
         <span class="prelude-val">Ok</span>((<span class="ident">key</span>, <span class="ident">session</span>))

@@ -172,6 +172,8 @@
 <span id="167">167</span>
 <span id="168">168</span>
 <span id="169">169</span>
+<span id="170">170</span>
+<span id="171">171</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::ops</span>::{<span class="ident">Mul</span>, <span class="ident">Rem</span>, <span class="ident">Shr</span>};
 
 <span class="kw">use</span> <span class="ident">hkdf::Hkdf</span>;
@@ -257,10 +259,12 @@
 
         <span class="ident">okm</span>
     }
+}
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">to_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">zvariant::OwnedValue</span> {
+<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Key</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">zvariant::Value</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="ident">Key</span>) -&gt; <span class="self">Self</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">array</span> <span class="op">=</span> <span class="ident">zvariant::Array::new</span>(<span class="ident">u8::signature</span>());
-        <span class="kw">for</span> <span class="ident">byte</span> <span class="kw">in</span> <span class="self">self</span>.<span class="ident">as_ref</span>() {
+        <span class="kw">for</span> <span class="ident">byte</span> <span class="kw">in</span> <span class="ident">key</span>.<span class="ident">as_ref</span>() {
             <span class="ident">array</span>
                 .<span class="ident">append</span>(<span class="ident">zvariant::Value::U8</span>(<span class="kw-2">*</span><span class="ident">byte</span>))
                 .<span class="ident">expect</span>(<span class="string">&quot;Element of valid type&quot;</span>);
@@ -269,8 +273,8 @@
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">zvariant::OwnedValue</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Key</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">zvariant::OwnedValue</span>) -&gt; <span class="self">Self</span> {
+<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">zvariant::OwnedValue</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Key</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">value</span>: <span class="ident">zvariant::OwnedValue</span>) -&gt; <span class="self">Self</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">key</span> <span class="op">=</span> <span class="ident">zeroize::Zeroizing::new</span>(<span class="macro">vec!</span>[]);
         <span class="kw">for</span> <span class="ident">value</span> <span class="kw">in</span> <span class="ident">value</span>.<span class="ident">downcast_ref</span>::<span class="op">&lt;</span><span class="ident">zvariant::Array</span><span class="op">&gt;</span>().<span class="ident">unwrap</span>().<span class="ident">get</span>() {
             <span class="ident">key</span>.<span class="ident">push</span>(<span class="kw-2">*</span><span class="ident">value</span>.<span class="ident">downcast_ref</span>::<span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>().<span class="ident">unwrap</span>());
