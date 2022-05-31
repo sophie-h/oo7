@@ -86,6 +86,10 @@
 <span id="79">79</span>
 <span id="80">80</span>
 <span id="81">81</span>
+<span id="82">82</span>
+<span id="83">83</span>
+<span id="84">84</span>
+<span id="85">85</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">zbus::zvariant</span>;
 
 <span class="doccomment">/// File backend specific errors.</span>
@@ -115,6 +119,9 @@
     <span class="ident">PortalBus</span>(<span class="ident">zbus::Error</span>),
     <span class="doccomment">/// Portal request has been cancelled.</span>
     <span class="ident">CancelledPortalRequest</span>,
+    <span class="doccomment">/// If the portal is not available on the host.</span>
+    <span class="doccomment">/// Can happen if the host has an old xdg-desktop-portal</span>
+    <span class="ident">PortalNotAvailable</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">zvariant::Error</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Error</span> {
@@ -164,9 +171,10 @@
             <span class="ident">Error::TargetFileChanged</span>(<span class="ident">e</span>) =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;The target file has changed {e}&quot;</span>),
             <span class="ident">Error::PortalBus</span>(<span class="ident">e</span>) =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Portal communication failed {e}&quot;</span>),
             <span class="ident">Error::CancelledPortalRequest</span> =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Portal request was cancelled&quot;</span>),
+            <span class="ident">Error::PortalNotAvailable</span> =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;xdg-desktop-portal is too old on the host&quot;</span>),
         }
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="oo7" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (28b891916 2022-05-29)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="oo7" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (c35035cef 2022-05-30)" ></div>
 </body></html>
