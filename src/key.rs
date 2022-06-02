@@ -1,17 +1,17 @@
 use std::ops::{Mul, Rem, Shr};
 
 use hkdf::Hkdf;
-use num::{bigint::BigUint, FromPrimitive, Integer, One, Zero};
+use num::{bigint, FromPrimitive, Integer, One, Zero};
 use once_cell::sync::Lazy;
 use rand::{rngs::OsRng, Rng};
 use sha2::Sha256;
 use zbus::zvariant::{self, Type};
-use zeroize::{Zeroize, ZeroizeOnDrop};
+use zeroize::{Zeroize, Zeroizing, ZeroizeOnDrop};
 
 // for key exchange
-static DH_GENERATOR: Lazy<BigUint> = Lazy::new(|| BigUint::from_u64(0x2).unwrap());
-static DH_PRIME: Lazy<BigUint> = Lazy::new(|| {
-    BigUint::from_bytes_be(&[
+static DH_GENERATOR: Lazy<bigint::BigUint> = Lazy::new(|| bigint::BigUint::from_u64(0x2).unwrap());
+static DH_PRIME: Lazy<bigint::BigUint> = Lazy::new(|| {
+    bigint::BigUint::from_bytes_be(&[
         0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xC9, 0x0F, 0xDA, 0xA2, 0x21, 0x68, 0xC2,
         0x34, 0xC4, 0xC6, 0x62, 0x8B, 0x80, 0xDC, 0x1C, 0xD1, 0x29, 0x02, 0x4E, 0x08, 0x8A, 0x67,
         0xCC, 0x74, 0x02, 0x0B, 0xBE, 0xA6, 0x3B, 0x13, 0x9B, 0x22, 0x51, 0x4A, 0x08, 0x79, 0x8E,
@@ -23,6 +23,37 @@ static DH_PRIME: Lazy<BigUint> = Lazy::new(|| {
         0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
     ])
 });
+
+#[derive(Default)]
+struct BigUint(bigint::BigUint);
+
+impl Zeroize for BigUint {
+    fn zeroize(&mut self) {
+        let this = std::mem::take(&mut self.0);
+        let mut buf = this.to_bytes_be();
+        buf.zeroize();
+        let zeroed = bigint::BigUint::from_bytes_be(&buf);
+        let _ = std::mem::replace(&mut self.0, zeroed);
+    }
+}
+
+impl ZeroizeOnDrop for BigUint {}
+
+impl Drop for BigUint {
+    fn drop(&mut self) {
+        self.zeroize();
+    }
+}
+
+impl BigUint {
+    fn from_bytes_be(bytes: &[u8]) -> Self {
+        Self(bigint::BigUint::from_bytes_be(bytes))
+    }
+
+    fn to_bytes_be(&self) -> Zeroizing<Vec<u8>> {
+        self.0.to_bytes_be().into()
+    }
+}
 
 /// A key.
 #[derive(Debug, Zeroize, ZeroizeOnDrop)]
@@ -40,6 +71,14 @@ impl AsMut<[u8]> for Key {
     }
 }
 
+use std::ops::Deref;
+impl Deref for BigUint {
+    type Target = bigint::BigUint;
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+
 impl Key {
     pub(crate) fn generate_private_key() -> Self {
         let mut rng = OsRng {};
@@ -49,19 +88,17 @@ impl Key {
         private_key
     }
 
-    // TODO zeroize
     pub(crate) fn generate_public_key(private_key: &Self) -> Self {
         let private_key_uint = BigUint::from_bytes_be(private_key.as_ref());
-        let public_key_uint = powm(&DH_GENERATOR, &private_key_uint, &DH_PRIME);
+        let public_key_uint = powm(&DH_GENERATOR, private_key_uint, &DH_PRIME);
 
-        Key(public_key_uint.to_bytes_be())
+        Key(public_key_uint.to_bytes_be().to_vec())
     }
 
-    // TODO zeroize
     pub(crate) fn generate_aes_key(private_key: &Self, server_public_key: &Self) -> Self {
-        let server_public_key_uint = BigUint::from_bytes_be(server_public_key.as_ref());
+        let server_public_key_uint = bigint::BigUint::from_bytes_be(server_public_key.as_ref());
         let private_key_uint = BigUint::from_bytes_be(private_key.as_ref());
-        let common_secret = powm(&server_public_key_uint, &private_key_uint, &DH_PRIME);
+        let common_secret = powm(&server_public_key_uint, private_key_uint, &DH_PRIME);
 
         let mut common_secret_bytes = common_secret.to_bytes_be();
         let mut common_secret_padded = vec![0; 128 - common_secret_bytes.len()];
@@ -79,7 +116,7 @@ impl Key {
 
         let (_, hk) = Hkdf::<Sha256>::extract(salt, &ikm);
         hk.expand(&info, okm.as_mut())
-            .expect("hkdf expand should never fail");
+          .expect("hkdf expand should never fail");
 
         okm
     }
@@ -108,25 +145,36 @@ impl From<zvariant::OwnedValue> for Key {
 }
 
 /// from https://github.com/plietar/librespot/blob/master/core/src/util/mod.rs#L53
-fn powm(base: &BigUint, exp: &BigUint, modulus: &BigUint) -> BigUint {
+fn powm(base: &bigint::BigUint, mut exp: BigUint, modulus: &bigint::BigUint) -> BigUint {
     let mut base = base.clone();
-    let mut exp = exp.clone();
-    let mut result: BigUint = One::one();
+    let mut inner_exp = exp.0.clone();
+    exp.zeroize();
+    let mut result: bigint::BigUint = One::one();
 
-    while !exp.is_zero() {
-        if exp.is_odd() {
+    while !inner_exp.is_zero() {
+        if inner_exp.is_odd() {
             result = result.mul(&base).rem(modulus);
         }
-        exp = exp.shr(1);
+        inner_exp = inner_exp.shr(1);
         base = (&base).mul(&base).rem(modulus);
     }
 
-    result
+    BigUint(inner_exp).zeroize();
+
+    BigUint(result)
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn test_zeroize_bigint() {
+        let mut int = BigUint(One::one());
+        int.zeroize();
+
+        assert_eq!(int.0, Zero::zero());
+    }
 
     #[test]
     fn private_public_pair() {
