@@ -100,7 +100,7 @@ impl<'a> SecretProxy<'a> {
 
 pub async fn retrieve() -> Result<Vec<u8>, Error> {
     #[cfg(not(feature = "async-std"))]
-    use std::{io::Read, os::unix::net::UnixStream};
+    use tokio::{io::AsyncReadExt, net::UnixStream};
 
     #[cfg(feature = "async-std")]
     use async_std::{os::unix::net::UnixStream, prelude::*};
@@ -118,10 +118,7 @@ pub async fn retrieve() -> Result<Vec<u8>, Error> {
     proxy.retrieve_secret(&x2).await?;
     drop(x2);
     let mut buf = Vec::new();
-    #[cfg(feature = "async-std")]
     x1.read_to_end(&mut buf).await?;
-    #[cfg(not(feature = "async-std"))]
-    x1.read_to_end(&mut buf)?;
 
     #[cfg(feature = "tracing")]
     tracing::debug!("Secret received from the portal successfully");
