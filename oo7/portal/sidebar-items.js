@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["Error","File backend specific errors."]],"mod":[["api","GNOME Keyring file format low level API."]],"struct":[["Item","An item stored in the file backend."],["Keyring","File backed keyring."]]});
+initSidebarItems({"enum":[["Error","File backend specific errors."]],"struct":[["Item","An item stored in the file backend."],["Keyring","File backed keyring."]]});

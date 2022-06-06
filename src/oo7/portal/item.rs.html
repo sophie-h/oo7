@@ -130,6 +130,9 @@
 <span id="123">123</span>
 <span id="124">124</span>
 <span id="125">125</span>
+<span id="126">126</span>
+<span id="127">127</span>
+<span id="128">128</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::collections::HashMap</span>;
 
 <span class="kw">use</span> <span class="ident">digest::Mac</span>;
@@ -151,8 +154,11 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Item</span> {
     <span class="attribute">#[<span class="ident">zeroize</span>(<span class="ident">skip</span>)]</span>
     <span class="ident">attributes</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">AttributeValue</span><span class="op">&gt;</span>,
+    <span class="attribute">#[<span class="ident">zeroize</span>(<span class="ident">skip</span>)]</span>
     <span class="ident">label</span>: <span class="ident">String</span>,
+    <span class="attribute">#[<span class="ident">zeroize</span>(<span class="ident">skip</span>)]</span>
     <span class="ident">created</span>: <span class="ident">u64</span>,
+    <span class="attribute">#[<span class="ident">zeroize</span>(<span class="ident">skip</span>)]</span>
     <span class="ident">modified</span>: <span class="ident">u64</span>,
     <span class="ident">secret</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>,
 }
@@ -256,5 +262,5 @@
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="oo7" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (e71440575 2022-06-02)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="oo7" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (fee3a459d 2022-06-05)" ></div>
 </body></html>
