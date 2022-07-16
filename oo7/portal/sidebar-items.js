@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["Error","File backend specific errors."]],"struct":[["Item","An item stored in the file backend."],["Keyring","File backed keyring."]]});
+window.SIDEBAR_ITEMS = {"enum":[["Error","File backend specific errors."]],"struct":[["Item","An item stored in the file backend."],["Keyring","File backed keyring."]]};
