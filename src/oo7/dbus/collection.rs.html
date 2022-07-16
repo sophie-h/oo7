@@ -302,9 +302,15 @@
 <span id="296">296</span>
 <span id="297">297</span>
 <span id="298">298</span>
+<span id="299">299</span>
+<span id="300">300</span>
+<span id="301">301</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">collections::HashMap</span>, <span class="ident">sync::Arc</span>, <span class="ident">time::Duration</span>};
 
-<span class="kw">use</span> <span class="ident">futures::lock::Mutex</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;async-std&quot;</span>)]</span>
+<span class="kw">use</span> <span class="ident">async_std::sync::RwLock</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tokio&quot;</span>)]</span>
+<span class="kw">use</span> <span class="ident">tokio::sync::RwLock</span>;
 
 <span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">api</span>, <span class="ident">Algorithm</span>, <span class="ident">Error</span>, <span class="ident">Item</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Key</span>;
@@ -328,7 +334,7 @@
     <span class="ident">session</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">api::Session</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="ident">algorithm</span>: <span class="ident">Algorithm</span>,
     <span class="doccomment">/// Defines whether the Collection has been deleted or not</span>
-    <span class="ident">available</span>: <span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>,
+    <span class="ident">available</span>: <span class="ident">RwLock</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>,
     <span class="ident">aes_key</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Key</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 }
 
@@ -345,13 +351,13 @@
             <span class="ident">session</span>,
             <span class="ident">service</span>,
             <span class="ident">algorithm</span>,
-            <span class="ident">available</span>: <span class="ident">Mutex::new</span>(<span class="bool-val">true</span>),
+            <span class="ident">available</span>: <span class="ident">RwLock::new</span>(<span class="bool-val">true</span>),
             <span class="ident">aes_key</span>,
         }
     }
 
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">is_available</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw-2">*</span><span class="self">self</span>.<span class="ident">available</span>.<span class="ident">lock</span>().<span class="kw">await</span>
+        <span class="kw-2">*</span><span class="self">self</span>.<span class="ident">available</span>.<span class="ident">read</span>().<span class="kw">await</span>
     }
 
     <span class="doccomment">/// Retrieve the list of available [`Item`] in the collection.</span>
@@ -522,7 +528,7 @@
             <span class="prelude-val">Err</span>(<span class="ident">Error::Deleted</span>)
         } <span class="kw">else</span> {
             <span class="self">self</span>.<span class="ident">inner</span>.<span class="ident">delete</span>().<span class="kw">await</span><span class="question-mark">?</span>;
-            <span class="kw-2">*</span><span class="self">self</span>.<span class="ident">available</span>.<span class="ident">lock</span>().<span class="kw">await</span> <span class="op">=</span> <span class="bool-val">false</span>;
+            <span class="kw-2">*</span><span class="self">self</span>.<span class="ident">available</span>.<span class="ident">write</span>().<span class="kw">await</span> <span class="op">=</span> <span class="bool-val">false</span>;
             <span class="prelude-val">Ok</span>(())
         }
     }
