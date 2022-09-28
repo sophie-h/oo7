@@ -1,10 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/dbus/service.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>service.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../oo7/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
-        </a><h2 class="location"></h2>
-    </nav>
-    <nav class="sidebar"><a class="sidebar-logo" href="../../../oo7/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
-        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../oo7/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1">
-                                <a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div>
-                        </div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/dbus/service.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>service.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../oo7/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../oo7/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../oo7/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -174,176 +168,175 @@
 <span id="168">168</span>
 <span id="169">169</span>
 <span id="170">170</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
+</pre><pre class="rust"><code><span class="kw">use </span>std::sync::Arc;
 
-<span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">api</span>, <span class="ident">Algorithm</span>, <span class="ident">Collection</span>, <span class="ident">Error</span>, <span class="ident">DEFAULT_COLLECTION</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Key</span>;
+<span class="kw">use super</span>::{api, Algorithm, Collection, Error, DEFAULT_COLLECTION};
+<span class="kw">use </span><span class="kw">crate</span>::Key;
 
-<span class="doccomment">/// The entry point of communicating with a [`org.freedesktop.Secrets`](https://specifications.freedesktop.org/secret-service/latest/index.html) implementation.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// It will automatically create a session for you and allow you to retrieve</span>
-<span class="doccomment">/// collections or create new ones.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Certain actions requires on the Secret Service implementation requires a</span>
-<span class="doccomment">/// user prompt to complete like creating a collection, locking or unlocking a</span>
-<span class="doccomment">/// collection. The library handles that automatically for you.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```no_run</span>
-<span class="doccomment">/// use oo7::dbus::{Algorithm, Service};</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # async fn run() -&gt; oo7::Result&lt;()&gt; {</span>
-<span class="doccomment">/// let service = Service::new(Algorithm::Plain).await?;</span>
-<span class="doccomment">/// let collection = service.default_collection().await?;</span>
-<span class="doccomment">/// // Do something with the collection</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// #   Ok(())</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Service</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">inner</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">api::Service</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="ident">aes_key</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Key</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="ident">session</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">api::Session</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="ident">algorithm</span>: <span class="ident">Algorithm</span>,
+<span class="doccomment">/// The entry point of communicating with a [`org.freedesktop.Secrets`](https://specifications.freedesktop.org/secret-service/latest/index.html) implementation.
+///
+/// It will automatically create a session for you and allow you to retrieve
+/// collections or create new ones.
+///
+/// Certain actions requires on the Secret Service implementation requires a
+/// user prompt to complete like creating a collection, locking or unlocking a
+/// collection. The library handles that automatically for you.
+///
+/// ```no_run
+/// use oo7::dbus::{Algorithm, Service};
+///
+/// # async fn run() -&gt; oo7::Result&lt;()&gt; {
+/// let service = Service::new(Algorithm::Plain).await?;
+/// let collection = service.default_collection().await?;
+/// // Do something with the collection
+///
+/// #   Ok(())
+/// }
+/// ```
+</span><span class="attribute">#[derive(Debug)]
+</span><span class="kw">pub struct </span>Service&lt;<span class="lifetime">&#39;a</span>&gt; {
+    inner: Arc&lt;api::Service&lt;<span class="lifetime">&#39;a</span>&gt;&gt;,
+    aes_key: <span class="prelude-ty">Option</span>&lt;Arc&lt;Key&gt;&gt;,
+    session: Arc&lt;api::Session&lt;<span class="lifetime">&#39;a</span>&gt;&gt;,
+    algorithm: Algorithm,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Service</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Create a new instance of the Service.</span>
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">algorithm</span>: <span class="ident">Algorithm</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Service</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">cnx</span> <span class="op">=</span> <span class="ident">zbus::Connection::session</span>().<span class="kw">await</span><span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">service</span> <span class="op">=</span> <span class="ident">Arc::new</span>(<span class="ident">api::Service::new</span>(<span class="kw-2">&amp;</span><span class="ident">cnx</span>).<span class="kw">await</span><span class="question-mark">?</span>);
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Service&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Create a new instance of the Service.
+    </span><span class="kw">pub async fn </span>new(algorithm: Algorithm) -&gt; <span class="prelude-ty">Result</span>&lt;Service&lt;<span class="lifetime">&#39;a</span>&gt;, Error&gt; {
+        <span class="kw">let </span>cnx = zbus::Connection::session().<span class="kw">await</span><span class="question-mark">?</span>;
+        <span class="kw">let </span>service = Arc::new(api::Service::new(<span class="kw-2">&amp;</span>cnx).<span class="kw">await</span><span class="question-mark">?</span>);
 
-        <span class="kw">let</span> (<span class="ident">aes_key</span>, <span class="ident">session</span>) <span class="op">=</span> <span class="kw">match</span> <span class="ident">algorithm</span> {
-            <span class="ident">Algorithm::Plain</span> =&gt; {
-                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tracing&quot;</span>)]</span>
-                <span class="macro">tracing::debug!</span>(<span class="string">&quot;Starting an unecrypted Secret Service session&quot;</span>);
-                <span class="kw">let</span> (<span class="ident">_service_key</span>, <span class="ident">session</span>) <span class="op">=</span> <span class="ident">service</span>.<span class="ident">open_session</span>(<span class="prelude-val">None</span>).<span class="kw">await</span><span class="question-mark">?</span>;
-                (<span class="prelude-val">None</span>, <span class="ident">session</span>)
+        <span class="kw">let </span>(aes_key, session) = <span class="kw">match </span>algorithm {
+            Algorithm::Plain =&gt; {
+                <span class="attribute">#[cfg(feature = <span class="string">&quot;tracing&quot;</span>)]
+                </span><span class="macro">tracing::debug!</span>(<span class="string">&quot;Starting an unecrypted Secret Service session&quot;</span>);
+                <span class="kw">let </span>(_service_key, session) = service.open_session(<span class="prelude-val">None</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+                (<span class="prelude-val">None</span>, session)
             }
-            <span class="ident">Algorithm::Encrypted</span> =&gt; {
-                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tracing&quot;</span>)]</span>
-                <span class="macro">tracing::debug!</span>(<span class="string">&quot;Starting an encrypted Secret Service session&quot;</span>);
-                <span class="kw">let</span> <span class="ident">private_key</span> <span class="op">=</span> <span class="ident">Key::generate_private_key</span>();
-                <span class="kw">let</span> <span class="ident">public_key</span> <span class="op">=</span> <span class="ident">Key::generate_public_key</span>(<span class="kw-2">&amp;</span><span class="ident">private_key</span>);
-                <span class="kw">let</span> (<span class="ident">service_key</span>, <span class="ident">session</span>) <span class="op">=</span> <span class="ident">service</span>.<span class="ident">open_session</span>(<span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="ident">public_key</span>)).<span class="kw">await</span><span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">aes_key</span> <span class="op">=</span> <span class="ident">service_key</span>
-                    .<span class="ident">map</span>(<span class="op">|</span><span class="ident">service_key</span><span class="op">|</span> <span class="ident">Arc::new</span>(<span class="ident">Key::generate_aes_key</span>(<span class="kw-2">&amp;</span><span class="ident">private_key</span>, <span class="kw-2">&amp;</span><span class="ident">service_key</span>)));
+            Algorithm::Encrypted =&gt; {
+                <span class="attribute">#[cfg(feature = <span class="string">&quot;tracing&quot;</span>)]
+                </span><span class="macro">tracing::debug!</span>(<span class="string">&quot;Starting an encrypted Secret Service session&quot;</span>);
+                <span class="kw">let </span>private_key = Key::generate_private_key();
+                <span class="kw">let </span>public_key = Key::generate_public_key(<span class="kw-2">&amp;</span>private_key);
+                <span class="kw">let </span>(service_key, session) = service.open_session(<span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span>public_key)).<span class="kw">await</span><span class="question-mark">?</span>;
+                <span class="kw">let </span>aes_key = service_key
+                    .map(|service_key| Arc::new(Key::generate_aes_key(<span class="kw-2">&amp;</span>private_key, <span class="kw-2">&amp;</span>service_key)));
 
-                (<span class="ident">aes_key</span>, <span class="ident">session</span>)
+                (aes_key, session)
             }
         };
 
-        <span class="prelude-val">Ok</span>(<span class="self">Self</span> {
-            <span class="ident">aes_key</span>,
-            <span class="ident">inner</span>: <span class="ident">service</span>,
-            <span class="ident">session</span>: <span class="ident">Arc::new</span>(<span class="ident">session</span>),
-            <span class="ident">algorithm</span>,
+        <span class="prelude-val">Ok</span>(<span class="self">Self </span>{
+            aes_key,
+            inner: service,
+            session: Arc::new(session),
+            algorithm,
         })
     }
 
-    <span class="doccomment">/// Retrieve the default collection.</span>
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">default_collection</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Collection</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">with_alias</span>(<span class="ident">DEFAULT_COLLECTION</span>)
-            .<span class="kw">await</span><span class="question-mark">?</span>
-            .<span class="ident">ok_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">Error::NotFound</span>(<span class="ident">DEFAULT_COLLECTION</span>.<span class="ident">to_owned</span>()))
+    <span class="doccomment">/// Retrieve the default collection.
+    </span><span class="kw">pub async fn </span>default_collection(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;Collection&lt;<span class="lifetime">&#39;a</span>&gt;, Error&gt; {
+        <span class="self">self</span>.with_alias(DEFAULT_COLLECTION)
+            .<span class="kw">await</span><span class="question-mark">?
+            </span>.ok_or_else(|| Error::NotFound(DEFAULT_COLLECTION.to_owned()))
     }
 
-    <span class="doccomment">/// Find a collection with it alias.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Applications should make use of [`Service::default_collection`] instead.</span>
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">with_alias</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">alias</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Collection</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
-        <span class="prelude-val">Ok</span>(<span class="self">self</span>.<span class="ident">inner</span>.<span class="ident">read_alias</span>(<span class="ident">alias</span>).<span class="kw">await</span><span class="question-mark">?</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">collection</span><span class="op">|</span> {
-            <span class="ident">Collection::new</span>(
-                <span class="ident">Arc::clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">inner</span>),
-                <span class="ident">Arc::clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">session</span>),
-                <span class="self">self</span>.<span class="ident">algorithm</span>,
-                <span class="ident">collection</span>,
-                <span class="self">self</span>.<span class="ident">aes_key</span>.<span class="ident">as_ref</span>().<span class="ident">map</span>(<span class="ident">Arc::clone</span>),
+    <span class="doccomment">/// Find a collection with it alias.
+    ///
+    /// Applications should make use of [`Service::default_collection`] instead.
+    </span><span class="kw">pub async fn </span>with_alias(<span class="kw-2">&amp;</span><span class="self">self</span>, alias: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;Collection&lt;<span class="lifetime">&#39;a</span>&gt;&gt;, Error&gt; {
+        <span class="prelude-val">Ok</span>(<span class="self">self</span>.inner.read_alias(alias).<span class="kw">await</span><span class="question-mark">?</span>.map(|collection| {
+            Collection::new(
+                Arc::clone(<span class="kw-2">&amp;</span><span class="self">self</span>.inner),
+                Arc::clone(<span class="kw-2">&amp;</span><span class="self">self</span>.session),
+                <span class="self">self</span>.algorithm,
+                collection,
+                <span class="self">self</span>.aes_key.as_ref().map(Arc::clone),
             )
         }))
     }
 
-    <span class="doccomment">/// Get a list of all the available collections.</span>
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">collections</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Collection</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
-        <span class="prelude-val">Ok</span>(<span class="self">self</span>
-            .<span class="ident">inner</span>
-            .<span class="ident">collections</span>()
-            .<span class="kw">await</span><span class="question-mark">?</span>
-            .<span class="ident">into_iter</span>()
-            .<span class="ident">map</span>(<span class="op">|</span><span class="ident">collection</span><span class="op">|</span> {
-                <span class="ident">Collection::new</span>(
-                    <span class="ident">Arc::clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">inner</span>),
-                    <span class="ident">Arc::clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">session</span>),
-                    <span class="self">self</span>.<span class="ident">algorithm</span>,
-                    <span class="ident">collection</span>,
-                    <span class="self">self</span>.<span class="ident">aes_key</span>.<span class="ident">as_ref</span>().<span class="ident">map</span>(<span class="ident">Arc::clone</span>),
+    <span class="doccomment">/// Get a list of all the available collections.
+    </span><span class="kw">pub async fn </span>collections(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;Vec&lt;Collection&lt;<span class="lifetime">&#39;a</span>&gt;&gt;, Error&gt; {
+        <span class="prelude-val">Ok</span>(<span class="self">self
+            </span>.inner
+            .collections()
+            .<span class="kw">await</span><span class="question-mark">?
+            </span>.into_iter()
+            .map(|collection| {
+                Collection::new(
+                    Arc::clone(<span class="kw-2">&amp;</span><span class="self">self</span>.inner),
+                    Arc::clone(<span class="kw-2">&amp;</span><span class="self">self</span>.session),
+                    <span class="self">self</span>.algorithm,
+                    collection,
+                    <span class="self">self</span>.aes_key.as_ref().map(Arc::clone),
                 )
             })
-            .<span class="ident">collect</span>::<span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span><span class="op">&gt;</span>())
+            .collect::&lt;Vec&lt;<span class="kw">_</span>&gt;&gt;())
     }
 
-    <span class="doccomment">/// Create a new collection.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The alias can only be equal to [`DEFAULT_COLLECTION`] otherwise it must</span>
-    <span class="doccomment">/// not be set.</span>
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">create_collection</span>(
+    <span class="doccomment">/// Create a new collection.
+    ///
+    /// The alias can only be equal to [`DEFAULT_COLLECTION`] otherwise it must
+    /// not be set.
+    </span><span class="kw">pub async fn </span>create_collection(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">label</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-        <span class="ident">alias</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Collection</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">aes_key</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">aes_key</span>.<span class="ident">as_ref</span>().<span class="ident">map</span>(<span class="ident">Arc::clone</span>);
-        <span class="self">self</span>.<span class="ident">inner</span>
-            .<span class="ident">create_collection</span>(<span class="ident">label</span>, <span class="ident">alias</span>)
-            .<span class="kw">await</span>
-            .<span class="ident">map</span>(<span class="op">|</span><span class="ident">collection</span><span class="op">|</span> {
-                <span class="ident">Collection::new</span>(
-                    <span class="ident">Arc::clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">inner</span>),
-                    <span class="ident">Arc::clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">session</span>),
-                    <span class="self">self</span>.<span class="ident">algorithm</span>,
-                    <span class="ident">collection</span>,
-                    <span class="ident">aes_key</span>,
+        label: <span class="kw-2">&amp;</span>str,
+        alias: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>str&gt;,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;Collection&lt;<span class="lifetime">&#39;a</span>&gt;, Error&gt; {
+        <span class="kw">let </span>aes_key = <span class="self">self</span>.aes_key.as_ref().map(Arc::clone);
+        <span class="self">self</span>.inner
+            .create_collection(label, alias)
+            .<span class="kw">await
+            </span>.map(|collection| {
+                Collection::new(
+                    Arc::clone(<span class="kw-2">&amp;</span><span class="self">self</span>.inner),
+                    Arc::clone(<span class="kw-2">&amp;</span><span class="self">self</span>.session),
+                    <span class="self">self</span>.algorithm,
+                    collection,
+                    aes_key,
                 )
             })
     }
 
-    <span class="doccomment">/// Find a collection with it label.</span>
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">with_label</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">label</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Collection</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">collections</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">collections</span>().<span class="kw">await</span><span class="question-mark">?</span>;
-        <span class="kw">for</span> <span class="ident">collection</span> <span class="kw">in</span> <span class="ident">collections</span>.<span class="ident">into_iter</span>() {
-            <span class="kw">if</span> <span class="ident">collection</span>.<span class="ident">label</span>().<span class="kw">await</span><span class="question-mark">?</span> <span class="op">==</span> <span class="ident">label</span> {
-                <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(<span class="ident">collection</span>));
+    <span class="doccomment">/// Find a collection with it label.
+    </span><span class="kw">pub async fn </span>with_label(<span class="kw-2">&amp;</span><span class="self">self</span>, label: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;Collection&lt;<span class="lifetime">&#39;a</span>&gt;&gt;, Error&gt; {
+        <span class="kw">let </span>collections = <span class="self">self</span>.collections().<span class="kw">await</span><span class="question-mark">?</span>;
+        <span class="kw">for </span>collection <span class="kw">in </span>collections.into_iter() {
+            <span class="kw">if </span>collection.label().<span class="kw">await</span><span class="question-mark">? </span>== label {
+                <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(collection));
             }
         }
         <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>)
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;async-std&quot;</span>)]</span>
-<span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;local_tests&quot;</span>)]</span>
-    <span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">Algorithm</span>, <span class="ident">Service</span>};
+<span class="attribute">#[cfg(test)]
+#[cfg(feature = <span class="string">&quot;async-std&quot;</span>)]
+</span><span class="kw">mod </span>tests {
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;local_tests&quot;</span>)]
+    </span><span class="kw">use super</span>::{Algorithm, Service};
 
-    <span class="attribute">#[<span class="ident">async_std::test</span>]</span>
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;local_tests&quot;</span>)]</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">create_collection</span>() {
-        <span class="kw">let</span> <span class="ident">service</span> <span class="op">=</span> <span class="ident">Service::new</span>(<span class="ident">Algorithm::Plain</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
-        <span class="kw">let</span> <span class="ident">collection</span> <span class="op">=</span> <span class="ident">service</span>.<span class="ident">create_collection</span>(<span class="string">&quot;somelabel&quot;</span>, <span class="prelude-val">None</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+    <span class="attribute">#[async_std::test]
+    #[cfg(feature = <span class="string">&quot;local_tests&quot;</span>)]
+    </span><span class="kw">async fn </span>create_collection() {
+        <span class="kw">let </span>service = Service::new(Algorithm::Plain).<span class="kw">await</span>.unwrap();
+        <span class="kw">let </span>collection = service.create_collection(<span class="string">&quot;somelabel&quot;</span>, <span class="prelude-val">None</span>).<span class="kw">await</span>.unwrap();
 
-        <span class="kw">let</span> <span class="ident">found_collection</span> <span class="op">=</span> <span class="ident">service</span>.<span class="ident">with_label</span>(<span class="string">&quot;somelabel&quot;</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
-        <span class="macro">assert!</span>(<span class="ident">found_collection</span>.<span class="ident">is_some</span>());
+        <span class="kw">let </span>found_collection = service.with_label(<span class="string">&quot;somelabel&quot;</span>).<span class="kw">await</span>.unwrap();
+        <span class="macro">assert!</span>(found_collection.is_some());
 
         <span class="macro">assert_eq!</span>(
-            <span class="ident">found_collection</span>.<span class="ident">unwrap</span>().<span class="ident">label</span>().<span class="kw">await</span>.<span class="ident">unwrap</span>(),
-            <span class="ident">collection</span>.<span class="ident">label</span>().<span class="kw">await</span>.<span class="ident">unwrap</span>()
+            found_collection.unwrap().label().<span class="kw">await</span>.unwrap(),
+            collection.label().<span class="kw">await</span>.unwrap()
         );
 
-        <span class="ident">collection</span>.<span class="ident">delete</span>().<span class="kw">await</span>.<span class="ident">unwrap</span>();
+        collection.delete().<span class="kw">await</span>.unwrap();
 
-        <span class="kw">let</span> <span class="ident">found_collection</span> <span class="op">=</span> <span class="ident">service</span>.<span class="ident">with_label</span>(<span class="string">&quot;somelabel&quot;</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
-        <span class="macro">assert!</span>(<span class="ident">found_collection</span>.<span class="ident">is_none</span>());
+        <span class="kw">let </span>found_collection = service.with_label(<span class="string">&quot;somelabel&quot;</span>).<span class="kw">await</span>.unwrap();
+        <span class="macro">assert!</span>(found_collection.is_none());
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="oo7" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (23e21bdd2 2022-07-15)" ></div>
-</body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="oo7" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.0-nightly (470e518c4 2022-09-27)" ></div></body></html>

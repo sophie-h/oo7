@@ -1,3 +1,3 @@
-(function() {var implementors = {};
-implementors["oo7"] = [{"text":"impl Type for <a class=\"enum\" href=\"oo7/dbus/enum.Algorithm.html\" title=\"enum oo7::dbus::Algorithm\">Algorithm</a>","synthetic":false,"types":["oo7::dbus::algorithm::Algorithm"]},{"text":"impl Type for <a class=\"struct\" href=\"oo7/portal/struct.Item.html\" title=\"struct oo7::portal::Item\">Item</a>","synthetic":false,"types":["oo7::portal::item::Item"]}];
-if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
+(function() {var implementors = {
+"oo7":[["impl Type for <a class=\"enum\" href=\"oo7/dbus/enum.Algorithm.html\" title=\"enum oo7::dbus::Algorithm\">Algorithm</a>"],["impl Type for <a class=\"struct\" href=\"oo7/portal/struct.Item.html\" title=\"struct oo7::portal::Item\">Item</a>"]]
+};if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

@@ -1,10 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/key.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>key.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../oo7/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
-        </a><h2 class="location"></h2>
-    </nav>
-    <nav class="sidebar"><a class="sidebar-logo" href="../../oo7/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
-        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../oo7/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1">
-                                <a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div>
-                        </div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/key.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>key.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../oo7/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../oo7/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../oo7/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -176,23 +170,23 @@
 <span id="170">170</span>
 <span id="171">171</span>
 <span id="172">172</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::ops</span>::{<span class="ident">Mul</span>, <span class="ident">Rem</span>, <span class="ident">Shr</span>};
+</pre><pre class="rust"><code><span class="kw">use </span>std::ops::{Mul, Rem, Shr};
 
-<span class="kw">use</span> <span class="ident">cipher::KeyIvInit</span>;
-<span class="kw">use</span> <span class="ident">hkdf::Hkdf</span>;
-<span class="kw">use</span> <span class="ident">num</span>::{<span class="ident">FromPrimitive</span>, <span class="ident">Integer</span>, <span class="ident">One</span>, <span class="ident">Zero</span>};
-<span class="kw">use</span> <span class="ident">num_bigint_dig::BigUint</span>;
-<span class="kw">use</span> <span class="ident">once_cell::sync::Lazy</span>;
-<span class="kw">use</span> <span class="ident">sha2::Sha256</span>;
-<span class="kw">use</span> <span class="ident">zbus::zvariant</span>::{<span class="self">self</span>, <span class="ident">Type</span>};
-<span class="kw">use</span> <span class="ident">zeroize</span>::{<span class="ident">Zeroize</span>, <span class="ident">ZeroizeOnDrop</span>};
+<span class="kw">use </span>cipher::KeyIvInit;
+<span class="kw">use </span>hkdf::Hkdf;
+<span class="kw">use </span>num::{FromPrimitive, Integer, One, Zero};
+<span class="kw">use </span>num_bigint_dig::BigUint;
+<span class="kw">use </span>once_cell::sync::Lazy;
+<span class="kw">use </span>sha2::Sha256;
+<span class="kw">use </span>zbus::zvariant::{<span class="self">self</span>, Type};
+<span class="kw">use </span>zeroize::{Zeroize, ZeroizeOnDrop};
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::crypto::EncAlg</span>;
+<span class="kw">use </span><span class="kw">crate</span>::crypto::EncAlg;
 
-<span class="comment">// for key exchange</span>
-<span class="kw">static</span> <span class="ident">DH_GENERATOR</span>: <span class="ident">Lazy</span><span class="op">&lt;</span><span class="ident">BigUint</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Lazy::new</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">BigUint::from_u64</span>(<span class="number">0x2</span>).<span class="ident">unwrap</span>());
-<span class="kw">static</span> <span class="ident">DH_PRIME</span>: <span class="ident">Lazy</span><span class="op">&lt;</span><span class="ident">BigUint</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Lazy::new</span>(<span class="op">|</span><span class="op">|</span> {
-    <span class="ident">BigUint::from_bytes_be</span>(<span class="kw-2">&amp;</span>[
+<span class="comment">// for key exchange
+</span><span class="kw">static </span>DH_GENERATOR: Lazy&lt;BigUint&gt; = Lazy::new(|| BigUint::from_u64(<span class="number">0x2</span>).unwrap());
+<span class="kw">static </span>DH_PRIME: Lazy&lt;BigUint&gt; = Lazy::new(|| {
+    BigUint::from_bytes_be(<span class="kw-2">&amp;</span>[
         <span class="number">0xFF</span>, <span class="number">0xFF</span>, <span class="number">0xFF</span>, <span class="number">0xFF</span>, <span class="number">0xFF</span>, <span class="number">0xFF</span>, <span class="number">0xFF</span>, <span class="number">0xFF</span>, <span class="number">0xC9</span>, <span class="number">0x0F</span>, <span class="number">0xDA</span>, <span class="number">0xA2</span>, <span class="number">0x21</span>, <span class="number">0x68</span>, <span class="number">0xC2</span>,
         <span class="number">0x34</span>, <span class="number">0xC4</span>, <span class="number">0xC6</span>, <span class="number">0x62</span>, <span class="number">0x8B</span>, <span class="number">0x80</span>, <span class="number">0xDC</span>, <span class="number">0x1C</span>, <span class="number">0xD1</span>, <span class="number">0x29</span>, <span class="number">0x02</span>, <span class="number">0x4E</span>, <span class="number">0x08</span>, <span class="number">0x8A</span>, <span class="number">0x67</span>,
         <span class="number">0xCC</span>, <span class="number">0x74</span>, <span class="number">0x02</span>, <span class="number">0x0B</span>, <span class="number">0xBE</span>, <span class="number">0xA6</span>, <span class="number">0x3B</span>, <span class="number">0x13</span>, <span class="number">0x9B</span>, <span class="number">0x22</span>, <span class="number">0x51</span>, <span class="number">0x4A</span>, <span class="number">0x08</span>, <span class="number">0x79</span>, <span class="number">0x8E</span>,
@@ -205,111 +199,111 @@
     ])
 });
 
-<span class="doccomment">/// A key.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Zeroize</span>, <span class="ident">ZeroizeOnDrop</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Key</span>(<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>);
+<span class="doccomment">/// A key.
+</span><span class="attribute">#[derive(Debug, Zeroize, ZeroizeOnDrop)]
+</span><span class="kw">pub struct </span>Key(<span class="kw">pub</span>(<span class="kw">crate</span>) Vec&lt;u8&gt;);
 
-<span class="kw">impl</span> <span class="ident">AsRef</span><span class="op">&lt;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Key</span> {
-    <span class="kw">fn</span> <span class="ident">as_ref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>[<span class="ident">u8</span>] {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">as_slice</span>()
+<span class="kw">impl </span>AsRef&lt;[u8]&gt; <span class="kw">for </span>Key {
+    <span class="kw">fn </span>as_ref(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>[u8] {
+        <span class="self">self</span>.<span class="number">0</span>.as_slice()
     }
 }
 
-<span class="kw">impl</span> <span class="ident">AsMut</span><span class="op">&lt;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Key</span> {
-    <span class="kw">fn</span> <span class="ident">as_mut</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>] {
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="number">0</span>
+<span class="kw">impl </span>AsMut&lt;[u8]&gt; <span class="kw">for </span>Key {
+    <span class="kw">fn </span>as_mut(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut </span>[u8] {
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>.<span class="number">0
+    </span>}
+}
+
+<span class="kw">impl </span>Key {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>generate_private_key() -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span><span class="kw-2">mut </span>generic_array = EncAlg::generate_key(cipher::rand_core::OsRng);
+        <span class="kw">let </span>key = <span class="self">Self</span>(generic_array.to_vec());
+        generic_array.zeroize();
+
+        key
+    }
+
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>generate_public_key(private_key: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>private_key_uint = BigUint::from_bytes_be(private_key.as_ref());
+        <span class="kw">let </span>public_key_uint = powm(<span class="kw-2">&amp;</span>DH_GENERATOR, private_key_uint, <span class="kw-2">&amp;</span>DH_PRIME);
+
+        <span class="self">Self</span>(public_key_uint.to_bytes_be())
+    }
+
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>generate_aes_key(private_key: <span class="kw-2">&amp;</span><span class="self">Self</span>, server_public_key: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>server_public_key_uint = BigUint::from_bytes_be(server_public_key.as_ref());
+        <span class="kw">let </span>private_key_uint = BigUint::from_bytes_be(private_key.as_ref());
+        <span class="kw">let </span>common_secret = powm(<span class="kw-2">&amp;</span>server_public_key_uint, private_key_uint, <span class="kw-2">&amp;</span>DH_PRIME);
+
+        <span class="kw">let </span><span class="kw-2">mut </span>common_secret_bytes = common_secret.to_bytes_be();
+        <span class="kw">let </span><span class="kw-2">mut </span>common_secret_padded = <span class="macro">vec!</span>[<span class="number">0</span>; <span class="number">128 </span>- common_secret_bytes.len()];
+        <span class="comment">// inefficient, but ok for now
+        </span>common_secret_padded.append(<span class="kw-2">&amp;mut </span>common_secret_bytes);
+
+        <span class="comment">// hkdf
+        // input_keying_material
+        </span><span class="kw">let </span>ikm = common_secret_padded;
+        <span class="kw">let </span>salt = <span class="prelude-val">None</span>;
+        <span class="kw">let </span>info = [];
+
+        <span class="comment">// output keying material
+        </span><span class="kw">let </span><span class="kw-2">mut </span>okm = Key(<span class="macro">vec!</span>[<span class="number">0</span>; <span class="number">16</span>]);
+
+        <span class="kw">let </span>(<span class="kw">_</span>, hk) = Hkdf::&lt;Sha256&gt;::extract(salt, <span class="kw-2">&amp;</span>ikm);
+        hk.expand(<span class="kw-2">&amp;</span>info, okm.as_mut())
+            .expect(<span class="string">&quot;hkdf expand should never fail&quot;</span>);
+
+        okm
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Key</span> {
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">generate_private_key</span>() -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">generic_array</span> <span class="op">=</span> <span class="ident">EncAlg::generate_key</span>(<span class="ident">cipher::rand_core::OsRng</span>);
-        <span class="kw">let</span> <span class="ident">key</span> <span class="op">=</span> <span class="self">Self</span>(<span class="ident">generic_array</span>.<span class="ident">to_vec</span>());
-        <span class="ident">generic_array</span>.<span class="ident">zeroize</span>();
-
-        <span class="ident">key</span>
-    }
-
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">generate_public_key</span>(<span class="ident">private_key</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">private_key_uint</span> <span class="op">=</span> <span class="ident">BigUint::from_bytes_be</span>(<span class="ident">private_key</span>.<span class="ident">as_ref</span>());
-        <span class="kw">let</span> <span class="ident">public_key_uint</span> <span class="op">=</span> <span class="ident">powm</span>(<span class="kw-2">&amp;</span><span class="ident">DH_GENERATOR</span>, <span class="ident">private_key_uint</span>, <span class="kw-2">&amp;</span><span class="ident">DH_PRIME</span>);
-
-        <span class="self">Self</span>(<span class="ident">public_key_uint</span>.<span class="ident">to_bytes_be</span>())
-    }
-
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">generate_aes_key</span>(<span class="ident">private_key</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="ident">server_public_key</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">server_public_key_uint</span> <span class="op">=</span> <span class="ident">BigUint::from_bytes_be</span>(<span class="ident">server_public_key</span>.<span class="ident">as_ref</span>());
-        <span class="kw">let</span> <span class="ident">private_key_uint</span> <span class="op">=</span> <span class="ident">BigUint::from_bytes_be</span>(<span class="ident">private_key</span>.<span class="ident">as_ref</span>());
-        <span class="kw">let</span> <span class="ident">common_secret</span> <span class="op">=</span> <span class="ident">powm</span>(<span class="kw-2">&amp;</span><span class="ident">server_public_key_uint</span>, <span class="ident">private_key_uint</span>, <span class="kw-2">&amp;</span><span class="ident">DH_PRIME</span>);
-
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">common_secret_bytes</span> <span class="op">=</span> <span class="ident">common_secret</span>.<span class="ident">to_bytes_be</span>();
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">common_secret_padded</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="number">0</span>; <span class="number">128</span> <span class="op">-</span> <span class="ident">common_secret_bytes</span>.<span class="ident">len</span>()];
-        <span class="comment">// inefficient, but ok for now</span>
-        <span class="ident">common_secret_padded</span>.<span class="ident">append</span>(<span class="kw-2">&amp;mut</span> <span class="ident">common_secret_bytes</span>);
-
-        <span class="comment">// hkdf</span>
-        <span class="comment">// input_keying_material</span>
-        <span class="kw">let</span> <span class="ident">ikm</span> <span class="op">=</span> <span class="ident">common_secret_padded</span>;
-        <span class="kw">let</span> <span class="ident">salt</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-        <span class="kw">let</span> <span class="ident">info</span> <span class="op">=</span> [];
-
-        <span class="comment">// output keying material</span>
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">okm</span> <span class="op">=</span> <span class="ident">Key</span>(<span class="macro">vec!</span>[<span class="number">0</span>; <span class="number">16</span>]);
-
-        <span class="kw">let</span> (<span class="kw">_</span>, <span class="ident">hk</span>) <span class="op">=</span> <span class="ident">Hkdf</span>::<span class="op">&lt;</span><span class="ident">Sha256</span><span class="op">&gt;</span><span class="ident">::extract</span>(<span class="ident">salt</span>, <span class="kw-2">&amp;</span><span class="ident">ikm</span>);
-        <span class="ident">hk</span>.<span class="ident">expand</span>(<span class="kw-2">&amp;</span><span class="ident">info</span>, <span class="ident">okm</span>.<span class="ident">as_mut</span>())
-            .<span class="ident">expect</span>(<span class="string">&quot;hkdf expand should never fail&quot;</span>);
-
-        <span class="ident">okm</span>
-    }
-}
-
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Key</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">zvariant::Value</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="ident">Key</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">array</span> <span class="op">=</span> <span class="ident">zvariant::Array::new</span>(<span class="ident">u8::signature</span>());
-        <span class="kw">for</span> <span class="ident">byte</span> <span class="kw">in</span> <span class="ident">key</span>.<span class="ident">as_ref</span>() {
-            <span class="ident">array</span>
-                .<span class="ident">append</span>(<span class="ident">zvariant::Value::U8</span>(<span class="kw-2">*</span><span class="ident">byte</span>))
-                .<span class="ident">expect</span>(<span class="string">&quot;Element of valid type&quot;</span>);
+<span class="kw">impl </span>From&lt;<span class="kw-2">&amp;</span>Key&gt; <span class="kw">for </span>zvariant::Value&lt;<span class="lifetime">&#39;_</span>&gt; {
+    <span class="kw">fn </span>from(key: <span class="kw-2">&amp;</span>Key) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span><span class="kw-2">mut </span>array = zvariant::Array::new(u8::signature());
+        <span class="kw">for </span>byte <span class="kw">in </span>key.as_ref() {
+            array
+                .append(zvariant::Value::U8(<span class="kw-2">*</span>byte))
+                .expect(<span class="string">&quot;Element of valid type&quot;</span>);
         }
-        <span class="ident">array</span>.<span class="ident">into</span>()
+        array.into()
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">zvariant::OwnedValue</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Key</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">value</span>: <span class="ident">zvariant::OwnedValue</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">key</span> <span class="op">=</span> <span class="ident">zeroize::Zeroizing::new</span>(<span class="macro">vec!</span>[]);
-        <span class="kw">for</span> <span class="ident">value</span> <span class="kw">in</span> <span class="ident">value</span>.<span class="ident">downcast_ref</span>::<span class="op">&lt;</span><span class="ident">zvariant::Array</span><span class="op">&gt;</span>().<span class="ident">unwrap</span>().<span class="ident">get</span>() {
-            <span class="ident">key</span>.<span class="ident">push</span>(<span class="kw-2">*</span><span class="ident">value</span>.<span class="ident">downcast_ref</span>::<span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>().<span class="ident">unwrap</span>());
+<span class="kw">impl </span>From&lt;zvariant::OwnedValue&gt; <span class="kw">for </span>Key {
+    <span class="kw">fn </span>from(value: zvariant::OwnedValue) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span><span class="kw-2">mut </span>key = zeroize::Zeroizing::new(<span class="macro">vec!</span>[]);
+        <span class="kw">for </span>value <span class="kw">in </span>value.downcast_ref::&lt;zvariant::Array&gt;().unwrap().get() {
+            key.push(<span class="kw-2">*</span>value.downcast_ref::&lt;u8&gt;().unwrap());
         }
-        <span class="ident">Key</span>(<span class="ident">key</span>.<span class="ident">to_vec</span>())
+        Key(key.to_vec())
     }
 }
 
-<span class="doccomment">/// from https://github.com/plietar/librespot/blob/master/core/src/util/mod.rs#L53</span>
-<span class="kw">fn</span> <span class="ident">powm</span>(<span class="ident">base</span>: <span class="kw-2">&amp;</span><span class="ident">BigUint</span>, <span class="kw-2">mut</span> <span class="ident">exp</span>: <span class="ident">BigUint</span>, <span class="ident">modulus</span>: <span class="kw-2">&amp;</span><span class="ident">BigUint</span>) -&gt; <span class="ident">BigUint</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">base</span> <span class="op">=</span> <span class="ident">base</span>.<span class="ident">clone</span>();
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">result</span>: <span class="ident">BigUint</span> <span class="op">=</span> <span class="ident">One::one</span>();
+<span class="doccomment">/// from https://github.com/plietar/librespot/blob/master/core/src/util/mod.rs#L53
+</span><span class="kw">fn </span>powm(base: <span class="kw-2">&amp;</span>BigUint, <span class="kw-2">mut </span>exp: BigUint, modulus: <span class="kw-2">&amp;</span>BigUint) -&gt; BigUint {
+    <span class="kw">let </span><span class="kw-2">mut </span>base = base.clone();
+    <span class="kw">let </span><span class="kw-2">mut </span>result: BigUint = One::one();
 
-    <span class="kw">while</span> <span class="op">!</span><span class="ident">exp</span>.<span class="ident">is_zero</span>() {
-        <span class="kw">if</span> <span class="ident">exp</span>.<span class="ident">is_odd</span>() {
-            <span class="ident">result</span> <span class="op">=</span> <span class="ident">result</span>.<span class="ident">mul</span>(<span class="kw-2">&amp;</span><span class="ident">base</span>).<span class="ident">rem</span>(<span class="ident">modulus</span>);
+    <span class="kw">while </span>!exp.is_zero() {
+        <span class="kw">if </span>exp.is_odd() {
+            result = result.mul(<span class="kw-2">&amp;</span>base).rem(modulus);
         }
-        <span class="ident">exp</span> <span class="op">=</span> <span class="ident">exp</span>.<span class="ident">shr</span>(<span class="number">1</span>);
-        <span class="ident">base</span> <span class="op">=</span> (<span class="kw-2">&amp;</span><span class="ident">base</span>).<span class="ident">mul</span>(<span class="kw-2">&amp;</span><span class="ident">base</span>).<span class="ident">rem</span>(<span class="ident">modulus</span>);
+        exp = exp.shr(<span class="number">1</span>);
+        base = (<span class="kw-2">&amp;</span>base).mul(<span class="kw-2">&amp;</span>base).rem(modulus);
     }
-    <span class="ident">exp</span>.<span class="ident">zeroize</span>();
+    exp.zeroize();
 
-    <span class="ident">result</span>
+    result
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>tests {
+    <span class="kw">use super</span>::<span class="kw-2">*</span>;
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">private_public_pair</span>() {
-        <span class="kw">let</span> <span class="ident">private_key</span> <span class="op">=</span> <span class="ident">Key</span>(<span class="macro">vec!</span>[
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>private_public_pair() {
+        <span class="kw">let </span>private_key = Key(<span class="macro">vec!</span>[
             <span class="number">41</span>, <span class="number">20</span>, <span class="number">63</span>, <span class="number">236</span>, <span class="number">246</span>, <span class="number">132</span>, <span class="number">109</span>, <span class="number">70</span>, <span class="number">172</span>, <span class="number">121</span>, <span class="number">45</span>, <span class="number">66</span>, <span class="number">129</span>, <span class="number">21</span>, <span class="number">247</span>, <span class="number">91</span>, <span class="number">96</span>, <span class="number">217</span>, <span class="number">56</span>,
             <span class="number">201</span>, <span class="number">205</span>, <span class="number">56</span>, <span class="number">17</span>, <span class="number">178</span>, <span class="number">202</span>, <span class="number">81</span>, <span class="number">71</span>, <span class="number">104</span>, <span class="number">233</span>, <span class="number">89</span>, <span class="number">87</span>, <span class="number">32</span>, <span class="number">88</span>, <span class="number">146</span>, <span class="number">107</span>, <span class="number">224</span>, <span class="number">56</span>, <span class="number">103</span>,
             <span class="number">111</span>, <span class="number">74</span>, <span class="number">143</span>, <span class="number">80</span>, <span class="number">170</span>, <span class="number">40</span>, <span class="number">5</span>, <span class="number">52</span>, <span class="number">48</span>, <span class="number">90</span>, <span class="number">75</span>, <span class="number">71</span>, <span class="number">193</span>, <span class="number">224</span>, <span class="number">222</span>, <span class="number">57</span>, <span class="number">91</span>, <span class="number">81</span>, <span class="number">66</span>, <span class="number">1</span>, <span class="number">6</span>,
@@ -318,7 +312,7 @@
             <span class="number">198</span>, <span class="number">45</span>, <span class="number">208</span>, <span class="number">132</span>, <span class="number">166</span>, <span class="number">0</span>, <span class="number">153</span>, <span class="number">243</span>, <span class="number">160</span>, <span class="number">255</span>, <span class="number">188</span>, <span class="number">59</span>, <span class="number">216</span>, <span class="number">99</span>, <span class="number">221</span>, <span class="number">85</span>, <span class="number">162</span>, <span class="number">116</span>,
             <span class="number">210</span>, <span class="number">160</span>, <span class="number">117</span>, <span class="number">201</span>, <span class="number">39</span>, <span class="number">179</span>, <span class="number">123</span>, <span class="number">107</span>, <span class="number">8</span>, <span class="number">242</span>, <span class="number">139</span>, <span class="number">207</span>, <span class="number">250</span>,
         ]);
-        <span class="kw">let</span> <span class="ident">server_public_key</span> <span class="op">=</span> <span class="ident">Key</span>(<span class="macro">vec!</span>[
+        <span class="kw">let </span>server_public_key = Key(<span class="macro">vec!</span>[
             <span class="number">50</span>, <span class="number">233</span>, <span class="number">76</span>, <span class="number">88</span>, <span class="number">47</span>, <span class="number">206</span>, <span class="number">235</span>, <span class="number">107</span>, <span class="number">9</span>, <span class="number">232</span>, <span class="number">98</span>, <span class="number">14</span>, <span class="number">188</span>, <span class="number">214</span>, <span class="number">209</span>, <span class="number">77</span>, <span class="number">35</span>, <span class="number">66</span>, <span class="number">109</span>,
             <span class="number">119</span>, <span class="number">24</span>, <span class="number">191</span>, <span class="number">120</span>, <span class="number">90</span>, <span class="number">242</span>, <span class="number">198</span>, <span class="number">240</span>, <span class="number">115</span>, <span class="number">200</span>, <span class="number">66</span>, <span class="number">51</span>, <span class="number">180</span>, <span class="number">8</span>, <span class="number">164</span>, <span class="number">89</span>, <span class="number">9</span>, <span class="number">229</span>, <span class="number">31</span>,
             <span class="number">160</span>, <span class="number">31</span>, <span class="number">156</span>, <span class="number">101</span>, <span class="number">169</span>, <span class="number">60</span>, <span class="number">63</span>, <span class="number">247</span>, <span class="number">37</span>, <span class="number">255</span>, <span class="number">75</span>, <span class="number">198</span>, <span class="number">62</span>, <span class="number">235</span>, <span class="number">50</span>, <span class="number">29</span>, <span class="number">221</span>, <span class="number">245</span>, <span class="number">29</span>,
@@ -328,7 +322,7 @@
             <span class="number">159</span>, <span class="number">238</span>, <span class="number">19</span>, <span class="number">185</span>, <span class="number">194</span>, <span class="number">134</span>, <span class="number">3</span>, <span class="number">195</span>, <span class="number">198</span>, <span class="number">60</span>, <span class="number">100</span>, <span class="number">159</span>, <span class="number">31</span>,
         ]);
 
-        <span class="kw">let</span> <span class="ident">expected_public_key</span> <span class="op">=</span> <span class="kw-2">&amp;</span>[
+        <span class="kw">let </span>expected_public_key = <span class="kw-2">&amp;</span>[
             <span class="number">9</span>, <span class="number">192</span>, <span class="number">210</span>, <span class="number">81</span>, <span class="number">212</span>, <span class="number">191</span>, <span class="number">74</span>, <span class="number">119</span>, <span class="number">22</span>, <span class="number">172</span>, <span class="number">81</span>, <span class="number">142</span>, <span class="number">124</span>, <span class="number">89</span>, <span class="number">17</span>, <span class="number">71</span>, <span class="number">118</span>, <span class="number">190</span>, <span class="number">81</span>,
             <span class="number">71</span>, <span class="number">49</span>, <span class="number">149</span>, <span class="number">200</span>, <span class="number">204</span>, <span class="number">14</span>, <span class="number">47</span>, <span class="number">111</span>, <span class="number">165</span>, <span class="number">119</span>, <span class="number">103</span>, <span class="number">216</span>, <span class="number">102</span>, <span class="number">111</span>, <span class="number">93</span>, <span class="number">242</span>, <span class="number">64</span>, <span class="number">73</span>, <span class="number">224</span>,
             <span class="number">165</span>, <span class="number">11</span>, <span class="number">127</span>, <span class="number">219</span>, <span class="number">197</span>, <span class="number">188</span>, <span class="number">168</span>, <span class="number">222</span>, <span class="number">254</span>, <span class="number">10</span>, <span class="number">104</span>, <span class="number">81</span>, <span class="number">8</span>, <span class="number">206</span>, <span class="number">237</span>, <span class="number">119</span>, <span class="number">225</span>, <span class="number">100</span>,
@@ -337,17 +331,16 @@
             <span class="number">203</span>, <span class="number">208</span>, <span class="number">144</span>, <span class="number">190</span>, <span class="number">117</span>, <span class="number">141</span>, <span class="number">255</span>, <span class="number">153</span>, <span class="number">106</span>, <span class="number">123</span>, <span class="number">28</span>, <span class="number">152</span>, <span class="number">200</span>, <span class="number">237</span>, <span class="number">189</span>, <span class="number">176</span>, <span class="number">20</span>, <span class="number">80</span>,
             <span class="number">211</span>, <span class="number">33</span>, <span class="number">158</span>, <span class="number">232</span>, <span class="number">194</span>, <span class="number">145</span>, <span class="number">45</span>, <span class="number">194</span>, <span class="number">35</span>, <span class="number">108</span>, <span class="number">106</span>, <span class="number">214</span>, <span class="number">221</span>, <span class="number">159</span>, <span class="number">137</span>,
         ];
-        <span class="kw">let</span> <span class="ident">expected_aes_key</span> <span class="op">=</span> <span class="kw-2">&amp;</span>[
+        <span class="kw">let </span>expected_aes_key = <span class="kw-2">&amp;</span>[
             <span class="number">132</span>, <span class="number">3</span>, <span class="number">113</span>, <span class="number">222</span>, <span class="number">81</span>, <span class="number">209</span>, <span class="number">49</span>, <span class="number">43</span>, <span class="number">81</span>, <span class="number">232</span>, <span class="number">243</span>, <span class="number">46</span>, <span class="number">1</span>, <span class="number">103</span>, <span class="number">184</span>, <span class="number">42</span>,
         ];
 
-        <span class="kw">let</span> <span class="ident">public_key</span> <span class="op">=</span> <span class="ident">Key::generate_public_key</span>(<span class="kw-2">&amp;</span><span class="ident">private_key</span>);
-        <span class="kw">let</span> <span class="ident">aes_key</span> <span class="op">=</span> <span class="ident">Key::generate_aes_key</span>(<span class="kw-2">&amp;</span><span class="ident">private_key</span>, <span class="kw-2">&amp;</span><span class="ident">server_public_key</span>);
+        <span class="kw">let </span>public_key = Key::generate_public_key(<span class="kw-2">&amp;</span>private_key);
+        <span class="kw">let </span>aes_key = Key::generate_aes_key(<span class="kw-2">&amp;</span>private_key, <span class="kw-2">&amp;</span>server_public_key);
 
-        <span class="macro">assert_eq!</span>(<span class="ident">public_key</span>.<span class="ident">as_ref</span>(), <span class="ident">expected_public_key</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">aes_key</span>.<span class="ident">as_ref</span>(), <span class="ident">expected_aes_key</span>);
+        <span class="macro">assert_eq!</span>(public_key.as_ref(), expected_public_key);
+        <span class="macro">assert_eq!</span>(aes_key.as_ref(), expected_aes_key);
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="oo7" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (23e21bdd2 2022-07-15)" ></div>
-</body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="oo7" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.0-nightly (470e518c4 2022-09-27)" ></div></body></html>

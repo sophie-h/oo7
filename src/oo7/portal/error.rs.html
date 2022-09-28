@@ -1,10 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/portal/error.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>error.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../oo7/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
-        </a><h2 class="location"></h2>
-    </nav>
-    <nav class="sidebar"><a class="sidebar-logo" href="../../../oo7/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
-        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../oo7/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1">
-                                <a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div>
-                        </div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/portal/error.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>error.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../oo7/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../oo7/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../oo7/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -89,91 +83,90 @@
 <span id="83">83</span>
 <span id="84">84</span>
 <span id="85">85</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">zbus::zvariant</span>;
+</pre><pre class="rust"><code><span class="kw">use </span>zbus::zvariant;
 
-<span class="doccomment">/// File backend specific errors.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Error</span> {
-    <span class="doccomment">/// File header does not match `FILE_HEADER`.</span>
-    <span class="ident">FileHeaderMismatch</span>(<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>),
-    <span class="doccomment">/// Version bytes do not match `MAJOR_VERSION` or `MINOR_VERSION`.</span>
-    <span class="ident">VersionMismatch</span>(<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span>),
-    <span class="doccomment">/// No data behind header and version bytes.</span>
-    <span class="ident">NoData</span>,
-    <span class="doccomment">/// No Parent directory.</span>
-    <span class="ident">NoParentDir</span>(<span class="ident">String</span>),
-    <span class="doccomment">/// Bytes don&#39;t have the expected GVariant format.</span>
-    <span class="ident">GVariantDeserialization</span>(<span class="ident">zvariant::Error</span>),
-    <span class="doccomment">/// Input/Output.</span>
-    <span class="ident">Io</span>(<span class="ident">std::io::Error</span>),
-    <span class="doccomment">/// Unexpected MAC digest value.</span>
-    <span class="ident">MacError</span>,
-    <span class="doccomment">/// Failure to validate the attributes.</span>
-    <span class="ident">HashedAttributeMac</span>(<span class="ident">String</span>),
-    <span class="doccomment">/// XDG_DATA_HOME required for reading from default location.</span>
-    <span class="ident">NoDataDir</span>,
-    <span class="doccomment">/// Target file has changed.</span>
-    <span class="ident">TargetFileChanged</span>(<span class="ident">String</span>),
-    <span class="doccomment">/// Portal DBus communication error.</span>
-    <span class="ident">PortalBus</span>(<span class="ident">zbus::Error</span>),
-    <span class="doccomment">/// Portal request has been cancelled.</span>
-    <span class="ident">CancelledPortalRequest</span>,
-    <span class="doccomment">/// If the portal is not available on the host.</span>
-    <span class="doccomment">/// Can happen if the host has an old xdg-desktop-portal</span>
-    <span class="ident">PortalNotAvailable</span>,
+<span class="doccomment">/// File backend specific errors.
+</span><span class="attribute">#[derive(Debug)]
+</span><span class="kw">pub enum </span>Error {
+    <span class="doccomment">/// File header does not match `FILE_HEADER`.
+    </span>FileHeaderMismatch(<span class="prelude-ty">Option</span>&lt;String&gt;),
+    <span class="doccomment">/// Version bytes do not match `MAJOR_VERSION` or `MINOR_VERSION`.
+    </span>VersionMismatch(<span class="prelude-ty">Option</span>&lt;Vec&lt;u8&gt;&gt;),
+    <span class="doccomment">/// No data behind header and version bytes.
+    </span>NoData,
+    <span class="doccomment">/// No Parent directory.
+    </span>NoParentDir(String),
+    <span class="doccomment">/// Bytes don&#39;t have the expected GVariant format.
+    </span>GVariantDeserialization(zvariant::Error),
+    <span class="doccomment">/// Input/Output.
+    </span>Io(std::io::Error),
+    <span class="doccomment">/// Unexpected MAC digest value.
+    </span>MacError,
+    <span class="doccomment">/// Failure to validate the attributes.
+    </span>HashedAttributeMac(String),
+    <span class="doccomment">/// XDG_DATA_HOME required for reading from default location.
+    </span>NoDataDir,
+    <span class="doccomment">/// Target file has changed.
+    </span>TargetFileChanged(String),
+    <span class="doccomment">/// Portal DBus communication error.
+    </span>PortalBus(zbus::Error),
+    <span class="doccomment">/// Portal request has been cancelled.
+    </span>CancelledPortalRequest,
+    <span class="doccomment">/// If the portal is not available on the host.
+    /// Can happen if the host has an old xdg-desktop-portal
+    </span>PortalNotAvailable,
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">zvariant::Error</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Error</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">value</span>: <span class="ident">zvariant::Error</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::GVariantDeserialization</span>(<span class="ident">value</span>)
+<span class="kw">impl </span>From&lt;zvariant::Error&gt; <span class="kw">for </span>Error {
+    <span class="kw">fn </span>from(value: zvariant::Error) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::GVariantDeserialization(value)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">std::io::Error</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Error</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">value</span>: <span class="ident">std::io::Error</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::Io</span>(<span class="ident">value</span>)
+<span class="kw">impl </span>From&lt;std::io::Error&gt; <span class="kw">for </span>Error {
+    <span class="kw">fn </span>from(value: std::io::Error) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::Io(value)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">digest::MacError</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Error</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">_value</span>: <span class="ident">digest::MacError</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::MacError</span>
+<span class="kw">impl </span>From&lt;digest::MacError&gt; <span class="kw">for </span>Error {
+    <span class="kw">fn </span>from(_value: digest::MacError) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::MacError
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">zbus::Error</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Error</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">value</span>: <span class="ident">zbus::Error</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::PortalBus</span>(<span class="ident">value</span>)
+<span class="kw">impl </span>From&lt;zbus::Error&gt; <span class="kw">for </span>Error {
+    <span class="kw">fn </span>from(value: zbus::Error) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::PortalBus(value)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">std::error::Error</span> <span class="kw">for</span> <span class="ident">Error</span> {}
+<span class="kw">impl </span>std::error::Error <span class="kw">for </span>Error {}
 
-<span class="kw">impl</span> <span class="ident">std::fmt::Display</span> <span class="kw">for</span> <span class="ident">Error</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">Error::FileHeaderMismatch</span>(<span class="ident">e</span>) =&gt; {
-                <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;File header doesn&#39;t match FILE_HEADER {:#?}&quot;</span>, <span class="ident">e</span>)
+<span class="kw">impl </span>std::fmt::Display <span class="kw">for </span>Error {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>std::fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; std::fmt::Result {
+        <span class="kw">match </span><span class="self">self </span>{
+            Error::FileHeaderMismatch(e) =&gt; {
+                <span class="macro">write!</span>(f, <span class="string">&quot;File header doesn&#39;t match FILE_HEADER {:#?}&quot;</span>, e)
             }
-            <span class="ident">Error::VersionMismatch</span>(<span class="ident">e</span>) =&gt; <span class="macro">write!</span>(
-                <span class="ident">f</span>,
+            Error::VersionMismatch(e) =&gt; <span class="macro">write!</span>(
+                f,
                 <span class="string">&quot;Version doesn&#39;t match MAJOR_VERSION OR MICRO_VERSION {:#?}&quot;</span>,
-                <span class="ident">e</span>
+                e
             ),
-            <span class="ident">Error::NoData</span> =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;No data behind header and version bytes&quot;</span>),
-            <span class="ident">Error::NoParentDir</span>(<span class="ident">e</span>) =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;No Parent Directory {e}&quot;</span>),
-            <span class="ident">Error::GVariantDeserialization</span>(<span class="ident">e</span>) =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Failed to deserialize {e}&quot;</span>),
-            <span class="ident">Error::Io</span>(<span class="ident">e</span>) =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;IO error {e}&quot;</span>),
-            <span class="ident">Error::MacError</span> =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Mac digest is not equal to the expected value&quot;</span>),
-            <span class="ident">Error::HashedAttributeMac</span>(<span class="ident">e</span>) =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Failed to validate hashed attribute {e}&quot;</span>),
-            <span class="ident">Error::NoDataDir</span> =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Couldn&#39;t retrieve XDG_DATA_DIR&quot;</span>),
-            <span class="ident">Error::TargetFileChanged</span>(<span class="ident">e</span>) =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;The target file has changed {e}&quot;</span>),
-            <span class="ident">Error::PortalBus</span>(<span class="ident">e</span>) =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Portal communication failed {e}&quot;</span>),
-            <span class="ident">Error::CancelledPortalRequest</span> =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Portal request was cancelled&quot;</span>),
-            <span class="ident">Error::PortalNotAvailable</span> =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;xdg-desktop-portal is too old on the host&quot;</span>),
+            Error::NoData =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;No data behind header and version bytes&quot;</span>),
+            Error::NoParentDir(e) =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;No Parent Directory {e}&quot;</span>),
+            Error::GVariantDeserialization(e) =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;Failed to deserialize {e}&quot;</span>),
+            Error::Io(e) =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;IO error {e}&quot;</span>),
+            Error::MacError =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;Mac digest is not equal to the expected value&quot;</span>),
+            Error::HashedAttributeMac(e) =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;Failed to validate hashed attribute {e}&quot;</span>),
+            Error::NoDataDir =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;Couldn&#39;t retrieve XDG_DATA_DIR&quot;</span>),
+            Error::TargetFileChanged(e) =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;The target file has changed {e}&quot;</span>),
+            Error::PortalBus(e) =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;Portal communication failed {e}&quot;</span>),
+            Error::CancelledPortalRequest =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;Portal request was cancelled&quot;</span>),
+            Error::PortalNotAvailable =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;xdg-desktop-portal is too old on the host&quot;</span>),
         }
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="oo7" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (23e21bdd2 2022-07-15)" ></div>
-</body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="oo7" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.0-nightly (470e518c4 2022-09-27)" ></div></body></html>

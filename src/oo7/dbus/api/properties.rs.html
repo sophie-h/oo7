@@ -1,10 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/dbus/api/properties.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>properties.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../storage.js"></script><script defer src="../../../../source-script.js"></script><script defer src="../../../../source-files.js"></script><script defer src="../../../../main.js"></script><noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../../oo7/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div>
-        </a><h2 class="location"></h2>
-    </nav>
-    <nav class="sidebar"><a class="sidebar-logo" href="../../../../oo7/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div>
-        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../../oo7/index.html"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1">
-                                <a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../wheel.svg"></a></div>
-                        </div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/dbus/api/properties.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>properties.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../../normalize.css"><link rel="stylesheet" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../../ayu.css" disabled><link rel="stylesheet" href="../../../../dark.css" disabled><link rel="stylesheet" href="../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../storage.js"></script><script defer src="../../../../source-script.js"></script><script defer src="../../../../source-files.js"></script><script defer src="../../../../main.js"></script><noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../../oo7/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../../oo7/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../../oo7/index.html"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -110,112 +104,111 @@
 <span id="104">104</span>
 <span id="105">105</span>
 <span id="106">106</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::collections::HashMap</span>;
+</pre><pre class="rust"><code><span class="kw">use </span>std::collections::HashMap;
 
-<span class="kw">use</span> <span class="ident">serde::ser</span>::{<span class="ident">Serialize</span>, <span class="ident">SerializeMap</span>};
-<span class="kw">use</span> <span class="ident">zbus::zvariant</span>::{<span class="ident">Type</span>, <span class="ident">Value</span>};
+<span class="kw">use </span>serde::ser::{Serialize, SerializeMap};
+<span class="kw">use </span>zbus::zvariant::{Type, Value};
 
-<span class="kw">static</span> <span class="ident">ITEM_PROPERTY_LABEL</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;org.freedesktop.Secret.Item.Label&quot;</span>;
-<span class="kw">static</span> <span class="ident">ITEM_PROPERTY_ATTRIBUTES</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;org.freedesktop.Secret.Item.Attributes&quot;</span>;
+<span class="kw">static </span>ITEM_PROPERTY_LABEL: <span class="kw-2">&amp;</span>str = <span class="string">&quot;org.freedesktop.Secret.Item.Label&quot;</span>;
+<span class="kw">static </span>ITEM_PROPERTY_ATTRIBUTES: <span class="kw-2">&amp;</span>str = <span class="string">&quot;org.freedesktop.Secret.Item.Attributes&quot;</span>;
 
-<span class="kw">static</span> <span class="ident">COLLECTION_PROPERTY_LABEL</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;org.freedesktop.Secret.Collection.Label&quot;</span>;
+<span class="kw">static </span>COLLECTION_PROPERTY_LABEL: <span class="kw-2">&amp;</span>str = <span class="string">&quot;org.freedesktop.Secret.Collection.Label&quot;</span>;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Type</span>)]</span>
-<span class="attribute">#[<span class="ident">zvariant</span>(<span class="ident">signature</span> <span class="op">=</span> <span class="string">&quot;a{sv}&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Properties</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">label</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
-    <span class="ident">attributes</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span><span class="op">&gt;</span>,
-    <span class="ident">is_collection</span>: <span class="ident">bool</span>,
+<span class="attribute">#[derive(Debug, Type)]
+#[zvariant(signature = <span class="string">&quot;a{sv}&quot;</span>)]
+</span><span class="kw">pub struct </span>Properties&lt;<span class="lifetime">&#39;a</span>&gt; {
+    label: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
+    attributes: HashMap&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str, <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;,
+    is_collection: bool,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Properties</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">for_item</span>(<span class="ident">label</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>, <span class="ident">attributes</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">label</span>,
-            <span class="ident">attributes</span>,
-            <span class="ident">is_collection</span>: <span class="bool-val">false</span>,
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Properties&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">pub fn </span>for_item(label: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str, attributes: HashMap&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str, <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            label,
+            attributes,
+            is_collection: <span class="bool-val">false</span>,
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">for_collection</span>(<span class="ident">label</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">label</span>,
-            <span class="ident">attributes</span>: <span class="ident">Default::default</span>(),
-            <span class="ident">is_collection</span>: <span class="bool-val">true</span>,
+    <span class="kw">pub fn </span>for_collection(label: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            label,
+            attributes: Default::default(),
+            is_collection: <span class="bool-val">true</span>,
         }
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Serialize</span> <span class="kw">for</span> <span class="ident">Properties</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">serialize</span><span class="op">&lt;</span><span class="ident">S</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">serializer</span>: <span class="ident">S</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">S::Ok</span>, <span class="ident">S::Error</span><span class="op">&gt;</span>
-    <span class="kw">where</span>
-        <span class="ident">S</span>: <span class="ident">serde::Serializer</span>,
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Serialize <span class="kw">for </span>Properties&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>serialize&lt;S&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, serializer: S) -&gt; <span class="prelude-ty">Result</span>&lt;S::Ok, S::Error&gt;
+    <span class="kw">where
+        </span>S: serde::Serializer,
     {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">is_collection</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">map</span> <span class="op">=</span> <span class="ident">serializer</span>.<span class="ident">serialize_map</span>(<span class="prelude-val">Some</span>(<span class="number">1</span>))<span class="question-mark">?</span>;
-            <span class="ident">map</span>.<span class="ident">serialize_entry</span>(<span class="ident">COLLECTION_PROPERTY_LABEL</span>, <span class="kw-2">&amp;</span><span class="ident">Value::from</span>(<span class="self">self</span>.<span class="ident">label</span>))<span class="question-mark">?</span>;
-            <span class="ident">map</span>.<span class="ident">end</span>()
-        } <span class="kw">else</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">map</span> <span class="op">=</span> <span class="ident">serializer</span>.<span class="ident">serialize_map</span>(<span class="prelude-val">Some</span>(<span class="number">2</span>))<span class="question-mark">?</span>;
-            <span class="ident">map</span>.<span class="ident">serialize_entry</span>(<span class="ident">ITEM_PROPERTY_LABEL</span>, <span class="kw-2">&amp;</span><span class="ident">Value::from</span>(<span class="self">self</span>.<span class="ident">label</span>))<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">dict</span> <span class="op">=</span> <span class="ident">zbus::zvariant::Dict::new</span>(<span class="ident">String::signature</span>(), <span class="ident">String::signature</span>());
-            <span class="kw">for</span> (<span class="ident">key</span>, <span class="ident">value</span>) <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">attributes</span> {
-                <span class="ident">dict</span>.<span class="ident">add</span>(<span class="ident">key</span>, <span class="ident">value</span>).<span class="ident">expect</span>(<span class="string">&quot;Key/Value of correct types&quot;</span>);
+        <span class="kw">if </span><span class="self">self</span>.is_collection {
+            <span class="kw">let </span><span class="kw-2">mut </span>map = serializer.serialize_map(<span class="prelude-val">Some</span>(<span class="number">1</span>))<span class="question-mark">?</span>;
+            map.serialize_entry(COLLECTION_PROPERTY_LABEL, <span class="kw-2">&amp;</span>Value::from(<span class="self">self</span>.label))<span class="question-mark">?</span>;
+            map.end()
+        } <span class="kw">else </span>{
+            <span class="kw">let </span><span class="kw-2">mut </span>map = serializer.serialize_map(<span class="prelude-val">Some</span>(<span class="number">2</span>))<span class="question-mark">?</span>;
+            map.serialize_entry(ITEM_PROPERTY_LABEL, <span class="kw-2">&amp;</span>Value::from(<span class="self">self</span>.label))<span class="question-mark">?</span>;
+            <span class="kw">let </span><span class="kw-2">mut </span>dict = zbus::zvariant::Dict::new(String::signature(), String::signature());
+            <span class="kw">for </span>(key, value) <span class="kw">in </span><span class="kw-2">&amp;</span><span class="self">self</span>.attributes {
+                dict.add(key, value).expect(<span class="string">&quot;Key/Value of correct types&quot;</span>);
             }
 
-            <span class="ident">map</span>.<span class="ident">serialize_entry</span>(<span class="ident">ITEM_PROPERTY_ATTRIBUTES</span>, <span class="kw-2">&amp;</span><span class="ident">Value::from</span>(<span class="ident">dict</span>))<span class="question-mark">?</span>;
-            <span class="ident">map</span>.<span class="ident">end</span>()
+            map.serialize_entry(ITEM_PROPERTY_ATTRIBUTES, <span class="kw-2">&amp;</span>Value::from(dict))<span class="question-mark">?</span>;
+            map.end()
         }
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="kw">use</span> <span class="ident">byteorder::LE</span>;
-    <span class="kw">use</span> <span class="ident">zbus::zvariant</span>::{<span class="self">self</span>, <span class="ident">from_slice</span>, <span class="ident">to_bytes</span>, <span class="ident">EncodingContext</span> <span class="kw">as</span> <span class="ident">Context</span>, <span class="ident">Type</span>};
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>tests {
+    <span class="kw">use </span>byteorder::LE;
+    <span class="kw">use </span>zbus::zvariant::{<span class="self">self</span>, from_slice, to_bytes, EncodingContext <span class="kw">as </span>Context, Type};
 
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
+    <span class="kw">use super</span>::<span class="kw-2">*</span>;
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">serialize_label</span>() {
-        <span class="kw">let</span> <span class="ident">properties</span> <span class="op">=</span> <span class="ident">Properties::for_collection</span>(<span class="string">&quot;some_label&quot;</span>);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>serialize_label() {
+        <span class="kw">let </span>properties = Properties::for_collection(<span class="string">&quot;some_label&quot;</span>);
 
-        <span class="kw">let</span> <span class="ident">ctxt</span> <span class="op">=</span> <span class="ident">Context</span>::<span class="op">&lt;</span><span class="ident">LE</span><span class="op">&gt;</span><span class="ident">::new_dbus</span>(<span class="number">0</span>);
-        <span class="kw">let</span> <span class="ident">encoded</span> <span class="op">=</span> <span class="ident">to_bytes</span>(<span class="ident">ctxt</span>, <span class="kw-2">&amp;</span><span class="ident">properties</span>).<span class="ident">unwrap</span>();
-        <span class="kw">let</span> <span class="ident">decoded</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">Value</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_slice</span>(<span class="kw-2">&amp;</span><span class="ident">encoded</span>, <span class="ident">ctxt</span>).<span class="ident">unwrap</span>();
+        <span class="kw">let </span>ctxt = Context::&lt;LE&gt;::new_dbus(<span class="number">0</span>);
+        <span class="kw">let </span>encoded = to_bytes(ctxt, <span class="kw-2">&amp;</span>properties).unwrap();
+        <span class="kw">let </span>decoded: HashMap&lt;<span class="kw-2">&amp;</span>str, Value&lt;<span class="lifetime">&#39;_</span>&gt;&gt; = from_slice(<span class="kw-2">&amp;</span>encoded, ctxt).unwrap();
 
         <span class="macro">assert_eq!</span>(
-            <span class="ident">decoded</span>[<span class="ident">COLLECTION_PROPERTY_LABEL</span>],
-            <span class="ident">Value::from</span>(<span class="string">&quot;some_label&quot;</span>)
+            decoded[COLLECTION_PROPERTY_LABEL],
+            Value::from(<span class="string">&quot;some_label&quot;</span>)
         );
-        <span class="macro">assert!</span>(<span class="op">!</span><span class="ident">decoded</span>.<span class="ident">contains_key</span>(<span class="ident">ITEM_PROPERTY_ATTRIBUTES</span>));
-        <span class="macro">assert!</span>(<span class="op">!</span><span class="ident">decoded</span>.<span class="ident">contains_key</span>(<span class="ident">ITEM_PROPERTY_LABEL</span>));
+        <span class="macro">assert!</span>(!decoded.contains_key(ITEM_PROPERTY_ATTRIBUTES));
+        <span class="macro">assert!</span>(!decoded.contains_key(ITEM_PROPERTY_LABEL));
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">serialize_label_with_attributes</span>() {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">attributes</span> <span class="op">=</span> <span class="ident">HashMap::new</span>();
-        <span class="ident">attributes</span>.<span class="ident">insert</span>(<span class="string">&quot;some&quot;</span>, <span class="string">&quot;attribute&quot;</span>);
-        <span class="kw">let</span> <span class="ident">properties</span> <span class="op">=</span> <span class="ident">Properties::for_item</span>(<span class="string">&quot;some_label&quot;</span>, <span class="ident">attributes</span>.<span class="ident">clone</span>());
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>serialize_label_with_attributes() {
+        <span class="kw">let </span><span class="kw-2">mut </span>attributes = HashMap::new();
+        attributes.insert(<span class="string">&quot;some&quot;</span>, <span class="string">&quot;attribute&quot;</span>);
+        <span class="kw">let </span>properties = Properties::for_item(<span class="string">&quot;some_label&quot;</span>, attributes.clone());
 
-        <span class="kw">let</span> <span class="ident">ctxt</span> <span class="op">=</span> <span class="ident">Context</span>::<span class="op">&lt;</span><span class="ident">LE</span><span class="op">&gt;</span><span class="ident">::new_dbus</span>(<span class="number">0</span>);
-        <span class="kw">let</span> <span class="ident">encoded</span> <span class="op">=</span> <span class="ident">to_bytes</span>(<span class="ident">ctxt</span>, <span class="kw-2">&amp;</span><span class="ident">properties</span>).<span class="ident">unwrap</span>();
-        <span class="kw">let</span> <span class="ident">decoded</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">Value</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_slice</span>(<span class="kw-2">&amp;</span><span class="ident">encoded</span>, <span class="ident">ctxt</span>).<span class="ident">unwrap</span>();
+        <span class="kw">let </span>ctxt = Context::&lt;LE&gt;::new_dbus(<span class="number">0</span>);
+        <span class="kw">let </span>encoded = to_bytes(ctxt, <span class="kw-2">&amp;</span>properties).unwrap();
+        <span class="kw">let </span>decoded: HashMap&lt;<span class="kw-2">&amp;</span>str, Value&lt;<span class="lifetime">&#39;_</span>&gt;&gt; = from_slice(<span class="kw-2">&amp;</span>encoded, ctxt).unwrap();
 
-        <span class="macro">assert_eq!</span>(<span class="ident">decoded</span>[<span class="ident">ITEM_PROPERTY_LABEL</span>], <span class="ident">Value::from</span>(<span class="string">&quot;some_label&quot;</span>));
-        <span class="macro">assert!</span>(<span class="op">!</span><span class="ident">decoded</span>.<span class="ident">contains_key</span>(<span class="ident">COLLECTION_PROPERTY_LABEL</span>));
-        <span class="macro">assert!</span>(<span class="ident">decoded</span>.<span class="ident">contains_key</span>(<span class="ident">ITEM_PROPERTY_ATTRIBUTES</span>));
+        <span class="macro">assert_eq!</span>(decoded[ITEM_PROPERTY_LABEL], Value::from(<span class="string">&quot;some_label&quot;</span>));
+        <span class="macro">assert!</span>(!decoded.contains_key(COLLECTION_PROPERTY_LABEL));
+        <span class="macro">assert!</span>(decoded.contains_key(ITEM_PROPERTY_ATTRIBUTES));
         <span class="macro">assert_eq!</span>(
-            <span class="ident">decoded</span>[<span class="ident">ITEM_PROPERTY_ATTRIBUTES</span>],
-            <span class="ident">zvariant::Dict::from</span>(<span class="ident">attributes</span>).<span class="ident">into</span>()
+            decoded[ITEM_PROPERTY_ATTRIBUTES],
+            zvariant::Dict::from(attributes).into()
         );
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">signature</span>() {
-        <span class="macro">assert_eq!</span>(<span class="ident">Properties::signature</span>(), <span class="string">&quot;a{sv}&quot;</span>);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>signature() {
+        <span class="macro">assert_eq!</span>(Properties::signature(), <span class="string">&quot;a{sv}&quot;</span>);
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="oo7" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (23e21bdd2 2022-07-15)" ></div>
-</body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="oo7" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.0-nightly (470e518c4 2022-09-27)" ></div></body></html>

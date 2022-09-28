@@ -1,10 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/portal/api/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../storage.js"></script><script defer src="../../../../source-script.js"></script><script defer src="../../../../source-files.js"></script><script defer src="../../../../main.js"></script><noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../../oo7/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div>
-        </a><h2 class="location"></h2>
-    </nav>
-    <nav class="sidebar"><a class="sidebar-logo" href="../../../../oo7/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div>
-        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../../oo7/index.html"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1">
-                                <a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../wheel.svg"></a></div>
-                        </div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/portal/api/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../../normalize.css"><link rel="stylesheet" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../../ayu.css" disabled><link rel="stylesheet" href="../../../../dark.css" disabled><link rel="stylesheet" href="../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../storage.js"></script><script defer src="../../../../source-script.js"></script><script defer src="../../../../source-files.js"></script><script defer src="../../../../main.js"></script><noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../../oo7/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../../oo7/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../../oo7/index.html"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -346,348 +340,347 @@
 <span id="340">340</span>
 <span id="341">341</span>
 <span id="342">342</span>
-</pre><pre class="rust"><code><span class="doccomment">//! GNOME Keyring file format low level API.</span>
+</pre><pre class="rust"><code><span class="doccomment">//! GNOME Keyring file format low level API.
 
-<span class="comment">// TODO:</span>
-<span class="comment">// - Order user calls</span>
-<span class="comment">// - Keep proxis around</span>
-<span class="comment">// - Make more things async</span>
+</span><span class="comment">// TODO:
+// - Order user calls
+// - Keep proxis around
+// - Make more things async
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;async-std&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">std::os::unix::fs::OpenOptionsExt</span>;
-<span class="kw">use</span> <span class="ident">std</span>::{
-    <span class="ident">collections::HashMap</span>,
-    <span class="ident">path</span>::{<span class="ident">Path</span>, <span class="ident">PathBuf</span>},
+</span><span class="attribute">#[cfg(feature = <span class="string">&quot;async-std&quot;</span>)]
+</span><span class="kw">use </span>std::os::unix::fs::OpenOptionsExt;
+<span class="kw">use </span>std::{
+    collections::HashMap,
+    path::{Path, PathBuf},
 };
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;async-std&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">async_std</span>::{<span class="ident">fs</span>, <span class="ident">io</span>, <span class="ident">prelude</span>::<span class="kw-2">*</span>};
-<span class="kw">use</span> <span class="ident">cipher::BlockSizeUser</span>;
-<span class="kw">use</span> <span class="ident">once_cell::sync::Lazy</span>;
-<span class="kw">use</span> <span class="ident">rand::Rng</span>;
-<span class="kw">use</span> <span class="ident">serde</span>::{<span class="ident">Deserialize</span>, <span class="ident">Serialize</span>};
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tokio&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">tokio</span>::{<span class="ident">fs</span>, <span class="ident">io</span>, <span class="ident">io::AsyncWriteExt</span>};
-<span class="kw">use</span> <span class="ident">zbus::zvariant</span>::{<span class="self">self</span>, <span class="ident">Type</span>};
+<span class="attribute">#[cfg(feature = <span class="string">&quot;async-std&quot;</span>)]
+</span><span class="kw">use </span>async_std::{fs, io, prelude::<span class="kw-2">*</span>};
+<span class="kw">use </span>cipher::BlockSizeUser;
+<span class="kw">use </span>once_cell::sync::Lazy;
+<span class="kw">use </span>rand::Rng;
+<span class="kw">use </span>serde::{Deserialize, Serialize};
+<span class="attribute">#[cfg(feature = <span class="string">&quot;tokio&quot;</span>)]
+</span><span class="kw">use </span>tokio::{fs, io, io::AsyncWriteExt};
+<span class="kw">use </span>zbus::zvariant::{<span class="self">self</span>, Type};
 
-<span class="kw">const</span> <span class="ident">SALT_SIZE</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">32</span>;
-<span class="kw">const</span> <span class="ident">ITERATION_COUNT</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">100000</span>;
+<span class="kw">const </span>SALT_SIZE: usize = <span class="number">32</span>;
+<span class="kw">const </span>ITERATION_COUNT: u32 = <span class="number">100000</span>;
 
-<span class="kw">const</span> <span class="ident">FILE_HEADER</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>] <span class="op">=</span> <span class="string">b&quot;GnomeKeyring\n\r\0\n&quot;</span>;
-<span class="kw">const</span> <span class="ident">FILE_HEADER_LEN</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="ident">FILE_HEADER</span>.<span class="ident">len</span>();
+<span class="kw">const </span>FILE_HEADER: <span class="kw-2">&amp;</span>[u8] = <span class="string">b&quot;GnomeKeyring\n\r\0\n&quot;</span>;
+<span class="kw">const </span>FILE_HEADER_LEN: usize = FILE_HEADER.len();
 
-<span class="kw">const</span> <span class="ident">MAJOR_VERSION</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">const</span> <span class="ident">MINOR_VERSION</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0</span>;
+<span class="kw">const </span>MAJOR_VERSION: u8 = <span class="number">1</span>;
+<span class="kw">const </span>MINOR_VERSION: u8 = <span class="number">0</span>;
 
-<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">static</span> <span class="ident">GVARIANT_ENCODING</span>: <span class="ident">Lazy</span><span class="op">&lt;</span><span class="ident">zvariant::EncodingContext</span><span class="op">&lt;</span><span class="ident">byteorder::LE</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">Lazy::new</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">zvariant::EncodingContext</span>::<span class="op">&lt;</span><span class="ident">byteorder::LE</span><span class="op">&gt;</span><span class="ident">::new_gvariant</span>(<span class="number">0</span>));
+<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">static </span>GVARIANT_ENCODING: Lazy&lt;zvariant::EncodingContext&lt;byteorder::LE&gt;&gt; =
+    Lazy::new(|| zvariant::EncodingContext::&lt;byteorder::LE&gt;::new_gvariant(<span class="number">0</span>));
 
-<span class="kw">mod</span> <span class="ident">attribute_value</span>;
-<span class="kw">mod</span> <span class="ident">encrypted_item</span>;
+<span class="kw">mod </span>attribute_value;
+<span class="kw">mod </span>encrypted_item;
 
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">attribute_value::AttributeValue</span>;
-<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">use</span> <span class="ident">encrypted_item::EncryptedItem</span>;
+<span class="kw">pub use </span>attribute_value::AttributeValue;
+<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">use </span>encrypted_item::EncryptedItem;
 
-<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::Item</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">crypto::EncAlg</span>, <span class="ident">portal::Error</span>, <span class="ident">Key</span>};
+<span class="kw">use </span><span class="kw">super</span>::Item;
+<span class="kw">use crate</span>::{crypto::EncAlg, portal::Error, Key};
 
-<span class="doccomment">/// Logical contents of a keyring file</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Deserialize</span>, <span class="ident">Serialize</span>, <span class="ident">Type</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Keyring</span> {
-    <span class="ident">salt_size</span>: <span class="ident">u32</span>,
-    <span class="ident">salt</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>,
-    <span class="ident">iteration_count</span>: <span class="ident">u32</span>,
-    <span class="ident">modified_time</span>: <span class="ident">u64</span>,
-    <span class="ident">usage_count</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span>(<span class="kw">in</span> <span class="ident"><span class="kw">crate</span>::portal</span>) <span class="ident">items</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">EncryptedItem</span><span class="op">&gt;</span>,
+<span class="doccomment">/// Logical contents of a keyring file
+</span><span class="attribute">#[derive(Deserialize, Serialize, Type, Debug)]
+</span><span class="kw">pub struct </span>Keyring {
+    salt_size: u32,
+    salt: Vec&lt;u8&gt;,
+    iteration_count: u32,
+    modified_time: u64,
+    usage_count: u32,
+    <span class="kw">pub</span>(<span class="kw">in </span><span class="kw">crate</span>::portal) items: Vec&lt;EncryptedItem&gt;,
 }
 
-<span class="kw">impl</span> <span class="ident">Keyring</span> {
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::new_without_default</span>)]</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">new</span>() -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">salt</span> <span class="op">=</span> <span class="ident">rand::thread_rng</span>().<span class="ident">gen</span>::<span class="op">&lt;</span>[<span class="ident">u8</span>; <span class="ident">SALT_SIZE</span>]<span class="op">&gt;</span>().<span class="ident">to_vec</span>();
+<span class="kw">impl </span>Keyring {
+    <span class="attribute">#[allow(clippy::new_without_default)]
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>new() -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>salt = rand::thread_rng().gen::&lt;[u8; SALT_SIZE]&gt;().to_vec();
 
-        <span class="self">Self</span> {
-            <span class="ident">salt_size</span>: <span class="ident">salt</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u32</span>,
-            <span class="ident">salt</span>,
-            <span class="ident">iteration_count</span>: <span class="ident">ITERATION_COUNT</span>,
-            <span class="comment">// TODO: UTC?</span>
-            <span class="ident">modified_time</span>: <span class="ident">std::time::SystemTime::UNIX_EPOCH</span>
-                .<span class="ident">elapsed</span>()
-                .<span class="ident">unwrap</span>()
-                .<span class="ident">as_secs</span>(),
-            <span class="ident">usage_count</span>: <span class="number">0</span>,
-            <span class="ident">items</span>: <span class="ident">Vec::new</span>(),
+        <span class="self">Self </span>{
+            salt_size: salt.len() <span class="kw">as </span>u32,
+            salt,
+            iteration_count: ITERATION_COUNT,
+            <span class="comment">// TODO: UTC?
+            </span>modified_time: std::time::SystemTime::UNIX_EPOCH
+                .elapsed()
+                .unwrap()
+                .as_secs(),
+            usage_count: <span class="number">0</span>,
+            items: Vec::new(),
         }
     }
 
-    <span class="doccomment">/// Write to a keyring file</span>
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">dump</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span><span class="op">&gt;</span>(
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
-        <span class="ident">path</span>: <span class="ident">P</span>,
-        <span class="ident">mtime</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">std::time::SystemTime</span><span class="op">&gt;</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">tmp_path</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">parent</span>) <span class="op">=</span> <span class="ident">path</span>.<span class="ident">as_ref</span>().<span class="ident">parent</span>() {
-            <span class="kw">let</span> <span class="ident">rnd</span>: <span class="ident">String</span> <span class="op">=</span> <span class="ident">rand::thread_rng</span>()
-                .<span class="ident">sample_iter</span>(<span class="kw-2">&amp;</span><span class="ident">rand::distributions::Alphanumeric</span>)
-                .<span class="ident">take</span>(<span class="number">16</span>)
-                .<span class="ident">map</span>(<span class="ident">char::from</span>)
-                .<span class="ident">collect</span>();
+    <span class="doccomment">/// Write to a keyring file
+    </span><span class="kw">pub async fn </span>dump&lt;P: AsRef&lt;Path&gt;&gt;(
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>,
+        path: P,
+        mtime: <span class="prelude-ty">Option</span>&lt;std::time::SystemTime&gt;,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;(), Error&gt; {
+        <span class="kw">let </span>tmp_path = <span class="kw">if let </span><span class="prelude-val">Some</span>(parent) = path.as_ref().parent() {
+            <span class="kw">let </span>rnd: String = rand::thread_rng()
+                .sample_iter(<span class="kw-2">&amp;</span>rand::distributions::Alphanumeric)
+                .take(<span class="number">16</span>)
+                .map(char::from)
+                .collect();
 
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">tmp_path</span> <span class="op">=</span> <span class="ident">parent</span>.<span class="ident">to_path_buf</span>();
-            <span class="ident">tmp_path</span>.<span class="ident">push</span>(<span class="macro">format!</span>(<span class="string">&quot;.tmpkeyring{}&quot;</span>, <span class="ident">rnd</span>));
+            <span class="kw">let </span><span class="kw-2">mut </span>tmp_path = parent.to_path_buf();
+            tmp_path.push(<span class="macro">format!</span>(<span class="string">&quot;.tmpkeyring{}&quot;</span>, rnd));
 
-            <span class="kw">if</span> <span class="op">!</span><span class="ident">parent</span>.<span class="ident">exists</span>() {
-                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tracing&quot;</span>)]</span>
-                <span class="macro">tracing::debug!</span>(<span class="string">&quot;Parent directory {:?} deosn&#39;t exists, creating it&quot;</span>, <span class="ident">parent</span>);
-                <span class="ident">fs::DirBuilder::new</span>().<span class="ident">recursive</span>(<span class="bool-val">true</span>).<span class="ident">create</span>(<span class="ident">parent</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+            <span class="kw">if </span>!parent.exists() {
+                <span class="attribute">#[cfg(feature = <span class="string">&quot;tracing&quot;</span>)]
+                </span><span class="macro">tracing::debug!</span>(<span class="string">&quot;Parent directory {:?} deosn&#39;t exists, creating it&quot;</span>, parent);
+                fs::DirBuilder::new().recursive(<span class="bool-val">true</span>).create(parent).<span class="kw">await</span><span class="question-mark">?</span>;
             }
 
-            <span class="prelude-val">Ok</span>(<span class="ident">tmp_path</span>)
-        } <span class="kw">else</span> {
-            <span class="prelude-val">Err</span>(<span class="ident">Error::NoParentDir</span>(<span class="ident">path</span>.<span class="ident">as_ref</span>().<span class="ident">display</span>().<span class="ident">to_string</span>()))
+            <span class="prelude-val">Ok</span>(tmp_path)
+        } <span class="kw">else </span>{
+            <span class="prelude-val">Err</span>(Error::NoParentDir(path.as_ref().display().to_string()))
         }<span class="question-mark">?</span>;
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tracing&quot;</span>)]</span>
-        <span class="macro">tracing::debug!</span>(
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;tracing&quot;</span>)]
+        </span><span class="macro">tracing::debug!</span>(
             <span class="string">&quot;Created a temporary file to store the keyring on {:?}&quot;</span>,
-            <span class="ident">tmp_path</span>
+            tmp_path
         );
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">tmpfile_builder</span> <span class="op">=</span> <span class="ident">fs::OpenOptions::new</span>();
+        <span class="kw">let </span><span class="kw-2">mut </span>tmpfile_builder = fs::OpenOptions::new();
 
-        <span class="ident">tmpfile_builder</span>.<span class="ident">write</span>(<span class="bool-val">true</span>).<span class="ident">create_new</span>(<span class="bool-val">true</span>);
-        <span class="ident">tmpfile_builder</span>.<span class="ident">mode</span>(<span class="number">0o600</span>);
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">tmpfile</span> <span class="op">=</span> <span class="ident">tmpfile_builder</span>.<span class="ident">open</span>(<span class="kw-2">&amp;</span><span class="ident">tmp_path</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+        tmpfile_builder.write(<span class="bool-val">true</span>).create_new(<span class="bool-val">true</span>);
+        tmpfile_builder.mode(<span class="number">0o600</span>);
+        <span class="kw">let </span><span class="kw-2">mut </span>tmpfile = tmpfile_builder.open(<span class="kw-2">&amp;</span>tmp_path).<span class="kw">await</span><span class="question-mark">?</span>;
 
-        <span class="self">self</span>.<span class="ident">modified_time</span> <span class="op">=</span> <span class="ident">std::time::SystemTime::UNIX_EPOCH</span>
-            .<span class="ident">elapsed</span>()
-            .<span class="ident">unwrap</span>()
-            .<span class="ident">as_secs</span>();
-        <span class="self">self</span>.<span class="ident">usage_count</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
+        <span class="self">self</span>.modified_time = std::time::SystemTime::UNIX_EPOCH
+            .elapsed()
+            .unwrap()
+            .as_secs();
+        <span class="self">self</span>.usage_count += <span class="number">1</span>;
 
-        <span class="kw">let</span> <span class="ident">blob</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">as_bytes</span>()<span class="question-mark">?</span>;
+        <span class="kw">let </span>blob = <span class="self">self</span>.as_bytes()<span class="question-mark">?</span>;
 
-        <span class="ident">tmpfile</span>.<span class="ident">write_all</span>(<span class="kw-2">&amp;</span><span class="ident">blob</span>).<span class="kw">await</span><span class="question-mark">?</span>;
-        <span class="ident">tmpfile</span>.<span class="ident">sync_all</span>().<span class="kw">await</span><span class="question-mark">?</span>;
+        tmpfile.write_all(<span class="kw-2">&amp;</span>blob).<span class="kw">await</span><span class="question-mark">?</span>;
+        tmpfile.sync_all().<span class="kw">await</span><span class="question-mark">?</span>;
 
-        <span class="kw">let</span> <span class="ident">target_file</span> <span class="op">=</span> <span class="ident">fs::File::open</span>(<span class="ident">path</span>.<span class="ident">as_ref</span>()).<span class="kw">await</span>;
+        <span class="kw">let </span>target_file = fs::File::open(path.as_ref()).<span class="kw">await</span>;
 
-        <span class="kw">let</span> <span class="ident">target_mtime</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">target_file</span> {
-            <span class="prelude-val">Err</span>(<span class="ident">err</span>) <span class="kw">if</span> <span class="ident">err</span>.<span class="ident">kind</span>() <span class="op">==</span> <span class="ident">io::ErrorKind::NotFound</span> =&gt; <span class="prelude-val">None</span>,
-            <span class="prelude-val">Err</span>(<span class="ident">err</span>) =&gt; <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">err</span>.<span class="ident">into</span>()),
-            <span class="prelude-val">Ok</span>(<span class="ident">file</span>) =&gt; <span class="ident">file</span>.<span class="ident">metadata</span>().<span class="kw">await</span><span class="question-mark">?</span>.<span class="ident">modified</span>().<span class="ident">ok</span>(),
+        <span class="kw">let </span>target_mtime = <span class="kw">match </span>target_file {
+            <span class="prelude-val">Err</span>(err) <span class="kw">if </span>err.kind() == io::ErrorKind::NotFound =&gt; <span class="prelude-val">None</span>,
+            <span class="prelude-val">Err</span>(err) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(err.into()),
+            <span class="prelude-val">Ok</span>(file) =&gt; file.metadata().<span class="kw">await</span><span class="question-mark">?</span>.modified().ok(),
         };
 
-        <span class="kw">if</span> <span class="ident">mtime</span> <span class="op">!</span><span class="op">=</span> <span class="ident">target_mtime</span> {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::TargetFileChanged</span>(
-                <span class="ident">path</span>.<span class="ident">as_ref</span>().<span class="ident">display</span>().<span class="ident">to_string</span>(),
+        <span class="kw">if </span>mtime != target_mtime {
+            <span class="kw">return </span><span class="prelude-val">Err</span>(Error::TargetFileChanged(
+                path.as_ref().display().to_string(),
             ));
         }
 
-        <span class="ident">fs::rename</span>(<span class="ident">tmp_path</span>, <span class="ident">path</span>.<span class="ident">as_ref</span>()).<span class="kw">await</span><span class="question-mark">?</span>;
+        fs::rename(tmp_path, path.as_ref()).<span class="kw">await</span><span class="question-mark">?</span>;
 
         <span class="prelude-val">Ok</span>(())
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">search_items</span>(
+    <span class="kw">pub fn </span>search_items(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">attributes</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="kw">impl</span> <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span>, <span class="kw">impl</span> <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="ident">Key</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Item</span><span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">hashed_search</span> <span class="op">=</span> <span class="ident">hash_attributes</span>(<span class="ident">attributes</span>, <span class="ident">key</span>);
+        attributes: HashMap&lt;<span class="kw">impl </span>AsRef&lt;str&gt;, <span class="kw">impl </span>AsRef&lt;str&gt;&gt;,
+        key: <span class="kw-2">&amp;</span>Key,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;Vec&lt;Item&gt;, Error&gt; {
+        <span class="kw">let </span>hashed_search = hash_attributes(attributes, key);
 
-        <span class="self">self</span>.<span class="ident">items</span>
-            .<span class="ident">iter</span>()
-            .<span class="ident">filter</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> {
-                <span class="ident">hashed_search</span>.<span class="ident">iter</span>().<span class="ident">all</span>(<span class="op">|</span>(<span class="ident">search_key</span>, <span class="ident">search_hash</span>)<span class="op">|</span> {
-                    <span class="ident">e</span>.<span class="ident">hashed_attributes</span>.<span class="ident">get</span>(<span class="ident">search_key</span>.<span class="ident">as_ref</span>()) <span class="op">==</span> <span class="prelude-val">Some</span>(<span class="ident">search_hash</span>)
+        <span class="self">self</span>.items
+            .iter()
+            .filter(|e| {
+                hashed_search.iter().all(|(search_key, search_hash)| {
+                    e.hashed_attributes.get(search_key.as_ref()) == <span class="prelude-val">Some</span>(search_hash)
                 })
             })
-            .<span class="ident">map</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> (<span class="kw-2">*</span><span class="ident">e</span>).<span class="ident">clone</span>().<span class="ident">decrypt</span>(<span class="ident">key</span>))
-            .<span class="ident">collect</span>()
+            .map(|e| (<span class="kw-2">*</span>e).clone().decrypt(key))
+            .collect()
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">lookup_item</span>(
+    <span class="kw">pub fn </span>lookup_item(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">attributes</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="kw">impl</span> <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span>, <span class="kw">impl</span> <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="ident">Key</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Item</span><span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">hashed_search</span> <span class="op">=</span> <span class="ident">hash_attributes</span>(<span class="ident">attributes</span>, <span class="ident">key</span>);
+        attributes: HashMap&lt;<span class="kw">impl </span>AsRef&lt;str&gt;, <span class="kw">impl </span>AsRef&lt;str&gt;&gt;,
+        key: <span class="kw-2">&amp;</span>Key,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;Item&gt;, Error&gt; {
+        <span class="kw">let </span>hashed_search = hash_attributes(attributes, key);
 
-        <span class="self">self</span>.<span class="ident">items</span>
-            .<span class="ident">iter</span>()
-            .<span class="ident">find</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> {
-                <span class="ident">hashed_search</span>.<span class="ident">iter</span>().<span class="ident">all</span>(<span class="op">|</span>(<span class="ident">search_key</span>, <span class="ident">search_hash</span>)<span class="op">|</span> {
-                    <span class="ident">e</span>.<span class="ident">hashed_attributes</span>.<span class="ident">get</span>(<span class="ident">search_key</span>.<span class="ident">as_ref</span>()) <span class="op">==</span> <span class="prelude-val">Some</span>(<span class="ident">search_hash</span>)
+        <span class="self">self</span>.items
+            .iter()
+            .find(|e| {
+                hashed_search.iter().all(|(search_key, search_hash)| {
+                    e.hashed_attributes.get(search_key.as_ref()) == <span class="prelude-val">Some</span>(search_hash)
                 })
             })
-            .<span class="ident">map</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> (<span class="kw-2">*</span><span class="ident">e</span>).<span class="ident">clone</span>().<span class="ident">decrypt</span>(<span class="ident">key</span>))
-            .<span class="ident">transpose</span>()
+            .map(|e| (<span class="kw-2">*</span>e).clone().decrypt(key))
+            .transpose()
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">remove_items</span>(
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
-        <span class="ident">attributes</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="kw">impl</span> <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span>, <span class="kw">impl</span> <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="ident">Key</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">hashed_search</span> <span class="op">=</span> <span class="ident">hash_attributes</span>(<span class="ident">attributes</span>, <span class="ident">key</span>);
+    <span class="kw">pub fn </span>remove_items(
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>,
+        attributes: HashMap&lt;<span class="kw">impl </span>AsRef&lt;str&gt;, <span class="kw">impl </span>AsRef&lt;str&gt;&gt;,
+        key: <span class="kw-2">&amp;</span>Key,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;(), Error&gt; {
+        <span class="kw">let </span>hashed_search = hash_attributes(attributes, key);
 
-        <span class="kw">let</span> (<span class="ident">remove</span>, <span class="ident">keep</span>): (<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">EncryptedItem</span><span class="op">&gt;</span>, <span class="kw">_</span>) <span class="op">=</span>
-            <span class="self">self</span>.<span class="ident">items</span>.<span class="ident">clone</span>().<span class="ident">into_iter</span>().<span class="ident">partition</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> {
-                <span class="ident">hashed_search</span>.<span class="ident">iter</span>().<span class="ident">all</span>(<span class="op">|</span>(<span class="ident">search_key</span>, <span class="ident">search_hash</span>)<span class="op">|</span> {
-                    <span class="ident">e</span>.<span class="ident">hashed_attributes</span>.<span class="ident">get</span>(<span class="ident">search_key</span>.<span class="ident">as_ref</span>()) <span class="op">==</span> <span class="prelude-val">Some</span>(<span class="ident">search_hash</span>)
+        <span class="kw">let </span>(remove, keep): (Vec&lt;EncryptedItem&gt;, <span class="kw">_</span>) =
+            <span class="self">self</span>.items.clone().into_iter().partition(|e| {
+                hashed_search.iter().all(|(search_key, search_hash)| {
+                    e.hashed_attributes.get(search_key.as_ref()) == <span class="prelude-val">Some</span>(search_hash)
                 })
             });
 
-        <span class="comment">// check hashes for the ones to be removed</span>
-        <span class="kw">for</span> <span class="ident">item</span> <span class="kw">in</span> <span class="ident">remove</span> {
-            <span class="ident">item</span>.<span class="ident">decrypt</span>(<span class="ident">key</span>)<span class="question-mark">?</span>;
+        <span class="comment">// check hashes for the ones to be removed
+        </span><span class="kw">for </span>item <span class="kw">in </span>remove {
+            item.decrypt(key)<span class="question-mark">?</span>;
         }
 
-        <span class="self">self</span>.<span class="ident">items</span> <span class="op">=</span> <span class="ident">keep</span>;
+        <span class="self">self</span>.items = keep;
 
         <span class="prelude-val">Ok</span>(())
     }
 
-    <span class="kw">fn</span> <span class="ident">as_bytes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">blob</span> <span class="op">=</span> <span class="ident">FILE_HEADER</span>.<span class="ident">to_vec</span>();
+    <span class="kw">fn </span>as_bytes(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;Vec&lt;u8&gt;, Error&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>blob = FILE_HEADER.to_vec();
 
-        <span class="ident">blob</span>.<span class="ident">push</span>(<span class="ident">MAJOR_VERSION</span>);
-        <span class="ident">blob</span>.<span class="ident">push</span>(<span class="ident">MINOR_VERSION</span>);
-        <span class="ident">blob</span>.<span class="ident">append</span>(<span class="kw-2">&amp;mut</span> <span class="ident">zvariant::to_bytes</span>(<span class="kw-2">*</span><span class="ident">GVARIANT_ENCODING</span>, <span class="kw-2">&amp;</span><span class="self">self</span>)<span class="question-mark">?</span>);
+        blob.push(MAJOR_VERSION);
+        blob.push(MINOR_VERSION);
+        blob.append(<span class="kw-2">&amp;mut </span>zvariant::to_bytes(<span class="kw-2">*</span>GVARIANT_ENCODING, <span class="kw-2">&amp;</span><span class="self">self</span>)<span class="question-mark">?</span>);
 
-        <span class="prelude-val">Ok</span>(<span class="ident">blob</span>)
+        <span class="prelude-val">Ok</span>(blob)
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">default_path</span>() -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">PathBuf</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">mut</span> <span class="ident">path</span>) <span class="op">=</span> <span class="ident">dirs::data_dir</span>() {
-            <span class="ident">path</span>.<span class="ident">push</span>(<span class="string">&quot;keyrings&quot;</span>);
-            <span class="ident">path</span>.<span class="ident">push</span>(<span class="string">&quot;default.keyring&quot;</span>);
-            <span class="prelude-val">Ok</span>(<span class="ident">path</span>)
-        } <span class="kw">else</span> {
-            <span class="prelude-val">Err</span>(<span class="ident">Error::NoDataDir</span>)
+    <span class="kw">pub fn </span>default_path() -&gt; <span class="prelude-ty">Result</span>&lt;PathBuf, Error&gt; {
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(<span class="kw-2">mut </span>path) = dirs::data_dir() {
+            path.push(<span class="string">&quot;keyrings&quot;</span>);
+            path.push(<span class="string">&quot;default.keyring&quot;</span>);
+            <span class="prelude-val">Ok</span>(path)
+        } <span class="kw">else </span>{
+            <span class="prelude-val">Err</span>(Error::NoDataDir)
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">derive_key</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">secret</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) -&gt; <span class="ident">Key</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">key</span> <span class="op">=</span> <span class="ident">Key</span>(<span class="macro">vec!</span>[<span class="number">0</span>; <span class="ident">EncAlg::block_size</span>()]);
+    <span class="kw">pub fn </span>derive_key(<span class="kw-2">&amp;</span><span class="self">self</span>, secret: <span class="kw-2">&amp;</span>[u8]) -&gt; Key {
+        <span class="kw">let </span><span class="kw-2">mut </span>key = Key(<span class="macro">vec!</span>[<span class="number">0</span>; EncAlg::block_size()]);
 
-        <span class="ident">pbkdf2::pbkdf2</span>::<span class="op">&lt;</span><span class="ident">hmac::Hmac</span><span class="op">&lt;</span><span class="ident">sha2::Sha256</span><span class="op">&gt;</span><span class="op">&gt;</span>(
-            <span class="ident">secret</span>,
-            <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">salt</span>,
-            <span class="self">self</span>.<span class="ident">iteration_count</span>,
-            <span class="ident">key</span>.<span class="ident">as_mut</span>(),
+        pbkdf2::pbkdf2::&lt;hmac::Hmac&lt;sha2::Sha256&gt;&gt;(
+            secret,
+            <span class="kw-2">&amp;</span><span class="self">self</span>.salt,
+            <span class="self">self</span>.iteration_count,
+            key.as_mut(),
         );
 
-        <span class="ident">key</span>
+        key
     }
 }
 
-<span class="kw">impl</span> <span class="ident">TryFrom</span><span class="op">&lt;</span><span class="kw-2">&amp;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Keyring</span> {
-    <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">Error</span>;
+<span class="kw">impl </span>TryFrom&lt;<span class="kw-2">&amp;</span>[u8]&gt; <span class="kw">for </span>Keyring {
+    <span class="kw">type </span>Error = Error;
 
-    <span class="kw">fn</span> <span class="ident">try_from</span>(<span class="ident">value</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">header</span> <span class="op">=</span> <span class="ident">value</span>.<span class="ident">get</span>(..<span class="ident">FILE_HEADER</span>.<span class="ident">len</span>());
-        <span class="kw">if</span> <span class="ident">header</span> <span class="op">!</span><span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">FILE_HEADER</span>) {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::FileHeaderMismatch</span>(
-                <span class="ident">header</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="ident">String::from_utf8_lossy</span>(<span class="ident">x</span>).<span class="ident">to_string</span>()),
+    <span class="kw">fn </span>try_from(value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, Error&gt; {
+        <span class="kw">let </span>header = value.get(..FILE_HEADER.len());
+        <span class="kw">if </span>header != <span class="prelude-val">Some</span>(FILE_HEADER) {
+            <span class="kw">return </span><span class="prelude-val">Err</span>(Error::FileHeaderMismatch(
+                header.map(|x| String::from_utf8_lossy(x).to_string()),
             ));
         }
 
-        <span class="kw">let</span> <span class="ident">version</span> <span class="op">=</span> <span class="ident">value</span>.<span class="ident">get</span>(<span class="ident">FILE_HEADER_LEN</span>..(<span class="ident">FILE_HEADER_LEN</span> <span class="op">+</span> <span class="number">2</span>));
-        <span class="kw">if</span> <span class="ident">version</span> <span class="op">!</span><span class="op">=</span> <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span>[<span class="ident">MAJOR_VERSION</span>, <span class="ident">MINOR_VERSION</span>]) {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::VersionMismatch</span>(<span class="ident">version</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="ident">x</span>.<span class="ident">to_vec</span>())));
+        <span class="kw">let </span>version = value.get(FILE_HEADER_LEN..(FILE_HEADER_LEN + <span class="number">2</span>));
+        <span class="kw">if </span>version != <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span>[MAJOR_VERSION, MINOR_VERSION]) {
+            <span class="kw">return </span><span class="prelude-val">Err</span>(Error::VersionMismatch(version.map(|x| x.to_vec())));
         }
 
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">data</span>) <span class="op">=</span> <span class="ident">value</span>.<span class="ident">get</span>((<span class="ident">FILE_HEADER_LEN</span> <span class="op">+</span> <span class="number">2</span>)..) {
-            <span class="prelude-val">Ok</span>(<span class="ident">zvariant::from_slice</span>(<span class="ident">data</span>, <span class="kw-2">*</span><span class="ident">GVARIANT_ENCODING</span>)<span class="question-mark">?</span>)
-        } <span class="kw">else</span> {
-            <span class="prelude-val">Err</span>(<span class="ident">Error::NoData</span>)
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(data) = value.get((FILE_HEADER_LEN + <span class="number">2</span>)..) {
+            <span class="prelude-val">Ok</span>(zvariant::from_slice(data, <span class="kw-2">*</span>GVARIANT_ENCODING)<span class="question-mark">?</span>)
+        } <span class="kw">else </span>{
+            <span class="prelude-val">Err</span>(Error::NoData)
         }
     }
 }
 
-<span class="kw">fn</span> <span class="ident">hash_attributes</span><span class="op">&lt;</span><span class="ident">K</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span><span class="op">&gt;</span>(
-    <span class="ident">attributes</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">K</span>, <span class="kw">impl</span> <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="ident">Key</span>,
-) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">K</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>)<span class="op">&gt;</span> {
-    <span class="ident">attributes</span>
-        .<span class="ident">into_iter</span>()
-        .<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">k</span>, <span class="ident">v</span>)<span class="op">|</span> {
+<span class="kw">fn </span>hash_attributes&lt;K: AsRef&lt;str&gt;&gt;(
+    attributes: HashMap&lt;K, <span class="kw">impl </span>AsRef&lt;str&gt;&gt;,
+    key: <span class="kw-2">&amp;</span>Key,
+) -&gt; Vec&lt;(K, Vec&lt;u8&gt;)&gt; {
+    attributes
+        .into_iter()
+        .map(|(k, v)| {
             (
-                <span class="ident">k</span>,
-                <span class="ident">AttributeValue::from</span>(<span class="ident">v</span>.<span class="ident">as_ref</span>())
-                    .<span class="ident">mac</span>(<span class="ident">key</span>)
-                    .<span class="ident">into_bytes</span>()
-                    .<span class="ident">as_slice</span>()
-                    .<span class="ident">to_vec</span>(),
+                k,
+                AttributeValue::from(v.as_ref())
+                    .mac(key)
+                    .into_bytes()
+                    .as_slice()
+                    .to_vec(),
             )
         })
-        .<span class="ident">collect</span>()
+        .collect()
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;async-std&quot;</span>)]</span>
-<span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
+<span class="attribute">#[cfg(test)]
+#[cfg(feature = <span class="string">&quot;async-std&quot;</span>)]
+</span><span class="kw">mod </span>tests {
+    <span class="kw">use super</span>::<span class="kw-2">*</span>;
 
-    <span class="kw">const</span> <span class="ident">SECRET</span>: [<span class="ident">u8</span>; <span class="number">64</span>] <span class="op">=</span> [
+    <span class="kw">const </span>SECRET: [u8; <span class="number">64</span>] = [
         <span class="number">44</span>, <span class="number">173</span>, <span class="number">251</span>, <span class="number">20</span>, <span class="number">203</span>, <span class="number">56</span>, <span class="number">241</span>, <span class="number">169</span>, <span class="number">91</span>, <span class="number">54</span>, <span class="number">51</span>, <span class="number">244</span>, <span class="number">40</span>, <span class="number">40</span>, <span class="number">202</span>, <span class="number">92</span>, <span class="number">71</span>, <span class="number">233</span>, <span class="number">174</span>, <span class="number">17</span>,
         <span class="number">145</span>, <span class="number">58</span>, <span class="number">7</span>, <span class="number">107</span>, <span class="number">31</span>, <span class="number">204</span>, <span class="number">175</span>, <span class="number">245</span>, <span class="number">112</span>, <span class="number">174</span>, <span class="number">31</span>, <span class="number">198</span>, <span class="number">162</span>, <span class="number">149</span>, <span class="number">13</span>, <span class="number">127</span>, <span class="number">119</span>, <span class="number">113</span>, <span class="number">13</span>, <span class="number">3</span>,
         <span class="number">191</span>, <span class="number">143</span>, <span class="number">162</span>, <span class="number">153</span>, <span class="number">183</span>, <span class="number">7</span>, <span class="number">21</span>, <span class="number">116</span>, <span class="number">81</span>, <span class="number">45</span>, <span class="number">51</span>, <span class="number">198</span>, <span class="number">73</span>, <span class="number">127</span>, <span class="number">147</span>, <span class="number">40</span>, <span class="number">52</span>, <span class="number">25</span>, <span class="number">181</span>, <span class="number">188</span>,
         <span class="number">48</span>, <span class="number">159</span>, <span class="number">0</span>, <span class="number">146</span>,
     ];
 
-    <span class="attribute">#[<span class="ident">async_std::test</span>]</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">keyfile_add_remove</span>() -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">needle</span> <span class="op">=</span> <span class="ident">HashMap::from</span>([(<span class="ident">String::from</span>(<span class="string">&quot;key&quot;</span>), <span class="ident">String::from</span>(<span class="string">&quot;value&quot;</span>))]);
+    <span class="attribute">#[async_std::test]
+    </span><span class="kw">async fn </span>keyfile_add_remove() -&gt; <span class="prelude-ty">Result</span>&lt;(), Error&gt; {
+        <span class="kw">let </span>needle = HashMap::from([(String::from(<span class="string">&quot;key&quot;</span>), String::from(<span class="string">&quot;value&quot;</span>))]);
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">keyring</span> <span class="op">=</span> <span class="ident">Keyring::new</span>();
-        <span class="kw">let</span> <span class="ident">key</span> <span class="op">=</span> <span class="ident">keyring</span>.<span class="ident">derive_key</span>(<span class="kw-2">&amp;</span><span class="ident">SECRET</span>);
+        <span class="kw">let </span><span class="kw-2">mut </span>keyring = Keyring::new();
+        <span class="kw">let </span>key = keyring.derive_key(<span class="kw-2">&amp;</span>SECRET);
 
-        <span class="ident">keyring</span>
-            .<span class="ident">items</span>
-            .<span class="ident">push</span>(<span class="ident">Item::new</span>(<span class="ident">String::from</span>(<span class="string">&quot;Label&quot;</span>), <span class="ident">needle</span>.<span class="ident">clone</span>(), <span class="string">b&quot;MyPassword&quot;</span>).<span class="ident">encrypt</span>(<span class="kw-2">&amp;</span><span class="ident">key</span>)<span class="question-mark">?</span>);
+        keyring
+            .items
+            .push(Item::new(String::from(<span class="string">&quot;Label&quot;</span>), needle.clone(), <span class="string">b&quot;MyPassword&quot;</span>).encrypt(<span class="kw-2">&amp;</span>key)<span class="question-mark">?</span>);
 
-        <span class="macro">assert_eq!</span>(<span class="ident">keyring</span>.<span class="ident">search_items</span>(<span class="ident">needle</span>.<span class="ident">clone</span>(), <span class="kw-2">&amp;</span><span class="ident">key</span>)<span class="question-mark">?</span>.<span class="ident">len</span>(), <span class="number">1</span>);
+        <span class="macro">assert_eq!</span>(keyring.search_items(needle.clone(), <span class="kw-2">&amp;</span>key)<span class="question-mark">?</span>.len(), <span class="number">1</span>);
 
-        <span class="ident">keyring</span>.<span class="ident">remove_items</span>(<span class="ident">needle</span>.<span class="ident">clone</span>(), <span class="kw-2">&amp;</span><span class="ident">key</span>)<span class="question-mark">?</span>;
+        keyring.remove_items(needle.clone(), <span class="kw-2">&amp;</span>key)<span class="question-mark">?</span>;
 
-        <span class="macro">assert_eq!</span>(<span class="ident">keyring</span>.<span class="ident">search_items</span>(<span class="ident">needle</span>, <span class="kw-2">&amp;</span><span class="ident">key</span>)<span class="question-mark">?</span>.<span class="ident">len</span>(), <span class="number">0</span>);
+        <span class="macro">assert_eq!</span>(keyring.search_items(needle, <span class="kw-2">&amp;</span>key)<span class="question-mark">?</span>.len(), <span class="number">0</span>);
 
         <span class="prelude-val">Ok</span>(())
     }
 
-    <span class="attribute">#[<span class="ident">async_std::test</span>]</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">keyfile_dump_load</span>() -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">_silent</span> <span class="op">=</span> <span class="ident">std::fs::remove_file</span>(<span class="string">&quot;/tmp/test.keyring&quot;</span>);
+    <span class="attribute">#[async_std::test]
+    </span><span class="kw">async fn </span>keyfile_dump_load() -&gt; <span class="prelude-ty">Result</span>&lt;(), Error&gt; {
+        <span class="kw">let </span>_silent = std::fs::remove_file(<span class="string">&quot;/tmp/test.keyring&quot;</span>);
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">new_keyring</span> <span class="op">=</span> <span class="ident">Keyring::new</span>();
-        <span class="kw">let</span> <span class="ident">key</span> <span class="op">=</span> <span class="ident">new_keyring</span>.<span class="ident">derive_key</span>(<span class="kw-2">&amp;</span><span class="ident">SECRET</span>);
+        <span class="kw">let </span><span class="kw-2">mut </span>new_keyring = Keyring::new();
+        <span class="kw">let </span>key = new_keyring.derive_key(<span class="kw-2">&amp;</span>SECRET);
 
-        <span class="ident">new_keyring</span>.<span class="ident">items</span>.<span class="ident">push</span>(
-            <span class="ident">Item::new</span>(
-                <span class="ident">String::from</span>(<span class="string">&quot;My Label&quot;</span>),
-                <span class="ident">HashMap::from</span>([(<span class="ident">String::from</span>(<span class="string">&quot;my-tag&quot;</span>), <span class="ident">String::from</span>(<span class="string">&quot;my tag value&quot;</span>))]),
-                <span class="string">&quot;A Password&quot;</span>.<span class="ident">as_bytes</span>(),
+        new_keyring.items.push(
+            Item::new(
+                String::from(<span class="string">&quot;My Label&quot;</span>),
+                HashMap::from([(String::from(<span class="string">&quot;my-tag&quot;</span>), String::from(<span class="string">&quot;my tag value&quot;</span>))]),
+                <span class="string">&quot;A Password&quot;</span>.as_bytes(),
             )
-            .<span class="ident">encrypt</span>(<span class="kw-2">&amp;</span><span class="ident">key</span>)<span class="question-mark">?</span>,
+            .encrypt(<span class="kw-2">&amp;</span>key)<span class="question-mark">?</span>,
         );
-        <span class="ident">new_keyring</span>.<span class="ident">dump</span>(<span class="string">&quot;/tmp/test.keyring&quot;</span>, <span class="prelude-val">None</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+        new_keyring.dump(<span class="string">&quot;/tmp/test.keyring&quot;</span>, <span class="prelude-val">None</span>).<span class="kw">await</span><span class="question-mark">?</span>;
 
-        <span class="kw">let</span> <span class="ident">blob</span> <span class="op">=</span> <span class="ident">async_std::fs::read</span>(<span class="string">&quot;/tmp/test.keyring&quot;</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+        <span class="kw">let </span>blob = async_std::fs::read(<span class="string">&quot;/tmp/test.keyring&quot;</span>).<span class="kw">await</span><span class="question-mark">?</span>;
 
-        <span class="kw">let</span> <span class="ident">loaded_keyring</span> <span class="op">=</span> <span class="ident">Keyring::try_from</span>(<span class="ident">blob</span>.<span class="ident">as_slice</span>())<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">loaded_items</span> <span class="op">=</span>
-            <span class="ident">loaded_keyring</span>.<span class="ident">search_items</span>(<span class="ident">HashMap::from</span>([(<span class="string">&quot;my-tag&quot;</span>, <span class="string">&quot;my tag value&quot;</span>)]), <span class="kw-2">&amp;</span><span class="ident">key</span>)<span class="question-mark">?</span>;
+        <span class="kw">let </span>loaded_keyring = Keyring::try_from(blob.as_slice())<span class="question-mark">?</span>;
+        <span class="kw">let </span>loaded_items =
+            loaded_keyring.search_items(HashMap::from([(<span class="string">&quot;my-tag&quot;</span>, <span class="string">&quot;my tag value&quot;</span>)]), <span class="kw-2">&amp;</span>key)<span class="question-mark">?</span>;
 
-        <span class="macro">assert_eq!</span>(<span class="kw-2">*</span><span class="ident">loaded_items</span>[<span class="number">0</span>].<span class="ident">secret</span>(), <span class="string">&quot;A Password&quot;</span>.<span class="ident">as_bytes</span>());
+        <span class="macro">assert_eq!</span>(<span class="kw-2">*</span>loaded_items[<span class="number">0</span>].secret(), <span class="string">&quot;A Password&quot;</span>.as_bytes());
 
-        <span class="kw">let</span> <span class="ident">_silent</span> <span class="op">=</span> <span class="ident">std::fs::remove_file</span>(<span class="string">&quot;/tmp/test.keyring&quot;</span>);
+        <span class="kw">let </span>_silent = std::fs::remove_file(<span class="string">&quot;/tmp/test.keyring&quot;</span>);
 
         <span class="prelude-val">Ok</span>(())
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="oo7" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (23e21bdd2 2022-07-15)" ></div>
-</body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="oo7" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.0-nightly (470e518c4 2022-09-27)" ></div></body></html>
