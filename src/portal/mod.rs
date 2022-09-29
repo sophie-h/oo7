@@ -47,7 +47,7 @@ mod error;
 mod item;
 mod secret;
 
-pub use error::Error;
+pub use error::{Error, WeakKeyError};
 pub use item::Item;
 use zeroize::Zeroizing;
 
@@ -232,6 +232,41 @@ mod tests {
 
         keyring.write().await?;
         keyring.write().await?;
+
+        Ok(())
+    }
+
+    #[async_std::test]
+    async fn write_with_weak_key() -> Result<(), Error> {
+        let path = std::path::PathBuf::from("../../tests/write_with_weak_key.keyring");
+
+        let keyring = Keyring::load(&path, &SECRET).await?;
+
+        let result = keyring
+            .create_item("label", Default::default(), "my-password", false)
+            .await;
+
+        assert!(matches!(
+            result,
+            Err(Error::WeakKey(WeakKeyError::PasswordTooShort(2)))
+        ));
+
+        Ok(())
+    }
+
+    #[async_std::test]
+    async fn write_with_strong_key() -> Result<(), Error> {
+        let path = std::path::PathBuf::from("../../tests/write_with_strong_key.keyring");
+
+        let keyring = Keyring::load(
+            &path,
+            &SECRET.into_iter().cycle().take(64).collect::<Vec<_>>(),
+        )
+        .await?;
+
+        keyring
+            .create_item("label", Default::default(), "my-password", false)
+            .await?;
 
         Ok(())
     }
